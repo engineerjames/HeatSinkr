@@ -1,2 +1,0 @@
-# HeatSinkr
-Heatsink analysis program
