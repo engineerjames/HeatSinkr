@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeatSinkr", "HeatsinkLibrary\HeatSinkr.csproj", "{32F7A4D7-CD95-42F7-B9CE-BB49F93E0056}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{99BC0E7C-0824-40AE-8633-F83A35CB55C7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32F7A4D7-CD95-42F7-B9CE-BB49F93E0056}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32F7A4D7-CD95-42F7-B9CE-BB49F93E0056}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32F7A4D7-CD95-42F7-B9CE-BB49F93E0056}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32F7A4D7-CD95-42F7-B9CE-BB49F93E0056}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99BC0E7C-0824-40AE-8633-F83A35CB55C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99BC0E7C-0824-40AE-8633-F83A35CB55C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99BC0E7C-0824-40AE-8633-F83A35CB55C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99BC0E7C-0824-40AE-8633-F83A35CB55C7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

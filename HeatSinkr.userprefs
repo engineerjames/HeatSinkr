@@ -1,0 +1,17 @@
+﻿<Properties StartupConfiguration="{32F7A4D7-CD95-42F7-B9CE-BB49F93E0056}|Unit Tests">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HeatsinkLibrary/GeometryTests.cs">
+    <Files>
+      <File FileName="HeatsinkLibrary/HeatsinkTests.cs" Line="33" Column="4" />
+      <File FileName="HeatsinkLibrary/Heatsink.cs" Line="9" Column="4" />
+      <File FileName="HeatsinkLibrary/Units.cs" Line="26" Column="15" />
+      <File FileName="HeatsinkLibrary/Geometry.cs" Line="49" Column="68" />
+      <File FileName="HeatsinkLibrary/GeometryTests.cs" Line="41" Column="9" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.HeatSinkr PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
