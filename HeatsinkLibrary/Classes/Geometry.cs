@@ -10,6 +10,6 @@ namespace HeatSinkr.Library
 
 		public abstract T GetGeometryParameters();
 
-		// public abstract double GetSurfaceArea();
+		public abstract double GetSurfaceArea();
 	}
 }

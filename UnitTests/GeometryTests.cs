@@ -7,7 +7,8 @@ namespace HeatSinkr.Tests
 	[TestFixture]
 	public class GeometryTests
 	{
-		PlateFinGeometryParameters testParameters = new PlateFinGeometryParameters();
+        public const double Epsilon = .000001;
+        PlateFinGeometryParameters testParameters = new PlateFinGeometryParameters();
 		Geometry<PlateFinGeometryParameters> testGeom;
 
 		[SetUp]
@@ -39,9 +40,9 @@ namespace HeatSinkr.Tests
 		[Test]
 		public void VolumeIsCalculatedCorrectly()
 		{
-			double ActualArea = testGeom.GetVolume();
-			double ExpectedArea = (16000.0);
-			Assert.AreEqual(ExpectedArea, ActualArea, Double.Epsilon);
+			double actualVolume = testGeom.GetVolume();
+			double expectedVolume = 5850.0; // mm^3
+			Assert.AreEqual(expectedVolume, actualVolume, Epsilon);
 		}
 
 		[Test]
@@ -50,7 +51,16 @@ namespace HeatSinkr.Tests
 			double actual = testGeom.GetPitch();
 			double expected = 2.90;
 
-			Assert.AreEqual(expected, actual, Double.Epsilon);
+			Assert.AreEqual(expected, actual, Epsilon);
 		}
+
+        [Test]
+        public void SurfaceAreaIsCalculatedCorrectly()
+        {
+            double actual = testGeom.GetSurfaceArea();
+            double expected = 9770; // mm^2
+
+            Assert.AreEqual(expected, actual, Epsilon);
+        }
 	}
 }
