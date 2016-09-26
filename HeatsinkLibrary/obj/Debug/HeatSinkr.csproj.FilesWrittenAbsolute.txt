@@ -1,0 +1,5 @@
+/Users/armes/Documents/HeatSinkr/HeatsinkLibrary/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/armes/Documents/HeatSinkr/HeatsinkLibrary/bin/Debug/HeatsinkLibrary.dll.mdb
+/Users/armes/Documents/HeatSinkr/HeatsinkLibrary/bin/Debug/HeatsinkLibrary.dll
+/Users/armes/Documents/HeatSinkr/HeatsinkLibrary/obj/Debug/HeatsinkLibrary.dll
+/Users/armes/Documents/HeatSinkr/HeatsinkLibrary/obj/Debug/HeatsinkLibrary.dll.mdb

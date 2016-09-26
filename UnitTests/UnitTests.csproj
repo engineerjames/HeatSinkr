@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{99BC0E7C-0824-40AE-8633-F83A35CB55C7}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>UnitTests</RootNamespace>
     <AssemblyName>UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -24,5 +24,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GeometryTests.cs" />
+    <Compile Include="HeatsinkTests.cs" />
+    <Compile Include="UnitsTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HeatsinkLibrary\HeatSinkr.csproj">
+      <Project>{32F7A4D7-CD95-42F7-B9CE-BB49F93E0056}</Project>
+      <Name>HeatSinkr</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,37 +1,39 @@
 ﻿using System;
+using HeatSinkr.Library;
 using NUnit.Framework;
 
-namespace HeatsinkLibrary
+namespace HeatSinkr.Tests
 {
 	[TestFixture]
 	public class GeometryTests
 	{
-		GeometryParameters testParameters = new GeometryParameters();
-		Geometry testGeom;
+		PlateFinGeometryParameters testParameters = new PlateFinGeometryParameters();
+		Geometry<PlateFinGeometryParameters> testGeom;
 
-
+		[SetUp]
 		public void InitializeTestGeometry()
 		{
+			testParameters.NumberOfFins = 11;
 			testParameters.FinThickness = 1.0;
 			testParameters.FlowLength = 10.0;
 			testParameters.Width = 40.0;
 			testParameters.FinHeight = 35.0;
 			testParameters.BaseThickness = 5.0;
-			testGeom = new Geometry(testParameters);
+			testGeom = new PlateFinGeometry(testParameters);
 		}
 
 		[Test]
 		public void GeometryCanBeCreated()
 		{
-			InitializeTestGeometry();
 			Assert.AreNotEqual(null, testGeom);
 		}
 
 		[Test]
 		public void GeometryParametersAreSetCorrectly()
 		{
-			GeometryParameters actual = testGeom.GetGeometryParameters();
+			PlateFinGeometryParameters actual = testGeom.GetGeometryParameters();
 			Assert.AreEqual(actual, testParameters);
+
 		}
 
 		[Test]
@@ -43,16 +45,12 @@ namespace HeatsinkLibrary
 		}
 
 		[Test]
-		public void CannotSetHeatsinkHeight()
-		{
-			Assert.Throws(InvalidOperationException, testGeom.GetGeometryParameters().Height = 5.0);
-		}
-
-		[Test]
 		public void FinGapIsCalculatedCorrectly()
 		{
-			
-		}
+			double actual = testGeom.GetPitch();
+			double expected = 2.90;
 
+			Assert.AreEqual(expected, actual, Double.Epsilon);
+		}
 	}
 }

@@ -28,20 +28,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HeatsinkTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Heatsink.cs" />
-    <Compile Include="Units.cs" />
-    <Compile Include="Geometry.cs" />
-    <Compile Include="GeometryTests.cs" />
+    <Compile Include="Classes\Geometry.cs" />
+    <Compile Include="Classes\Heatsink.cs" />
+    <Compile Include="Classes\Units.cs" />
+    <Compile Include="Classes\PlateFinGeometry.cs" />
+    <Compile Include="Classes\PlateFinGeometryParameters.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <Folder Include="Classes\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
