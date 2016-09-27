@@ -8,8 +8,12 @@ namespace HeatSinkr.Library
 
 		public abstract double GetVolume();
 
-		public abstract T GetGeometryParameters();
+		public abstract T GeometryDetails { get; set; }
 
 		public abstract double GetSurfaceArea();
+
+        public abstract double GetCharacteristicLength();
+
+        public abstract double AspectRatio();
 	}
 }

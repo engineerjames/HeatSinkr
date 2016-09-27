@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HeatSinkr.Library
 {
-    public class Material
+    public abstract class Material
     {
         /// <summary>
         /// Units of W/m-K
@@ -17,11 +17,27 @@ namespace HeatSinkr.Library
         /// Units of kg/m^3
         /// </summary>
         public double Density { get; set; }
+        
+        /// <summary>
+        /// Units of J/(kg*K)
+        /// </summary>
+        public double SpecificHeat { get; set; } 
 
-        public Material(double ThermalConductivity, double Density)
+        /// <summary>
+        /// Units of Pa-s, also known as Absolute Viscosity
+        /// </summary>
+        public double DynamicViscosity { get; set; }
+
+        /// <summary>
+        /// Units of m^2/s
+        /// </summary>
+        public double KinematicViscosity
         {
-            this.ThermalConductivity = ThermalConductivity;
-            this.Density = Density;
+            get
+            {
+                return DynamicViscosity / Density;
+            }
         }
+
     }
 }

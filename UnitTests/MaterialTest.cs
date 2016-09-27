@@ -14,7 +14,7 @@ namespace UnitTests
         [Test]
         public void CanMaterialBeConstructed()
         {
-            Material mat = new Material(100.0, 120.0);
+            Material mat = new Air(50);
             
             Assert.IsNotNull(mat);
         }

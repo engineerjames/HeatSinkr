@@ -32,7 +32,7 @@ namespace HeatSinkr.Tests
 		[Test]
 		public void GeometryParametersAreSetCorrectly()
 		{
-			PlateFinGeometryParameters actual = testGeom.GetGeometryParameters();
+			PlateFinGeometryParameters actual = testGeom.GeometryDetails;
 			Assert.AreEqual(actual, testParameters);
 
 		}
@@ -49,7 +49,7 @@ namespace HeatSinkr.Tests
 		public void FinGapIsCalculatedCorrectly()
 		{
 			double actual = testGeom.GetPitch();
-			double expected = 2.90;
+			double expected = 2.90; // mm^3
 
 			Assert.AreEqual(expected, actual, Epsilon);
 		}
@@ -59,6 +59,24 @@ namespace HeatSinkr.Tests
         {
             double actual = testGeom.GetSurfaceArea();
             double expected = 9770; // mm^2
+
+            Assert.AreEqual(expected, actual, Epsilon);
+        }
+
+        [Test]
+        public void HydraulicDiameterIsCalculatedCorrectly()
+        {
+            double actual = testGeom.GetCharacteristicLength();
+            double expected = 5.35620052770449;
+
+            Assert.AreEqual(expected, actual, Epsilon);
+        }
+
+        [Test]
+        public void AspectRatioCalculatedCorrectly()
+        {
+            double actual = testGeom.AspectRatio();
+            double expected = 0.0828571428571429000;
 
             Assert.AreEqual(expected, actual, Epsilon);
         }
