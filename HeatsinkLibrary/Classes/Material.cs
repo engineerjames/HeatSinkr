@@ -11,27 +11,27 @@ namespace HeatSinkr.Library
         /// <summary>
         /// Units of W/m-K
         /// </summary>
-        public double ThermalConductivity { get; set; }
+        public virtual double ThermalConductivity { get; set; }
 
         /// <summary>
         /// Units of kg/m^3
         /// </summary>
-        public double Density { get; set; }
+        public virtual double Density { get; set; }
         
         /// <summary>
         /// Units of J/(kg*K)
         /// </summary>
-        public double SpecificHeat { get; set; } 
+        public virtual double SpecificHeat { get; set; } 
 
         /// <summary>
         /// Units of Pa-s, also known as Absolute Viscosity
         /// </summary>
-        public double DynamicViscosity { get; set; }
+        public virtual double DynamicViscosity { get; set; }
 
         /// <summary>
         /// Units of m^2/s
         /// </summary>
-        public double KinematicViscosity
+        public virtual double KinematicViscosity
         {
             get
             {
