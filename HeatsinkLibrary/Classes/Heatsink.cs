@@ -13,4 +13,12 @@ namespace HeatSinkr.Library
             this.HeatSinkGeometry = HeatSinkGeometry;
         }
 	}
+
+    public class PlateFinHeatsink : Heatsink<PlateFinGeometryParameters>
+    {
+        public PlateFinHeatsink(Material HeatSinkMaterial, Geometry<PlateFinGeometryParameters> HeatSinkGeometry) : base(HeatSinkMaterial, HeatSinkGeometry)
+        {
+
+        }
+    }
 }

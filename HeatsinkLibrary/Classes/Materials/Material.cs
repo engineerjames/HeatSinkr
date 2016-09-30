@@ -39,5 +39,16 @@ namespace HeatSinkr.Library
             }
         }
 
+        /// <summary>
+        /// Units of NOTHING it's a non-dimensional number
+        /// </summary>
+        public virtual double Prandtl { get; }
+
+        /// <summary>
+        /// Units of m^2/s
+        /// </summary>
+        public virtual double Diffusivity { get; }
+
+        public double Temperature { get; set; }
     }
 }
