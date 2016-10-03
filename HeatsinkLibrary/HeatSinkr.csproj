@@ -30,14 +30,15 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Heatsink\PlateFinHeatsink.cs" />
     <Compile Include="Classes\Materials\Air.cs" />
     <Compile Include="Classes\Materials\Aluminum.cs" />
     <Compile Include="Classes\Materials\Material.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Classes\Geometry.cs" />
-    <Compile Include="Classes\Heatsink.cs" />
+    <Compile Include="Classes\Heatsink\Geometry.cs" />
+    <Compile Include="Classes\Heatsink\Heatsink.cs" />
     <Compile Include="Classes\Units.cs" />
-    <Compile Include="Classes\PlateFinGeometry.cs" />
+    <Compile Include="Classes\Heatsink\PlateFinGeometry.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

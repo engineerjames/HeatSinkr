@@ -54,7 +54,7 @@ namespace HeatSinkr.Tests
         [Test]
         public void HydraulicDiameterIsAccurate()
         {
-            double expected = 0.0053562; // m
+            double expected = 0.00556927; // m
             double actual = hs.HydraulicDiameter;
 
             Assert.AreEqual(expected, actual, Epsilon);

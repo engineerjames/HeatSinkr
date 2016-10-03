@@ -1,30 +1,6 @@
 ﻿
-using System;
-
 namespace HeatSinkr.Library
 {
-	public abstract class Heatsink<T>
-	{
-		public virtual Geometry<T> HeatSinkGeometry { get; set; }
-        public virtual Material HeatSinkMaterial { get; set; }
-
-        public abstract double CFM { get; set; }
-
-        public Heatsink(Material HeatSinkMaterial, Geometry<T> HeatSinkGeometry)
-        {
-            this.HeatSinkMaterial = HeatSinkMaterial;
-            this.HeatSinkGeometry = HeatSinkGeometry;
-        }
-
-        public abstract double IncidentFlowVelocity { get; }
-        public abstract double ChannelVelocity { get;}
-        public abstract double HydraulicDiameter { get; }
-
-
-        public abstract double FlowArea { get; }
-      
-        
-	}
 
     public class PlateFinHeatsink : Heatsink<PlateFinGeometryParameters>
     {
@@ -62,7 +38,7 @@ namespace HeatSinkr.Library
                 var h = Units.ConvertMMtoM(hs.FinHeight);
 
                 var area = h * p;
-                var perimeter = 2 * h + 2 * p;
+                var perimeter = (2 * h) + p;
 
                 return ((4 * area) / (perimeter));
             }
