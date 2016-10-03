@@ -50,6 +50,26 @@ namespace HeatSinkr.Tests
 
 			Assert.AreEqual(expectedValue, actualValue, Epsilon);
 		}
+
+        [Test]
+        public void ConvertsFromCFMToMetersCubedPerSecond()
+        {
+            double valueToConvert = 5; // CFM
+            double expectedValue = 0.0023597372;
+            double actualValue = Units.ConvertCFMToMetersCubedPerSecond(valueToConvert);
+
+            Assert.AreEqual(expectedValue, actualValue, Epsilon);
+        }
+
+        [Test]
+        public void ConvertsFromMetersCubedPerSecondToCFM()
+        {
+            double valueToConvert = 1; // m^3/s
+            double expectedValue = 2118.880003;
+            double actualValue = Units.ConvertFromMetersCubedPerSecondToCFM(valueToConvert);
+
+            Assert.AreEqual(expectedValue, actualValue, Epsilon);
+        }
 	}
 }
 

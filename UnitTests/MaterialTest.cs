@@ -108,7 +108,7 @@ namespace UnitTests
         [SetUp]
         public void Setup()
         {
-            mat = new Aluminum(20);
+            mat = new Aluminum();
         }
         
         [Test]

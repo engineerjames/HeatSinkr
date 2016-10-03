@@ -38,7 +38,6 @@
     <Compile Include="Classes\Heatsink.cs" />
     <Compile Include="Classes\Units.cs" />
     <Compile Include="Classes\PlateFinGeometry.cs" />
-    <Compile Include="Classes\PlateFinGeometryParameters.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

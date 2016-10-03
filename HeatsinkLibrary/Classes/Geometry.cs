@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace HeatSinkr.Library
 {
 	public abstract class Geometry<T>
