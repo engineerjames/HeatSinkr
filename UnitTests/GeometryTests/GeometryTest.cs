@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace HeatSinkr.Tests
 {
 	[TestFixture]
-	public class GeometryTests
+	public class GeometryTest
 	{
         public const double Epsilon = .000001;
         PlateFinGeometryParameters testParameters = new PlateFinGeometryParameters();

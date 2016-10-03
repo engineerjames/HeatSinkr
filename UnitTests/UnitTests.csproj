@@ -34,10 +34,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GeometryTests.cs" />
-    <Compile Include="HeatsinkTests.cs" />
-    <Compile Include="MaterialTest.cs" />
-    <Compile Include="UnitsTests.cs" />
+    <Compile Include="GeometryTests\GeometryTest.cs" />
+    <Compile Include="HeatsinkTests\HeatsinkTest.cs" />
+    <Compile Include="MaterialTests\AirTest.cs" />
+    <Compile Include="MaterialTests\AluminumTest.cs" />
+    <Compile Include="MaterialTests\MaterialTest.cs" />
+    <Compile Include="UtilityTests\UnitsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HeatsinkLibrary\HeatSinkr.csproj">

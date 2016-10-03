@@ -5,7 +5,7 @@ using HeatSinkr.Library;
 namespace HeatSinkr.Tests
 {
 	[TestFixture]
-	public class HeatsinkTests
+	public class HeatsinkTest
 	{
         PlateFinHeatsink hs;
         public const double Epsilon = .000001;
@@ -59,8 +59,6 @@ namespace HeatSinkr.Tests
 
             Assert.AreEqual(expected, actual, Epsilon);
         }
-
-
     }
 
 
