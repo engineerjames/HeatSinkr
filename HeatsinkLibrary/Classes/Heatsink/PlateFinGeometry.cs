@@ -5,43 +5,52 @@ namespace HeatSinkr.Library
 	{
 		public override PlateFinGeometryParameters GeometryDetails { get; set; }
 
-		public override double GetPitch()
-		{
-			var gp = GeometryDetails;
+        public override double Pitch
+        {
+            get
+            {
+                var gp = GeometryDetails;
 
-			return (gp.Width - (gp.NumberOfFins * gp.FinThickness)) / (gp.NumberOfFins - 1);
-		}
+                return (gp.Width - (gp.NumberOfFins * gp.FinThickness)) / (gp.NumberOfFins - 1);
+            }
+        }
 
-		public PlateFinGeometry(PlateFinGeometryParameters Parameters)
+        public PlateFinGeometry(PlateFinGeometryParameters Parameters)
 		{
 			this.GeometryDetails = Parameters;
 		}
-        
+
         /// <summary>
         /// Units of mm^3
         /// </summary>
         /// <returns></returns>
-		public override double GetVolume()
-		{
-            var gm = GeometryDetails;
+        public override double Volume
+        {
+            get
+            {
+                var gm = GeometryDetails;
 
-            return CalculateFrontFaceArea(gm) * gm.FlowLength;
-		}
+                return CalculateFrontFaceArea(gm) * gm.FlowLength;
+            }
+        }
 
         /// <summary>
         /// Units of mm^2
         /// </summary>
         /// <returns></returns>
-        public override double GetSurfaceArea()
+        public override double SurfaceArea
         {
-            var gm = GeometryDetails;
+            get
+            {
+                var gm = GeometryDetails;
 
-            double frontAndBack = 2 * CalculateFrontFaceArea(gm);
-            double bottomAndTop = 2 * gm.FlowLength * gm.Width;
-            double finSides = 2 * gm.NumberOfFins * gm.FlowLength * gm.FinHeight;
-            double baseSides = 2 * gm.FlowLength * gm.BaseThickness;
+                double frontAndBack = 2 * CalculateFrontFaceArea(gm);
+                double bottomAndTop = 2 * gm.FlowLength * gm.Width;
+                double finSides = 2 * gm.NumberOfFins * gm.FlowLength * gm.FinHeight;
+                double baseSides = 2 * gm.FlowLength * gm.BaseThickness;
 
-            return (frontAndBack + bottomAndTop + finSides + baseSides);
+                return (frontAndBack + bottomAndTop + finSides + baseSides);
+            }
         }
 
         private double CalculateFrontFaceArea(PlateFinGeometryParameters gm)
@@ -53,20 +62,26 @@ namespace HeatSinkr.Library
         /// Characteristic Length
         /// </summary>
         /// <returns>Hydraulic diameter [mm]</returns>
-        public override double GetCharacteristicLength()
+        public override double CharacteristicLength
         {
-            double finPitch = GetPitch();
-            var gm = GeometryDetails;
+            get
+            {
+                double finPitch = Pitch;
+                var gm = GeometryDetails;
 
-            double fourTimesTheArea = 4 * finPitch * gm.FinHeight;
-            double twoTimesThePerimeter = 2 * finPitch + 2 * gm.FinHeight;
+                double fourTimesTheArea = 4 * finPitch * gm.FinHeight;
+                double twoTimesThePerimeter = 2 * finPitch + 2 * gm.FinHeight;
 
-            return fourTimesTheArea / twoTimesThePerimeter;
+                return fourTimesTheArea / twoTimesThePerimeter;
+            }
         }
 
-        public override double AspectRatio()
+        public override double AspectRatio
         {
-            return GetPitch() / GeometryDetails.FinHeight;
+            get
+            {
+                return Pitch / GeometryDetails.FinHeight;
+            }
         }
     }
 

@@ -3,16 +3,16 @@ namespace HeatSinkr.Library
 {
 	public abstract class Geometry<T>
 	{
-		public abstract double GetPitch();
+        public abstract double Pitch { get; }
 
-		public abstract double GetVolume();
+        public abstract double Volume { get; }
 
-		public abstract T GeometryDetails { get; set; }
+        public abstract T GeometryDetails { get; set; }
 
-		public abstract double GetSurfaceArea();
+        public abstract double SurfaceArea { get; }
 
-        public abstract double GetCharacteristicLength();
+        public abstract double CharacteristicLength { get; }
 
-        public abstract double AspectRatio();
-	}
+        public abstract double AspectRatio { get; }
+    }
 }

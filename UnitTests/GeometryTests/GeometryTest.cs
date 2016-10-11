@@ -40,7 +40,7 @@ namespace HeatSinkr.Tests
 		[Test]
 		public void VolumeIsCalculatedCorrectly()
 		{
-			double actualVolume = testGeom.GetVolume();
+			double actualVolume = testGeom.Volume;
 			double expectedVolume = 5850.0; // mm^3
 			Assert.AreEqual(expectedVolume, actualVolume, Epsilon);
 		}
@@ -48,7 +48,7 @@ namespace HeatSinkr.Tests
 		[Test]
 		public void FinGapIsCalculatedCorrectly()
 		{
-			double actual = testGeom.GetPitch();
+			double actual = testGeom.Pitch;
 			double expected = 2.90; // mm^3
 
 			Assert.AreEqual(expected, actual, Epsilon);
@@ -57,7 +57,7 @@ namespace HeatSinkr.Tests
         [Test]
         public void SurfaceAreaIsCalculatedCorrectly()
         {
-            double actual = testGeom.GetSurfaceArea();
+            double actual = testGeom.SurfaceArea;
             double expected = 9770; // mm^2
 
             Assert.AreEqual(expected, actual, Epsilon);
@@ -66,7 +66,7 @@ namespace HeatSinkr.Tests
         [Test]
         public void HydraulicDiameterIsCalculatedCorrectly()
         {
-            double actual = testGeom.GetCharacteristicLength();
+            double actual = testGeom.CharacteristicLength;
             double expected = 5.35620052770449;
 
             Assert.AreEqual(expected, actual, Epsilon);
@@ -75,7 +75,7 @@ namespace HeatSinkr.Tests
         [Test]
         public void AspectRatioCalculatedCorrectly()
         {
-            double actual = testGeom.AspectRatio();
+            double actual = testGeom.AspectRatio;
             double expected = 0.0828571428571429000;
 
             Assert.AreEqual(expected, actual, Epsilon);

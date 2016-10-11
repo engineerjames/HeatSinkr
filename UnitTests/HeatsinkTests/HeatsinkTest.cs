@@ -9,6 +9,7 @@ namespace HeatSinkr.Tests
 	{
         PlateFinHeatsink hs;
         public const double Epsilon = .000001;
+        public const double RoughEpsilon = 0.01;
 
         [SetUp]
         public void SetupHSTests()
@@ -58,6 +59,24 @@ namespace HeatSinkr.Tests
             double actual = hs.HydraulicDiameter;
 
             Assert.AreEqual(expected, actual, Epsilon);
+        }
+
+        [Test]
+        public void ReynoldsNumberIsAccurate()
+        {
+            double expected = 669.822444653;
+            double actual = hs.ReynoldsNumber;
+
+            Assert.AreEqual(expected, actual, RoughEpsilon);
+        }
+
+        [Test]
+        public void PressureDropIsAccurate()
+        {
+            double expected = 1.76308532;
+            double actual = hs.PressureDrop;
+
+            Assert.AreEqual(expected, actual, RoughEpsilon);
         }
     }
 

@@ -5,7 +5,6 @@ namespace HeatSinkr.Library
     // http://www.engineeringtoolbox.com/dry-air-properties-d_973.html
     public class Air : Material
     {
-
         public override double Density
         {
             get
