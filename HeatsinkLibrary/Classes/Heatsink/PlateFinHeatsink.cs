@@ -109,6 +109,9 @@ namespace HeatSinkr.Library
         {
             get
             {
+                if (EntranceLength < Units.ConvertMMtoM(HeatSinkGeometry.GeometryDetails.FlowLength))
+                    throw new InvalidProgramException("Equation is only valid for developing flow condition!");
+
                 var Pc = CalculateContractionLoss();
                 var Pe = CalculateExpansionLoss();
                 var Pf = CalculateFrictionalLoss();

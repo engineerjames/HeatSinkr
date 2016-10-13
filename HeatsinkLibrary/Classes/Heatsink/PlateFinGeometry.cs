@@ -5,6 +5,9 @@ namespace HeatSinkr.Library
 	{
 		public override PlateFinGeometryParameters GeometryDetails { get; set; }
 
+        /// <summary>
+        /// [mm]
+        /// </summary>
         public override double Pitch
         {
             get
@@ -21,7 +24,7 @@ namespace HeatSinkr.Library
 		}
 
         /// <summary>
-        /// Units of mm^3
+        /// [mm^3]
         /// </summary>
         /// <returns></returns>
         public override double Volume
@@ -35,7 +38,7 @@ namespace HeatSinkr.Library
         }
 
         /// <summary>
-        /// Units of mm^2
+        /// [mm^2]
         /// </summary>
         /// <returns></returns>
         public override double SurfaceArea
@@ -58,10 +61,10 @@ namespace HeatSinkr.Library
             return (gm.BaseThickness * gm.Width + (gm.NumberOfFins * gm.FinThickness * gm.FinHeight));
         }
 
+        
         /// <summary>
-        /// Characteristic Length
+        /// [mm]
         /// </summary>
-        /// <returns>Hydraulic diameter [mm]</returns>
         public override double CharacteristicLength
         {
             get
@@ -76,6 +79,9 @@ namespace HeatSinkr.Library
             }
         }
 
+        /// <summary>
+        /// Unitless
+        /// </summary>
         public override double AspectRatio
         {
             get
@@ -85,22 +91,22 @@ namespace HeatSinkr.Library
         }
     }
 
-    public struct PlateFinGeometryParameters
+    public class PlateFinGeometryParameters
     {
         /// <summary>
-        /// Units of mm
+        /// [mm]
         /// </summary>
 		public double FlowLength { get; set; }
 
         /// <summary>
-        /// Units of mm
+        /// [mm]
         /// </summary>
 		public double Width { get; set; }
 
         public int NumberOfFins { get; set; }
 
         /// <summary>
-        /// Units of mm, Overall height
+        /// [mm]
         /// </summary>
 		public double Height
         {
@@ -111,17 +117,17 @@ namespace HeatSinkr.Library
         }
 
         /// <summary>
-        /// Units of mm
+        /// [mm]
         /// </summary>
 		public double FinHeight { get; set; }
 
         /// <summary>
-        /// Units of mm
+        /// [mm]
         /// </summary>
 		public double FinThickness { get; set; }
 
         /// <summary>
-        /// Units of mm
+        /// [mm]
         /// </summary>
 		public double BaseThickness { get; set; }
     };

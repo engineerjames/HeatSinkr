@@ -108,6 +108,13 @@ namespace HeatSinkr.Tests
             var actualTurbulent = hs.EntranceLength;
             Assert.AreEqual(expectedTurbulent, actualTurbulent, RoughEpsilon);
         }
+
+        [Test]
+        public void LibraryShouldThrowExpectionIfNotDeveloping()
+        {
+            hs.HeatSinkGeometry.GeometryDetails.FlowLength = 500;
+            Assert.Throws<InvalidProgramException>(delegate { var DP = hs.PressureDrop; });
+        }
         
     }
 
