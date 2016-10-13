@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 
 namespace HeatSinkr.Library
 {
@@ -110,11 +109,28 @@ namespace HeatSinkr.Library
         {
             get
             {
+                if (EntranceLength < Units.ConvertMMtoM(HeatSinkGeometry.GeometryDetails.FlowLength))
+                    throw new InvalidProgramException("Equation is only valid for developing flow condition!");
+
                 var Pc = CalculateContractionLoss();
                 var Pe = CalculateExpansionLoss();
                 var Pf = CalculateFrictionalLoss();
 
                 return (Pc + Pe + Pf);
+            }
+        }
+
+        /// <summary>
+        /// Calculates the entrance length [m]
+        /// </summary>
+        public override double EntranceLength
+        {
+            get
+            {
+                if (FlowCondition == FlowCondition.Laminar || FlowCondition == FlowCondition.Transient)
+                    return (0.05 * ReynoldsNumber * HydraulicDiameter);
+                else
+                    return (1.359 * HydraulicDiameter * Math.Pow(ReynoldsNumber, 0.25));
             }
         }
 

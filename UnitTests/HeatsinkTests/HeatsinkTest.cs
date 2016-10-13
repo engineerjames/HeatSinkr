@@ -78,6 +78,44 @@ namespace HeatSinkr.Tests
 
             Assert.AreEqual(expected, actual, RoughEpsilon);
         }
+
+        [Test]
+        public void FlowIsCorrectlyCategorized()
+        {
+            var TurbulentCFM = 150.0;
+            var TransientCFM = 20.0;
+            var LaminarCFM = 5.0;
+
+            hs.CFM = TurbulentCFM;
+            Assert.AreEqual(FlowCondition.Turbulent, hs.FlowCondition);
+
+            hs.CFM = TransientCFM;
+            Assert.AreEqual(FlowCondition.Transient, hs.FlowCondition);
+
+            hs.CFM = LaminarCFM;
+            Assert.AreEqual(FlowCondition.Laminar, hs.FlowCondition);
+        }
+
+        [Test]
+        public void EntranceLengthIsAccurate()
+        {
+            var expectedLaminar = 0.1865212;
+            var actualLaminar = hs.EntranceLength;
+            Assert.AreEqual(expectedLaminar, actualLaminar, RoughEpsilon);
+
+            hs.CFM = 150.0;
+            var expectedTurbulent = 0.09011316;
+            var actualTurbulent = hs.EntranceLength;
+            Assert.AreEqual(expectedTurbulent, actualTurbulent, RoughEpsilon);
+        }
+
+        [Test]
+        public void LibraryShouldThrowExpectionIfNotDeveloping()
+        {
+            hs.HeatSinkGeometry.GeometryDetails.FlowLength = 500;
+            Assert.Throws<InvalidProgramException>(delegate { var DP = hs.PressureDrop; });
+        }
+        
     }
 
 
