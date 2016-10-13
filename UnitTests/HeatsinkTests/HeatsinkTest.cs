@@ -78,6 +78,23 @@ namespace HeatSinkr.Tests
 
             Assert.AreEqual(expected, actual, RoughEpsilon);
         }
+
+        [Test]
+        public void FlowIsCorrectlyCategorized()
+        {
+            var TurbulentCFM = 150.0;
+            var TransientCFM = 20.0;
+            var LaminarCFM = 5.0;
+
+            hs.CFM = TurbulentCFM;
+            Assert.AreEqual(FlowCondition.Turbulent, hs.FlowCondition);
+
+            hs.CFM = TransientCFM;
+            Assert.AreEqual(FlowCondition.Transient, hs.FlowCondition);
+
+            hs.CFM = LaminarCFM;
+            Assert.AreEqual(FlowCondition.Laminar, hs.FlowCondition);
+        }
     }
 
 
