@@ -95,6 +95,20 @@ namespace HeatSinkr.Tests
             hs.CFM = LaminarCFM;
             Assert.AreEqual(FlowCondition.Laminar, hs.FlowCondition);
         }
+
+        [Test]
+        public void EntranceLengthIsAccurate()
+        {
+            var expectedLaminar = 0.1865212;
+            var actualLaminar = hs.EntranceLength;
+            Assert.AreEqual(expectedLaminar, actualLaminar, RoughEpsilon);
+
+            hs.CFM = 150.0;
+            var expectedTurbulent = 0.09011316;
+            var actualTurbulent = hs.EntranceLength;
+            Assert.AreEqual(expectedTurbulent, actualTurbulent, RoughEpsilon);
+        }
+        
     }
 
 

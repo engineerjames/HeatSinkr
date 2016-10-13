@@ -20,14 +20,14 @@
             {
                 if (ReynoldsNumber < 2300.0)
                     return FlowCondition.Laminar;
-                else if (ReynoldsNumber > 2300.0 && ReynoldsNumber < 4000)
+                else if (ReynoldsNumber > 2300.0 && ReynoldsNumber < 4000.0)
                     return FlowCondition.Transient;
                 else
                     return FlowCondition.Turbulent;
             }
         }
 
-
+        public abstract double EntranceLength { get; }
         public abstract double CFM { get; set; }
         public abstract double IncidentFlowVelocity { get; }
         public abstract double ChannelVelocity { get; }

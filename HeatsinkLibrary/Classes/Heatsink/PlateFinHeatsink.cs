@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 
 namespace HeatSinkr.Library
 {
@@ -115,6 +114,20 @@ namespace HeatSinkr.Library
                 var Pf = CalculateFrictionalLoss();
 
                 return (Pc + Pe + Pf);
+            }
+        }
+
+        /// <summary>
+        /// Calculates the entrance length [m]
+        /// </summary>
+        public override double EntranceLength
+        {
+            get
+            {
+                if (FlowCondition == FlowCondition.Laminar || FlowCondition == FlowCondition.Transient)
+                    return (0.05 * ReynoldsNumber * HydraulicDiameter);
+                else
+                    return (1.359 * HydraulicDiameter * Math.Pow(ReynoldsNumber, 0.25));
             }
         }
 
