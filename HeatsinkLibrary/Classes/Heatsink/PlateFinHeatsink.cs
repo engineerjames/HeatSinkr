@@ -126,6 +126,28 @@ namespace HeatSinkr.Library
         }
 
         /// <summary>
+        /// Nusselt number - Nu_Dh = h*Dh/k_air
+        /// Turbulent correlation - Pg. 499 Incropera & Dewitt, "Introduction to Heat Transfer"
+        /// 0.023Re^(0.8)*Pr^(0.4), assumed always heating and L/Dh >= 10
+        /// 
+        /// Laminar correlation - Currently using constant Nu_Dh of 3.66
+        /// </summary>
+        public override double Nu
+        {
+            get
+            {
+                if (this.FlowCondition == FlowCondition.Laminar)
+                {
+                    return 3.66;
+                }
+                else
+                {
+                    return (0.023 * Math.Pow(ReynoldsNumber, 0.8) * Math.Pow(InletAir.Prandtl, 0.4));
+                }
+            }
+        }
+
+        /// <summary>
         /// Calculates the entrance length [m]
         /// </summary>
         public override double EntranceLength

@@ -35,7 +35,7 @@
         public abstract double FlowArea { get; }
         public abstract double ReynoldsNumber { get; }
         public abstract double PressureDrop { get; }
-
+        public abstract double Nu { get; }
 
     }
 

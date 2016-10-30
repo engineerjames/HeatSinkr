@@ -110,10 +110,24 @@ namespace HeatSinkr.Tests
         }
 
         [Test]
-        public void LibraryShouldThrowExpectionIfNotDeveloping()
+        public void ThrowExpectionIfNotDeveloping()
         {
             hs.HeatSinkGeometry.GeometryDetails.FlowLength = 500;
             Assert.Throws<InvalidProgramException>(delegate { var DP = hs.PressureDrop; });
+        }
+
+        [Test]
+        public void NusseltNumberIsAccurate()
+        {
+            hs.CFM = 5.0;
+            var Nu_Laminar_Expected = 3.66;
+            var Nu_Laminar_Actual = hs.Nu;
+            Assert.AreEqual(Nu_Laminar_Expected, Nu_Laminar_Actual, RoughEpsilon);
+
+            hs.CFM = 20;
+            var Nu_Turbulent_Expected = 11.02;
+            var Nu_Turbulent_Actual = hs.Nu;
+            Assert.AreEqual(Nu_Turbulent_Expected, Nu_Turbulent_Actual, RoughEpsilon * 10);
         }
         
     }
