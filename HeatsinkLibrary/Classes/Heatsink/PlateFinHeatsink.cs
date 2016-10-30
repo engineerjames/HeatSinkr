@@ -35,8 +35,8 @@ namespace HeatSinkr.Library
             get
             {
                 var hs = HeatSinkGeometry.GeometryDetails;
-                var p = Units.ConvertMMtoM(HeatSinkGeometry.Pitch);
-                var h = Units.ConvertMMtoM(hs.FinHeight);
+                var p = HeatSinkGeometry.Pitch;
+                var h = hs.FinHeight;
 
                 var area = h * p;
                 var perimeter = (2 * h) + p;
@@ -64,7 +64,7 @@ namespace HeatSinkr.Library
             get
             {
                 var hs = HeatSinkGeometry.GeometryDetails;
-                var area = (Units.ConvertMMtoM(hs.Height)) * (Units.ConvertMMtoM(hs.Width));
+                var area = hs.Height * hs.Width;
 
                 return area;
             }
@@ -109,7 +109,7 @@ namespace HeatSinkr.Library
         {
             get
             {
-                if (EntranceLength < Units.ConvertMMtoM(HeatSinkGeometry.GeometryDetails.FlowLength))
+                if (!FlowIsDeveloping()) 
                     throw new InvalidProgramException("Equation is only valid for developing flow condition!");
 
                 var Pc = CalculateContractionLoss();
@@ -118,6 +118,11 @@ namespace HeatSinkr.Library
 
                 return (Pc + Pe + Pf);
             }
+        }
+
+        private bool FlowIsDeveloping()
+        {
+            return (EntranceLength > HeatSinkGeometry.GeometryDetails.FlowLength);
         }
 
         /// <summary>
@@ -136,7 +141,7 @@ namespace HeatSinkr.Library
 
         private double CalculateFrictionalLoss()
         {
-            var L = Units.ConvertMMtoM(this.HeatSinkGeometry.GeometryDetails.FlowLength);
+            var L = this.HeatSinkGeometry.GeometryDetails.FlowLength;
             var f = CalculateFrictionFactor(L);
             var Pf = (2 * f * L * InletAir.Density * ChannelVelocity * ChannelVelocity) / HydraulicDiameter;
             return Pf;

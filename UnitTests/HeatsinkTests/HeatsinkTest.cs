@@ -17,11 +17,11 @@ namespace HeatSinkr.Tests
             PlateFinGeometryParameters testParameters = new PlateFinGeometryParameters();
             PlateFinGeometry testGeom;
             testParameters.NumberOfFins = 11;
-            testParameters.FinThickness = 1.0;
-            testParameters.FlowLength = 10.0;
-            testParameters.Width = 40.0;
-            testParameters.FinHeight = 35.0;
-            testParameters.BaseThickness = 5.0;
+            testParameters.FinThickness = .001;
+            testParameters.FlowLength = .010;
+            testParameters.Width = .040;
+            testParameters.FinHeight = .035;
+            testParameters.BaseThickness = .005;
             testGeom = new PlateFinGeometry(testParameters);
             
             hs = new PlateFinHeatsink(new Aluminum(), testGeom);

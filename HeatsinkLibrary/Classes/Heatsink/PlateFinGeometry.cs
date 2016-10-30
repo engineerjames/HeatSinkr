@@ -94,19 +94,19 @@ namespace HeatSinkr.Library
     public class PlateFinGeometryParameters
     {
         /// <summary>
-        /// [mm]
+        /// [m]
         /// </summary>
 		public double FlowLength { get; set; }
 
         /// <summary>
-        /// [mm]
+        /// [m]
         /// </summary>
 		public double Width { get; set; }
 
         public int NumberOfFins { get; set; }
 
         /// <summary>
-        /// [mm]
+        /// [m]
         /// </summary>
 		public double Height
         {
@@ -117,17 +117,17 @@ namespace HeatSinkr.Library
         }
 
         /// <summary>
-        /// [mm]
+        /// [m]
         /// </summary>
 		public double FinHeight { get; set; }
 
         /// <summary>
-        /// [mm]
+        /// [m]
         /// </summary>
 		public double FinThickness { get; set; }
 
         /// <summary>
-        /// [mm]
+        /// [m]
         /// </summary>
 		public double BaseThickness { get; set; }
     };
