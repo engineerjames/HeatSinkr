@@ -129,6 +129,22 @@ namespace HeatSinkr.Tests
             var Nu_Turbulent_Actual = hs.Nu;
             Assert.AreEqual(Nu_Turbulent_Expected, Nu_Turbulent_Actual, RoughEpsilon * 10);
         }
+
+        [Test]
+        public void FinEfficiencyIsAccurate()
+        {
+            var efficiency_expected = 0.92957;
+            var efficiency_actual = hs.FinEfficiency;
+            Assert.AreEqual(efficiency_expected, efficiency_actual, RoughEpsilon);
+        }
+
+        [Test]
+        public void HeatTransferCoefficientIsAccurate()
+        {
+            var htc_expected = 17.64587;
+            var htc_actual = hs.HeatTransferCoefficient;
+            Assert.AreEqual(htc_expected, htc_actual, RoughEpsilon);
+        }
         
     }
 

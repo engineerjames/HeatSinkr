@@ -161,6 +161,35 @@ namespace HeatSinkr.Library
             }
         }
 
+        /// <summary>
+        /// Fin efficiency
+        /// </summary>
+        public override double FinEfficiency
+        {
+            get
+            {
+                var h = HeatTransferCoefficient;
+                var P = 2 * HeatSinkGeometry.GeometryDetails.FinThickness + 2 * HeatSinkGeometry.GeometryDetails.FlowLength;
+                var k = HeatSinkMaterial.ThermalConductivity;
+                var Ac = HeatSinkGeometry.GeometryDetails.FinThickness * HeatSinkGeometry.GeometryDetails.FlowLength;
+                var Lc = HeatSinkGeometry.GeometryDetails.FinThickness / 2 + HeatSinkGeometry.GeometryDetails.FinHeight;
+
+                var m = Math.Sqrt((h * P) / (k * Ac));
+                return Math.Tanh(m * Lc) / (m*Lc);
+            }
+        }
+
+        /// <summary>
+        /// Heat transfer coefficient [W/m-K]
+        /// </summary>
+        public override double HeatTransferCoefficient
+        {
+            get
+            {
+                return (Nu * InletAir.ThermalConductivity) / HydraulicDiameter;
+            }
+        }
+
         private double CalculateFrictionalLoss()
         {
             var L = this.HeatSinkGeometry.GeometryDetails.FlowLength;
