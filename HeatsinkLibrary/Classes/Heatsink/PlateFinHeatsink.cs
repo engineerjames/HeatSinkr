@@ -190,6 +190,17 @@ namespace HeatSinkr.Library
             }
         }
 
+        /// <summary>
+        /// Thermal Resistance - Convection term [K/W]
+        /// </summary>
+        public override double ThermalResistance_Convection
+        {
+            get
+            {
+                return (1 / (FinEfficiency * HeatTransferCoefficient * HeatSinkGeometry.SurfaceArea));
+            }
+        }
+
         private double CalculateFrictionalLoss()
         {
             var L = this.HeatSinkGeometry.GeometryDetails.FlowLength;

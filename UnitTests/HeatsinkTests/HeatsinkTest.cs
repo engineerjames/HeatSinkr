@@ -145,6 +145,14 @@ namespace HeatSinkr.Tests
             var htc_actual = hs.HeatTransferCoefficient;
             Assert.AreEqual(htc_expected, htc_actual, RoughEpsilon);
         }
+
+        [Test]
+        public void ConvectiveThermalResistanceIsAccurate()
+        {
+            var Tr_Conv_Expected = 6.23994;
+            var Tr_Conv_Actual = hs.ThermalResistance_Convection;
+            Assert.AreEqual(Tr_Conv_Expected, Tr_Conv_Actual, RoughEpsilon * 10);
+        }
         
     }
 

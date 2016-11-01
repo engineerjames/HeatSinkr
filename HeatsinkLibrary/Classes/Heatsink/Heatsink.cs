@@ -38,6 +38,7 @@
         public abstract double Nu { get; }
         public abstract double FinEfficiency { get; }
         public abstract double HeatTransferCoefficient { get; }
+        public abstract double ThermalResistance_Convection { get; }
 
     }
 
