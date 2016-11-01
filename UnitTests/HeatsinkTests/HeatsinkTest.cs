@@ -8,6 +8,7 @@ namespace HeatSinkr.Tests
 	public class HeatsinkTest
 	{
         PlateFinHeatsink hs;
+        HeatSource heat;
         public const double Epsilon = .000001;
         public const double RoughEpsilon = 0.01;
 
@@ -26,6 +27,9 @@ namespace HeatSinkr.Tests
             
             hs = new PlateFinHeatsink(new Aluminum(), testGeom);
             hs.CFM = 5;
+
+            heat = new HeatSource(4);
+            hs.Source = heat;
         }
 
         [Test]
@@ -152,6 +156,22 @@ namespace HeatSinkr.Tests
             var Tr_Conv_Expected = 6.23994;
             var Tr_Conv_Actual = hs.ThermalResistance_Convection;
             Assert.AreEqual(Tr_Conv_Expected, Tr_Conv_Actual, RoughEpsilon * 10);
+        }
+
+        [Test]
+        public void ConductionThermalResistanceIsAccurate()
+        {
+            var Tr_Cond_Expected = .058962;
+            var Tr_Cond_Actual = hs.ThermalResistance_Conduction;
+            Assert.AreEqual(Tr_Cond_Expected, Tr_Cond_Actual, RoughEpsilon * 10);
+        }
+
+        [Test]
+        public void CaloricThermalResistanceIsAccurate()
+        {
+            var Tr_Caloric_Expected = 0.180;
+            var Tr_Caloric_Actual = hs.ThermalResistance_Caloric;
+            Assert.AreEqual(Tr_Caloric_Expected, Tr_Caloric_Actual, RoughEpsilon * 10);
         }
         
     }

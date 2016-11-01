@@ -201,6 +201,33 @@ namespace HeatSinkr.Library
             }
         }
 
+        /// <summary>
+        /// Thermal Resistance - Conduction term [K/W]
+        /// </summary>
+        public override double ThermalResistance_Conduction
+        {
+            get
+            {
+                var L = HeatSinkGeometry.GeometryDetails.BaseThickness;
+                var k = HeatSinkMaterial.ThermalConductivity;
+                var Ac = HeatSinkGeometry.GeometryDetails.FlowLength * HeatSinkGeometry.GeometryDetails.Width;
+
+                return L / (k * Ac);
+            }
+        }
+
+        public override double ThermalResistance_Caloric
+        {
+            get
+            {
+                var DT = (1.8 * Source.Power) / CFM;
+                var Tfinal = InletAir.Temperature + DT;
+                var Tavg = (InletAir.Temperature + Tfinal) / 2;
+
+                return (Tavg - InletAir.Temperature) / Source.Power;
+            }
+        }
+
         private double CalculateFrictionalLoss()
         {
             var L = this.HeatSinkGeometry.GeometryDetails.FlowLength;

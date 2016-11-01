@@ -13,6 +13,7 @@
         public virtual Material HeatSinkMaterial { get; set; }
 
         public Air InletAir;
+        public HeatSource Source;
 
         public virtual FlowCondition FlowCondition
         {
@@ -39,6 +40,21 @@
         public abstract double FinEfficiency { get; }
         public abstract double HeatTransferCoefficient { get; }
         public abstract double ThermalResistance_Convection { get; }
+        public abstract double ThermalResistance_Conduction { get; }
+        public abstract double ThermalResistance_Caloric { get; }
+
+        /// <summary>
+        /// Total thermal resistance [K/W]
+        /// </summary>
+        public virtual double ThermalResistance_Total
+        {
+            get
+            {
+                return ThermalResistance_Caloric + ThermalResistance_Conduction + ThermalResistance_Convection;
+            }
+        }
+
+       
 
     }
 

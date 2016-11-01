@@ -30,6 +30,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Heat Source\HeatSource.cs" />
     <Compile Include="Classes\Heatsink\PlateFinHeatsink.cs" />
     <Compile Include="Classes\Materials\Air.cs" />
     <Compile Include="Classes\Materials\Aluminum.cs" />
