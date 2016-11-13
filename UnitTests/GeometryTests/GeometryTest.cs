@@ -14,11 +14,11 @@ namespace HeatSinkr.Tests
 		[SetUp]
 		public void InitializeTestGeometry()
 		{
-			testParameters.NumberOfFins = 11;
 			testParameters.FinThickness = .001;
 			testParameters.FlowLength = .010;
 			testParameters.Width = .040;
-			testParameters.FinHeight = .035;
+            testParameters.NumberOfFins = 11;
+            testParameters.FinHeight = .035;
 			testParameters.BaseThickness = .005;
 			testGeom = new PlateFinGeometry(testParameters);
 		}
@@ -80,5 +80,32 @@ namespace HeatSinkr.Tests
 
             Assert.AreEqual(expected, actual, Epsilon);
         }
-	}
+
+        [Test]
+        public void ZeroOrLessFlowLengthShouldThrow()
+        {
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.FlowLength = 0; });
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.FlowLength = -1; });
+        }
+
+        [Test]
+        public void WidthOfZeroOrLessShouldThrow()
+        {
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.Width = 0; });
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.Width = -1; });
+        }
+
+        [Test]
+        public void NumberOfFinsZeroOrLessShouldThrow()
+        {
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.NumberOfFins = 0; });
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.NumberOfFins = -1; });
+        }
+
+        [Test]
+        public void NumberOfFinsLimitedByBaseWidth()
+        {
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.NumberOfFins = 40; });
+        }
+    }
 }

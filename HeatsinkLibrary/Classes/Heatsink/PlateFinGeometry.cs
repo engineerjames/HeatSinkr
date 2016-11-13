@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace HeatSinkr.Library
 {
 	public class PlateFinGeometry : Geometry<PlateFinGeometryParameters>
@@ -96,14 +97,70 @@ namespace HeatSinkr.Library
         /// <summary>
         /// [m]
         /// </summary>
-		public double FlowLength { get; set; }
+		public double FlowLength
+        {
+            get
+            {
+                return _FlowLength;
+            }
+            set
+            {
+                if (value <= 0)
+                    throw new InvalidOperationException("Flow length cannot be less than or equal to 0.");
+                else
+                    _FlowLength = value;
+            }
+        }
+        private double _FlowLength;
 
         /// <summary>
         /// [m]
         /// </summary>
-		public double Width { get; set; }
+		public double Width
+        {
+            get
+            {
+                return _Width;
+            }
+            set
+            {
+                if (value <= 0)
+                    throw new InvalidOperationException("Width of heatsink can not be less than or equal to 0.");
+                else
+                    _Width = value;
+            }
+        }
+        private double _Width;
 
-        public int NumberOfFins { get; set; }
+        /// <summary>
+        /// Number of fins for the heatsink
+        /// </summary>
+        public int NumberOfFins
+        {
+            get
+            {
+                return _NumberOfFins;
+            }
+            set
+            {
+                if (value <= 0)
+                    throw new InvalidOperationException("Number of fins can not be less than or equal to 0.");
+                else if (TooManyFinsOnHeatsink(value))
+                    throw new InvalidOperationException("Too many fins for the given base width.");
+                else
+                    _NumberOfFins = value;
+            }
+        }
+
+        private bool TooManyFinsOnHeatsink(double PotentialNumberOfFins)
+        {
+            if (FinThickness <= 0 || Width <= 0)
+                throw new InvalidOperationException("Width and Fin Thickness must be initialized prior to the number of fins.");
+
+            return ((PotentialNumberOfFins * FinThickness) >= Width);
+        }
+
+        private int _NumberOfFins;
 
         /// <summary>
         /// [m]
