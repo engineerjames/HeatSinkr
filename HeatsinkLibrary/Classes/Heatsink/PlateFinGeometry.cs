@@ -176,16 +176,58 @@ namespace HeatSinkr.Library
         /// <summary>
         /// [m]
         /// </summary>
-		public double FinHeight { get; set; }
+		public double FinHeight
+        {
+            get
+            {
+                return _FinHeight;
+            }
+            set
+            {
+                if (value <= 0)
+                    throw new InvalidOperationException("Fin height can't be less than or equal to 0.");
+                else
+                    _FinHeight = value;
+            }
+        }
+        private double _FinHeight;
 
         /// <summary>
         /// [m]
         /// </summary>
-		public double FinThickness { get; set; }
+		public double FinThickness
+        {
+            get
+            {
+                return _FinThickness;
+            }
+            set
+            {
+                if (value <= 0)
+                    throw new InvalidOperationException("Fin thickness can't be less than or equal to 0.");
+                else
+                    _FinThickness = value;
+            }
+        }
+        private double _FinThickness;
 
         /// <summary>
         /// [m]
         /// </summary>
-		public double BaseThickness { get; set; }
+		public double BaseThickness
+        {
+            get
+            {
+                return _BaseThickness;
+            }
+            set
+            {
+                if (value <= 0)
+                    throw new InvalidOperationException("Base thickness can't be less than or equal to 0.");
+                else
+                    _BaseThickness = value;
+            }
+        }
+        private double _BaseThickness;
     };
 }

@@ -107,5 +107,26 @@ namespace HeatSinkr.Tests
         {
             Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.NumberOfFins = 40; });
         }
+
+        [Test]
+        public void FinHeightOfZeroOrLessShouldThrow()
+        {
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.FinHeight = 0; });
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.FinHeight = -1; });
+        }
+
+        [Test]
+        public void FinThicknessOfZeroOrLessShouldThrow()
+        {
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.FinThickness = 0; });
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.FinThickness = -1; });
+        }
+
+        [Test]
+        public void BaseHeightOfZeroOrLessShouldThrow()
+        {
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.BaseThickness = 0; });
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.BaseThickness = -1; });
+        }
     }
 }
