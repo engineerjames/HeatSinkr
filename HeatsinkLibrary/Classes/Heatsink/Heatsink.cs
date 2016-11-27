@@ -7,6 +7,7 @@
             this.HeatSinkMaterial = HeatSinkMaterial;
             this.HeatSinkGeometry = HeatSinkGeometry;
             InletAir = new Air(InletAirTemperature);
+			Source = new HeatSource();
         }
 
         public virtual Geometry<T> HeatSinkGeometry { get; set; }
@@ -42,6 +43,7 @@
         public abstract double ThermalResistance_Convection { get; }
         public abstract double ThermalResistance_Conduction { get; }
         public abstract double ThermalResistance_Caloric { get; }
+		public abstract double ThermalResistance_Spreading { get; }
 
         /// <summary>
         /// Total thermal resistance [K/W]

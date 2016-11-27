@@ -12,8 +12,8 @@ namespace UnitTests.HeatSourceTests
         public void InitializeSourceTests()
         {
             source = new HeatSource(7);
-            source.Height = 0.025;
-            source.Width = 0.025;
+            source.Length = 0.010;
+            source.Width = 0.010;
         }
 
         [Test]

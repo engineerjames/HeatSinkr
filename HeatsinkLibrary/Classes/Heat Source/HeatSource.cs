@@ -17,19 +17,28 @@ namespace HeatSinkr.Library
             this.Power = Power;
         }
 
+		/// <summary>
+		/// Heat source applied centered underneath the heatsink
+		/// </summary>
+		public HeatSource()
+		{
+			
+		}
+
         /// <summary>
         /// Power dissipated [W]
         /// </summary>
         public double Power { get; set; }
 
         /// <summary>
-        /// Width [m]
+		/// Width (non-flow direction) [m]
         /// </summary>
         public double Width { get; set; }
 
-        /// <summary>
-        /// Height [m]
-        /// </summary>
-        public double Height { get; set; }
+		/// <summary>
+		/// Length (flow direction) [m]
+		/// </summary>
+		public double Length { get; set; }
+
     }
 }
