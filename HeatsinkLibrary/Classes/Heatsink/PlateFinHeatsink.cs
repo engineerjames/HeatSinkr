@@ -202,14 +202,13 @@ namespace HeatSinkr.Library
         {
             get
             {
-                var h = HeatTransferCoefficient;
-                var P = 2 * HeatSinkGeometry.GeometryDetails.FinThickness + 2 * HeatSinkGeometry.GeometryDetails.FlowLength;
-                var k = HeatSinkMaterial.ThermalConductivity;
-                var Ac = HeatSinkGeometry.GeometryDetails.FinThickness * HeatSinkGeometry.GeometryDetails.FlowLength;
-                var Lc = HeatSinkGeometry.GeometryDetails.FinThickness / 2 + HeatSinkGeometry.GeometryDetails.FinHeight;
-
-                var m = Math.Sqrt((h * P) / (k * Ac));
-                return Math.Tanh(m * Lc) / (m*Lc);
+				var h = HeatTransferCoefficient;
+				var k = HeatSinkMaterial.ThermalConductivity;
+				var t = HeatSinkGeometry.GeometryDetails.FinThickness;
+				var m = Math.Sqrt((2.0 * h) / (k * t));
+				var Lc = HeatSinkGeometry.GeometryDetails.FinHeight + (0.5 * t);
+				var efficiency = Math.Tanh(m * Lc) / (m * Lc);
+				return efficiency;
             }
         }
 

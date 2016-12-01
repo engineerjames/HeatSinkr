@@ -1,16 +1,34 @@
 ﻿<Properties StartupConfiguration="{99BC0E7C-0824-40AE-8633-F83A35CB55C7}|Unit Tests">
-  <MonoDevelop.Ide.Workbench ActiveDocument="HeatsinkLibrary/Classes/Heatsink.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="HeatSinkr Status">
     <Files>
-      <File FileName="HeatsinkLibrary/Classes/Geometry.cs" Line="3" Column="28" />
-      <File FileName="UnitTests/GeometryTests.cs" Line="34" Column="73" />
-      <File FileName="UnitTests/HeatsinkTests.cs" Line="3" Column="25" />
-      <File FileName="HeatsinkLibrary/Classes/Units.cs" Line="4" Column="28" />
-      <File FileName="UnitTests/UnitsTests.cs" Line="51" Column="32" />
-      <File FileName="HeatsinkLibrary/Classes/Heatsink.cs" Line="8" Column="45" />
-      <File FileName="HeatsinkLibrary/Classes/PlateFinGeometry.cs" Line="8" Column="1" />
-      <File FileName="UnitTests/packages.config" Line="1" Column="1" />
-      <File FileName="HeatsinkLibrary/Classes/PlateFinGeometryParameters.cs" Line="25" Column="2" />
+      <File FileName="HeatsinkLibrary/Classes/Utility/Units.cs" Line="1" Column="1" />
+      <File FileName="HeatsinkLibrary/Classes/Heatsink/Heatsink.cs" Line="1" Column="1" />
+      <File FileName="HeatsinkLibrary/Classes/Heatsink/PlateFinHeatsink.cs" Line="211" Column="23" />
+      <File FileName="HeatSinkr Status" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="HeatSinkr" expanded="True">
+            <Node name="UnitTests" expanded="True">
+              <Node name="HeatSinkr" expanded="True">
+                <Node name="Tests" expanded="True">
+                  <Node name="AirTest" expanded="True" />
+                  <Node name="PlateFinHeatsinkTest" expanded="True">
+                    <Node name="FinEfficiencyIsAccurate" selected="True" />
+                  </Node>
+                </Node>
+              </Node>
+              <Node name="UnitTests" expanded="True">
+                <Node name="HeatSourceTests" expanded="True">
+                  <Node name="HeatSourceTests" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -18,5 +36,6 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.HeatSinkr PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.UnitTests PreferredExecutionTarget="MonoDevelop.Default" />
 </Properties>

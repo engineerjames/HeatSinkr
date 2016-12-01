@@ -3,3 +3,8 @@
 /Users/armes/Documents/HeatSinkr/HeatsinkLibrary/bin/Debug/HeatsinkLibrary.dll
 /Users/armes/Documents/HeatSinkr/HeatsinkLibrary/obj/Debug/HeatsinkLibrary.dll
 /Users/armes/Documents/HeatSinkr/HeatsinkLibrary/obj/Debug/HeatsinkLibrary.dll.mdb
+/Users/armes/Projects/HeatSinkr/HeatsinkLibrary/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/armes/Projects/HeatSinkr/HeatsinkLibrary/bin/Debug/HeatsinkLibrary.dll.mdb
+/Users/armes/Projects/HeatSinkr/HeatsinkLibrary/bin/Debug/HeatsinkLibrary.dll
+/Users/armes/Projects/HeatSinkr/HeatsinkLibrary/obj/Debug/HeatsinkLibrary.dll
+/Users/armes/Projects/HeatSinkr/HeatsinkLibrary/obj/Debug/HeatsinkLibrary.dll.mdb
