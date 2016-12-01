@@ -35,6 +35,8 @@
         public abstract double ChannelVelocity { get; }
         public abstract double HydraulicDiameter { get; }
         public abstract double FlowArea { get; }
+        public abstract double FinArea { get; }
+        public abstract double BaseArea { get; }
         public abstract double ReynoldsNumber { get; }
         public abstract double PressureDrop { get; }
         public abstract double Nu { get; }

@@ -11,6 +11,9 @@ namespace HeatSinkr.Library
 
         public abstract double SurfaceArea { get; }
 
+        /// <summary>
+        /// Characteristic Length used in Reynold's number calculation - [m]
+        /// </summary>
         public abstract double CharacteristicLength { get; }
 
         public abstract double AspectRatio { get; }

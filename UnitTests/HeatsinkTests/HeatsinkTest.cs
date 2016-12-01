@@ -126,7 +126,7 @@ namespace HeatSinkr.Tests
         public void NusseltNumberIsAccurate()
         {
             hs.CFM = 5.0;
-            var Nu_Laminar_Expected = 3.66;
+            var Nu_Laminar_Expected = 10.949249937806629;
             var Nu_Laminar_Actual = hs.Nu;
             Assert.AreEqual(Nu_Laminar_Expected, Nu_Laminar_Actual, RoughEpsilon);
 
@@ -139,15 +139,31 @@ namespace HeatSinkr.Tests
         [Test]
         public void FinEfficiencyIsAccurate()
         {
-            var efficiency_expected = 0.92957;
+            var efficiency_expected = 0.8274660276;
             var efficiency_actual = hs.FinEfficiency;
             Assert.AreEqual(efficiency_expected, efficiency_actual, RoughEpsilon);
         }
 
         [Test]
+        public void FinAreaCalculatedCorrectly()
+        {
+            var Af_Expected = 0.0007;
+            var Af_Actual = hs.FinArea;
+            Assert.AreEqual(Af_Expected, Af_Actual, Epsilon);
+        }
+
+        [Test]
+        public void BaseAreaCalculatedCorrectly()
+        {
+            var Ab_Expected = 0.00029;
+            var Ab_Actual = hs.BaseArea;
+            Assert.AreEqual(Ab_Expected, Ab_Actual, Epsilon);
+        }
+
+        [Test]
         public void HeatTransferCoefficientIsAccurate()
         {
-            var htc_expected = 17.64587;
+            var htc_expected = 52.789351736047;
             var htc_actual = hs.HeatTransferCoefficient;
             Assert.AreEqual(htc_expected, htc_actual, RoughEpsilon);
         }
@@ -155,7 +171,7 @@ namespace HeatSinkr.Tests
         [Test]
         public void ConvectiveThermalResistanceIsAccurate()
         {
-            var Tr_Conv_Expected = 6.23994;
+            var Tr_Conv_Expected = 2.833449;
             var Tr_Conv_Actual = hs.ThermalResistance_Convection;
             Assert.AreEqual(Tr_Conv_Expected, Tr_Conv_Actual, RoughEpsilon * 10);
         }

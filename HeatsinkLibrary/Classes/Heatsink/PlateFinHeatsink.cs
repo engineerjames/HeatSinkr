@@ -164,7 +164,8 @@ namespace HeatSinkr.Library
         /// Turbulent correlation - Pg. 499 Incropera & Dewitt, "Introduction to Heat Transfer"
         /// 0.023Re^(0.8)*Pr^(0.4), assumed always heating and L/Dh >= 10
         /// 
-        /// Laminar correlation - Currently using constant Nu_Dh of 3.66
+        /// Laminar correlation - Eqn. 8.56 Incropera & Dewitt, "Introduction to Heat Transfer"
+        /// Assumes thermal entry, laminar flow, and uniform Ts
         /// </summary>
         public override double Nu
         {
@@ -172,7 +173,13 @@ namespace HeatSinkr.Library
             {
                 if (this.FlowCondition == FlowCondition.Laminar)
                 {
-                    return 3.66;
+                    var dL = HydraulicDiameter / HeatSinkGeometry.GeometryDetails.FlowLength;
+                    var Re = ReynoldsNumber;
+                    var Pr = InletAir.Prandtl;
+                    var dLRePr = dL * Re * Pr;
+                    var NuD = 3.66 + (0.0668 * dLRePr) / (1.0 + 0.04 * Math.Pow((dLRePr), 2.0 / 3.0));
+
+                    return NuD;
                 }
                 else
                 {
@@ -230,7 +237,38 @@ namespace HeatSinkr.Library
         {
             get
             {
-                return (1 / (FinEfficiency * HeatTransferCoefficient * HeatSinkGeometry.SurfaceArea));
+                
+                var gm = HeatSinkGeometry.GeometryDetails;
+                var At = gm.NumberOfFins * FinArea + BaseArea;
+
+                var eta_nought = 1.0 - ((gm.NumberOfFins * FinArea / At) * (1.0 - FinEfficiency));
+                var R = 1.0 / (eta_nought * HeatTransferCoefficient * At);
+
+                return R;
+            }
+        }
+
+        /// <summary>
+        /// Exposed fin area to the flow (on a per fin basis) [m^2]
+        /// </summary>
+        public override double FinArea
+        {
+            get
+            {
+                var gm = HeatSinkGeometry.GeometryDetails;
+                return (2.0 * gm.FlowLength * gm.FinHeight);
+            }
+        }
+
+        /// <summary>
+        /// Total exposed base area to the inlet flow [m^2]
+        /// </summary>
+        public override double BaseArea
+        {
+            get
+            {
+                var gm = HeatSinkGeometry.GeometryDetails;
+                return (gm.NumberOfFins - 1.0) * HeatSinkGeometry.Pitch * gm.FlowLength;
             }
         }
 
