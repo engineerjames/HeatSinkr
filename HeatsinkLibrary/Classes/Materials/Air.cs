@@ -82,10 +82,6 @@ namespace HeatSinkr.Library
                 return CalculateDynamicViscosity(this.Temperature);
             }
 
-            set
-            {
-                base.DynamicViscosity = value;
-            }
         }
 
         private double CalculateDiffusivity(double Temperature)
