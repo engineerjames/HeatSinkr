@@ -22,7 +22,14 @@ namespace HeatSinkr.Library
         {
             get
             {
-                return (IncidentFlowVelocity / Sigma);
+                var hs = HeatSinkGeometry.GeometryDetails;
+
+                var gapThickness = this.HeatSinkGeometry.Pitch;
+                var A_duct = gapThickness * hs.FinHeight;
+                var N_ducts = hs.NumberOfFins - 1;
+                var Q = Units.ConvertCFMToMetersCubedPerSecond(CFM) / N_ducts;
+                var result = Q / A_duct;
+                return result;
             }
         }
 

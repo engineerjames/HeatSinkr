@@ -41,7 +41,7 @@ namespace HeatSinkr.Tests
         [Test]
         public void ChannelVelocityIsAccurate()
         {
-            double expected = 1.98339982;
+            double expected = 2.324864;
             double actual = hs.ChannelVelocity;
 
             Assert.AreEqual(expected, actual, Epsilon);
@@ -68,7 +68,7 @@ namespace HeatSinkr.Tests
         [Test]
         public void ReynoldsNumberIsAccurate()
         {
-            double expected = 669.822444653;
+            double expected = 785.139861865;
             double actual = hs.ReynoldsNumber;
 
             Assert.AreEqual(expected, actual, RoughEpsilon);
@@ -77,7 +77,7 @@ namespace HeatSinkr.Tests
         [Test]
         public void PressureDropIsAccurate()
         {
-            double expected = 1.76308532;
+            double expected = 1.78171163;
             double actual = hs.PressureDrop;
 
             Assert.AreEqual(expected, actual, RoughEpsilon);
@@ -103,12 +103,12 @@ namespace HeatSinkr.Tests
         [Test]
         public void EntranceLengthIsAccurate()
         {
-            var expectedLaminar = 0.1865212;
+            var expectedLaminar = 0.21863291;
             var actualLaminar = hs.EntranceLength;
             Assert.AreEqual(expectedLaminar, actualLaminar, RoughEpsilon);
 
             hs.CFM = 150.0;
-            var expectedTurbulent = 0.09011316;
+            var expectedTurbulent = 0.09376376;
             var actualTurbulent = hs.EntranceLength;
             Assert.AreEqual(expectedTurbulent, actualTurbulent, RoughEpsilon);
         }
@@ -129,7 +129,7 @@ namespace HeatSinkr.Tests
             Assert.AreEqual(Nu_Laminar_Expected, Nu_Laminar_Actual, RoughEpsilon);
 
             hs.CFM = 20;
-            var Nu_Turbulent_Expected = 11.02;
+            var Nu_Turbulent_Expected = 12.5133233;
             var Nu_Turbulent_Actual = hs.Nu;
             Assert.AreEqual(Nu_Turbulent_Expected, Nu_Turbulent_Actual, RoughEpsilon * 10);
         }
