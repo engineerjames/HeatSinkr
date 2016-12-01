@@ -7,7 +7,7 @@ namespace HeatSinkr.Library
     {
         public PlateFinHeatsink(Material HeatSinkMaterial, Geometry<PlateFinGeometryParameters> HeatSinkGeometry) : base(HeatSinkMaterial, HeatSinkGeometry)
         {
-            CFM = 0;
+			CFM = 0;
         }
 
         /// <summary>
@@ -33,6 +33,33 @@ namespace HeatSinkr.Library
             }
         }
 
+		/// <summary>
+		/// Spreading thermal resistance [K/W]
+		/// </summary>
+		public override double ThermalResistance_Spreading
+		{
+			get
+			{
+				var pi = Math.PI;
+				var h = HeatTransferCoefficient;
+				var gm = this.HeatSinkGeometry.GeometryDetails;
+
+				var r1 = Math.Sqrt((Source.Length * Source.Width) / pi);
+				var r2 = Math.Sqrt((gm.FlowLength * gm.Width) / pi);
+
+				var sigma = r1 / r2;
+				var tau = gm.BaseThickness / r2;
+				var Bi = (h * r2) / HeatSinkMaterial.ThermalConductivity;
+				var lambda = Math.PI + (1.0 / (sigma * Math.Sqrt(pi)));
+
+				var phi = (Math.Tanh(lambda * tau) + (lambda / Bi)) 
+					/ (1.0 + (lambda / Bi) * Math.Tanh(lambda * tau));
+
+				var Tr = ((1.0 - sigma) * phi) / (pi * HeatSinkMaterial.ThermalConductivity * r1);
+
+				return Tr;
+			}
+		}
 
         /// <summary>
         /// Hydraulic diameter of heatsink fin channel - 4*A/P [m]
