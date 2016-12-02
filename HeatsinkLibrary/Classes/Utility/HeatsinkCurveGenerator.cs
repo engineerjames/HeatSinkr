@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HeatSinkr.Library
 {
@@ -16,15 +13,20 @@ namespace HeatSinkr.Library
             this.X = X;
             this.Y = Y;
         }
+
+        public override string ToString()
+        {
+            return String.Format("X: {0}, Y: {1}", X, Y);
+        }
     }
 
-    public class HeatsinkCurveGenerator
+    public class CurveGenerator
     {
         private const int InterpolationPoints = 15;
         public List<List<DataPoint>> DataPoints = new List<List<DataPoint>>();
         private List<Heatsink> Heatsinks = new List<Heatsink>();
 
-        private static HeatsinkCurveGenerator _Instance;
+        private static CurveGenerator _Instance;
 
         /// <summary>
         /// Generated thermal resistance curve based on the current heatsinks in the container - use AddHeatsink method
@@ -78,18 +80,15 @@ namespace HeatSinkr.Library
             Heatsinks.Remove(heatsinkToRemove);
         }
 
-        public static HeatsinkCurveGenerator Instance
+        public static CurveGenerator Instance
         {
             get
             {
                 if (_Instance == null)
-                    _Instance = new HeatsinkCurveGenerator();
+                    _Instance = new CurveGenerator();
 
                 return _Instance;
             }
         }
-
-
-
     }
 }

@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace HeatSinkr.Tests
 {
     [TestFixture]
-    class AluminumTest
+    class CopperTest
     {
         public const double Epsilon = .000001;
         public const double MidEpsilon = .0001;
@@ -15,14 +15,14 @@ namespace HeatSinkr.Tests
         [SetUp]
         public void Setup()
         {
-            mat = new Aluminum();
+            mat = new Copper();
         }
 
         [Test]
         public void IsThermalConductivityAccurate()
         {
             double actual = mat.ThermalConductivity;
-            double expected = 204; // W/m-K
+            double expected = 400; // W/m-K
             
             Assert.AreEqual(expected, actual, Epsilon);
         }
@@ -31,7 +31,7 @@ namespace HeatSinkr.Tests
         public void IsDensityAccurate()
         {
             double actual = mat.Density;
-            double expected = 2700; // kg/m^3
+            double expected = 8940; // kg/m^3
 
             Assert.AreEqual(expected, actual, Epsilon);
         }

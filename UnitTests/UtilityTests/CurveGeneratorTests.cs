@@ -39,8 +39,8 @@ namespace HeatSinkr.Tests
         [Test]
         public void CanGrabOnlyOneInstance()
         {
-            var hsCurveGen = HeatsinkCurveGenerator.Instance;
-            var hsCurveGen2 = HeatsinkCurveGenerator.Instance;
+            var hsCurveGen = CurveGenerator.Instance;
+            var hsCurveGen2 = CurveGenerator.Instance;
 
             Assert.AreSame(hsCurveGen, hsCurveGen2);
         }
@@ -48,14 +48,14 @@ namespace HeatSinkr.Tests
         [Test]
         public void CannotAnalyzeZeroHeatsinks()
         {
-            var hsCurveGen = HeatsinkCurveGenerator.Instance;
+            var hsCurveGen = CurveGenerator.Instance;
             Assert.Throws<InvalidOperationException>(delegate { hsCurveGen.GetThermalResistanceCurves(0.5, 15.0); });
         }
 
         [Test]
         public void CannotPassInInvalidCFM()
         {
-            var hsCurveGen = HeatsinkCurveGenerator.Instance;
+            var hsCurveGen = CurveGenerator.Instance;
             hsCurveGen.AddHeatsink(hs);
 
             // Shouldn't be able to pass in 0 or less into the low CFM
@@ -68,7 +68,7 @@ namespace HeatSinkr.Tests
         [Test]
         public void CFMCurveIsAccurate()
         {
-            var hsCurveGen = HeatsinkCurveGenerator.Instance;
+            var hsCurveGen = CurveGenerator.Instance;
             hsCurveGen.AddHeatsink(hs);
 
             var TrCurves = hsCurveGen.GetThermalResistanceCurves(0.5, 15);

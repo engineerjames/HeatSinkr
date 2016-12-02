@@ -27,10 +27,6 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -38,6 +34,7 @@
     <Compile Include="Classes\Heatsink\PlateFinHeatsink.cs" />
     <Compile Include="Classes\Materials\Air.cs" />
     <Compile Include="Classes\Materials\Aluminum.cs" />
+    <Compile Include="Classes\Materials\Copper.cs" />
     <Compile Include="Classes\Materials\Material.cs" />
     <Compile Include="Classes\Utility\HeatsinkCurveGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
