@@ -10,7 +10,7 @@ namespace HeatSinkr.Library
     {
         private static HeatsinkCurveGenerator _Instance;
 
-        public void SetHeatsink<T>(Heatsink<T> Heatsink) where T : Heatsink<T>
+        public void SetHeatsink(Heatsink heatsink) 
         {
 
         }

@@ -1,8 +1,8 @@
 ﻿namespace HeatSinkr.Library
 {
-    public abstract class Heatsink<T>
+    public abstract class Heatsink
     {
-        public Heatsink(Material HeatSinkMaterial, Geometry<T> HeatSinkGeometry, double InletAirTemperature = 35)
+        public Heatsink(Material HeatSinkMaterial, Geometry HeatSinkGeometry, double InletAirTemperature = 35)
         {
             this.HeatSinkMaterial = HeatSinkMaterial;
             this.HeatSinkGeometry = HeatSinkGeometry;
@@ -10,7 +10,7 @@
 			Source = new HeatSource();
         }
 
-        public virtual Geometry<T> HeatSinkGeometry { get; set; }
+        public virtual Geometry HeatSinkGeometry { get; set; }
         public virtual Material HeatSinkMaterial { get; set; }
 
         public Air InletAir;

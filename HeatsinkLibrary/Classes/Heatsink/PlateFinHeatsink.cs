@@ -3,9 +3,9 @@
 namespace HeatSinkr.Library
 {
 
-    public class PlateFinHeatsink : Heatsink<PlateFinGeometryParameters>
+    public class PlateFinHeatsink : Heatsink
     {
-        public PlateFinHeatsink(Material HeatSinkMaterial, Geometry<PlateFinGeometryParameters> HeatSinkGeometry) : base(HeatSinkMaterial, HeatSinkGeometry)
+        public PlateFinHeatsink(Material HeatSinkMaterial, PlateFinGeometry HeatSinkGeometry) : base(HeatSinkMaterial, HeatSinkGeometry)
         {
 			CFM = 0;
         }
@@ -22,9 +22,9 @@ namespace HeatSinkr.Library
         {
             get
             {
-                var hs = HeatSinkGeometry.GeometryDetails;
+                var hs = HeatSinkGeometry;
 
-                var gapThickness = this.HeatSinkGeometry.Pitch;
+                var gapThickness = hs.Pitch;
                 var A_duct = gapThickness * hs.FinHeight;
                 var N_ducts = hs.NumberOfFins - 1;
                 var Q = Convert.CFMToMCubedPerSecond(CFM) / N_ducts;
@@ -42,7 +42,7 @@ namespace HeatSinkr.Library
 			{
 				var pi = Math.PI;
 				var h = HeatTransferCoefficient;
-				var gm = this.HeatSinkGeometry.GeometryDetails;
+				var gm = HeatSinkGeometry;
 
 				var r1 = Math.Sqrt((Source.Length * Source.Width) / pi);
 				var r2 = Math.Sqrt((gm.FlowLength * gm.Width) / pi);
@@ -68,8 +68,8 @@ namespace HeatSinkr.Library
         {
             get
             {
-                var hs = HeatSinkGeometry.GeometryDetails;
-                var p = HeatSinkGeometry.Pitch;
+                var hs = HeatSinkGeometry;
+                var p = hs.Pitch;
                 var h = hs.FinHeight;
 
                 var area = h * p;
@@ -97,7 +97,7 @@ namespace HeatSinkr.Library
         {
             get
             {
-                var hs = HeatSinkGeometry.GeometryDetails;
+                var hs = HeatSinkGeometry;
                 var area = hs.Height * hs.Width;
 
                 return area;
@@ -127,7 +127,7 @@ namespace HeatSinkr.Library
             get
             {
                 var p = HeatSinkGeometry.Pitch;
-                var t = HeatSinkGeometry.GeometryDetails.FinThickness;
+                var t = HeatSinkGeometry.FinThickness;
 
                 return (p / (p + t));
             }
@@ -156,7 +156,7 @@ namespace HeatSinkr.Library
 
         private bool FlowIsDeveloping()
         {
-            return (EntranceLength > HeatSinkGeometry.GeometryDetails.FlowLength);
+            return (EntranceLength > HeatSinkGeometry.FlowLength);
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace HeatSinkr.Library
             {
                 if (this.FlowCondition == FlowCondition.Laminar)
                 {
-                    var dL = HydraulicDiameter / HeatSinkGeometry.GeometryDetails.FlowLength;
+                    var dL = HydraulicDiameter / HeatSinkGeometry.FlowLength;
                     var Re = ReynoldsNumber;
                     var Pr = InletAir.Prandtl;
                     var dLRePr = dL * Re * Pr;
@@ -211,9 +211,9 @@ namespace HeatSinkr.Library
             {
 				var h = HeatTransferCoefficient;
 				var k = HeatSinkMaterial.ThermalConductivity;
-				var t = HeatSinkGeometry.GeometryDetails.FinThickness;
+				var t = HeatSinkGeometry.FinThickness;
 				var m = Math.Sqrt((2.0 * h) / (k * t));
-				var Lc = HeatSinkGeometry.GeometryDetails.FinHeight + (0.5 * t);
+				var Lc = HeatSinkGeometry.FinHeight + (0.5 * t);
 				var efficiency = Math.Tanh(m * Lc) / (m * Lc);
 				return efficiency;
             }
@@ -238,7 +238,7 @@ namespace HeatSinkr.Library
             get
             {
                 
-                var gm = HeatSinkGeometry.GeometryDetails;
+                var gm = HeatSinkGeometry;
                 var At = gm.NumberOfFins * FinArea + BaseArea;
 
                 var eta_nought = 1.0 - ((gm.NumberOfFins * FinArea / At) * (1.0 - FinEfficiency));
@@ -255,7 +255,7 @@ namespace HeatSinkr.Library
         {
             get
             {
-                var gm = HeatSinkGeometry.GeometryDetails;
+                var gm = HeatSinkGeometry;
                 return (2.0 * gm.FlowLength * gm.FinHeight);
             }
         }
@@ -267,7 +267,7 @@ namespace HeatSinkr.Library
         {
             get
             {
-                var gm = HeatSinkGeometry.GeometryDetails;
+                var gm = HeatSinkGeometry;
                 return (gm.NumberOfFins - 1.0) * HeatSinkGeometry.Pitch * gm.FlowLength;
             }
         }
@@ -279,9 +279,9 @@ namespace HeatSinkr.Library
         {
             get
             {
-                var L = HeatSinkGeometry.GeometryDetails.BaseThickness;
+                var L = HeatSinkGeometry.BaseThickness;
                 var k = HeatSinkMaterial.ThermalConductivity;
-                var Ac = HeatSinkGeometry.GeometryDetails.FlowLength * HeatSinkGeometry.GeometryDetails.Width;
+                var Ac = HeatSinkGeometry.FlowLength * HeatSinkGeometry.Width;
 
                 return L / (k * Ac);
             }
@@ -301,7 +301,7 @@ namespace HeatSinkr.Library
 
         private double CalculateFrictionalLoss()
         {
-            var L = this.HeatSinkGeometry.GeometryDetails.FlowLength;
+            var L = HeatSinkGeometry.FlowLength;
             var f = CalculateFrictionFactor(L);
             var Pf = (2 * f * L * InletAir.Density * ChannelVelocity * ChannelVelocity) / HydraulicDiameter;
             return Pf;

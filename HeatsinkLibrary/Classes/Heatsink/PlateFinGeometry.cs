@@ -2,9 +2,12 @@
 
 namespace HeatSinkr.Library
 {
-	public class PlateFinGeometry : Geometry<PlateFinGeometryParameters>
-	{
-		public override PlateFinGeometryParameters GeometryDetails { get; set; }
+    public class PlateFinGeometry : Geometry
+    {
+        public PlateFinGeometry() : base()
+        {
+
+        }
 
         /// <summary>
         /// [mm]
@@ -13,16 +16,11 @@ namespace HeatSinkr.Library
         {
             get
             {
-                var gp = GeometryDetails;
+                var pitch = (Width - (NumberOfFins * FinThickness)) / (NumberOfFins - 1);
 
-                return (gp.Width - (gp.NumberOfFins * gp.FinThickness)) / (gp.NumberOfFins - 1);
+                return pitch;
             }
         }
-
-        public PlateFinGeometry(PlateFinGeometryParameters Parameters)
-		{
-			this.GeometryDetails = Parameters;
-		}
 
         /// <summary>
         /// [mm^3]
@@ -32,9 +30,7 @@ namespace HeatSinkr.Library
         {
             get
             {
-                var gm = GeometryDetails;
-
-                return CalculateFrontFaceArea(gm) * gm.FlowLength;
+                return CalculateFrontFaceArea() * FlowLength;
             }
         }
 
@@ -46,23 +42,22 @@ namespace HeatSinkr.Library
         {
             get
             {
-                var gm = GeometryDetails;
-
-                double frontAndBack = 2 * CalculateFrontFaceArea(gm);
-                double bottomAndTop = 2 * gm.FlowLength * gm.Width;
-                double finSides = 2 * gm.NumberOfFins * gm.FlowLength * gm.FinHeight;
-                double baseSides = 2 * gm.FlowLength * gm.BaseThickness;
+                double frontAndBack = 2.0 * CalculateFrontFaceArea();
+                double bottomAndTop = 2.0 * FlowLength * Width;
+                double finSides = 2.0 * NumberOfFins * FlowLength * FinHeight;
+                double baseSides = 2.0 * FlowLength * BaseThickness;
 
                 return (frontAndBack + bottomAndTop + finSides + baseSides);
             }
         }
 
-        private double CalculateFrontFaceArea(PlateFinGeometryParameters gm)
+        private double CalculateFrontFaceArea()
         {
-            return (gm.BaseThickness * gm.Width + (gm.NumberOfFins * gm.FinThickness * gm.FinHeight));
+            var Area = BaseThickness * Width + (NumberOfFins * FinThickness * FinHeight);
+            return Area;
         }
 
-        
+
         /// <summary>
         /// [mm]
         /// </summary>
@@ -71,10 +66,8 @@ namespace HeatSinkr.Library
             get
             {
                 double finPitch = Pitch;
-                var gm = GeometryDetails;
-
-                double fourTimesTheArea = 4 * finPitch * gm.FinHeight;
-                double twoTimesThePerimeter = 2 * finPitch + 2 * gm.FinHeight;
+                double fourTimesTheArea = 4 * finPitch * FinHeight;
+                double twoTimesThePerimeter = 2 * finPitch + 2 * FinHeight;
 
                 return fourTimesTheArea / twoTimesThePerimeter;
             }
@@ -87,17 +80,14 @@ namespace HeatSinkr.Library
         {
             get
             {
-                return Pitch / GeometryDetails.FinHeight;
+                return Pitch / FinHeight;
             }
         }
-    }
 
-    public class PlateFinGeometryParameters
-    {
         /// <summary>
         /// [m]
         /// </summary>
-		public double FlowLength
+        public override double FlowLength
         {
             get
             {
@@ -116,7 +106,7 @@ namespace HeatSinkr.Library
         /// <summary>
         /// [m]
         /// </summary>
-		public double Width
+		public override double Width
         {
             get
             {
@@ -135,7 +125,7 @@ namespace HeatSinkr.Library
         /// <summary>
         /// Number of fins for the heatsink
         /// </summary>
-        public int NumberOfFins
+        public override int NumberOfFins
         {
             get
             {
@@ -165,7 +155,7 @@ namespace HeatSinkr.Library
         /// <summary>
         /// [m]
         /// </summary>
-		public double Height
+		public override double Height
         {
             get
             {
@@ -176,7 +166,7 @@ namespace HeatSinkr.Library
         /// <summary>
         /// [m]
         /// </summary>
-		public double FinHeight
+		public override double FinHeight
         {
             get
             {
@@ -195,7 +185,7 @@ namespace HeatSinkr.Library
         /// <summary>
         /// [m]
         /// </summary>
-		public double FinThickness
+		public override double FinThickness
         {
             get
             {
@@ -214,7 +204,7 @@ namespace HeatSinkr.Library
         /// <summary>
         /// [m]
         /// </summary>
-		public double BaseThickness
+		public override double BaseThickness
         {
             get
             {
@@ -229,5 +219,5 @@ namespace HeatSinkr.Library
             }
         }
         private double _BaseThickness;
-    };
+    }
 }

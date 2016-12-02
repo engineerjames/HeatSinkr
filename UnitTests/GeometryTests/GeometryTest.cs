@@ -8,33 +8,23 @@ namespace HeatSinkr.Tests
 	public class GeometryTest
 	{
         public const double Epsilon = .000001;
-        PlateFinGeometryParameters testParameters = new PlateFinGeometryParameters();
-		Geometry<PlateFinGeometryParameters> testGeom;
+        PlateFinGeometry testGeom = new PlateFinGeometry();
 
 		[SetUp]
 		public void InitializeTestGeometry()
 		{
-			testParameters.FinThickness = .001;
-			testParameters.FlowLength = .010;
-			testParameters.Width = .040;
-            testParameters.NumberOfFins = 11;
-            testParameters.FinHeight = .035;
-			testParameters.BaseThickness = .005;
-			testGeom = new PlateFinGeometry(testParameters);
+            testGeom.FinThickness = .001;
+            testGeom.FlowLength = .010;
+            testGeom.Width = .040;
+            testGeom.NumberOfFins = 11;
+            testGeom.FinHeight = .035;
+            testGeom.BaseThickness = .005;
 		}
 
 		[Test]
 		public void GeometryCanBeCreated()
 		{
 			Assert.AreNotEqual(null, testGeom);
-		}
-
-		[Test]
-		public void GeometryParametersAreSetCorrectly()
-		{
-			PlateFinGeometryParameters actual = testGeom.GeometryDetails;
-			Assert.AreEqual(actual, testParameters);
-
 		}
 
 		[Test]
@@ -86,49 +76,49 @@ namespace HeatSinkr.Tests
         [Test]
         public void ZeroOrLessFlowLengthShouldThrow()
         {
-            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.FlowLength = 0; });
-            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.FlowLength = -1; });
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.FlowLength = 0; });
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.FlowLength = -1; });
         }
 
         [Test]
         public void WidthOfZeroOrLessShouldThrow()
         {
-            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.Width = 0; });
-            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.Width = -1; });
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.Width = 0; });
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.Width = -1; });
         }
 
         [Test]
         public void NumberOfFinsZeroOrLessShouldThrow()
         {
-            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.NumberOfFins = 0; });
-            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.NumberOfFins = -1; });
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.NumberOfFins = 0; });
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.NumberOfFins = -1; });
         }
 
         [Test]
         public void NumberOfFinsLimitedByBaseWidth()
         {
-            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.NumberOfFins = 40; });
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.NumberOfFins = 40; });
         }
 
         [Test]
         public void FinHeightOfZeroOrLessShouldThrow()
         {
-            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.FinHeight = 0; });
-            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.FinHeight = -1; });
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.FinHeight = 0; });
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.FinHeight = -1; });
         }
 
         [Test]
         public void FinThicknessOfZeroOrLessShouldThrow()
         {
-            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.FinThickness = 0; });
-            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.FinThickness = -1; });
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.FinThickness = 0; });
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.FinThickness = -1; });
         }
 
         [Test]
         public void BaseHeightOfZeroOrLessShouldThrow()
         {
-            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.BaseThickness = 0; });
-            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.GeometryDetails.BaseThickness = -1; });
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.BaseThickness = 0; });
+            Assert.Throws<InvalidOperationException>(delegate { var DP = testGeom.BaseThickness = -1; });
         }
     }
 }

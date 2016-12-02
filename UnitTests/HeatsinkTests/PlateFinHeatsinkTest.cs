@@ -15,15 +15,13 @@ namespace HeatSinkr.Tests
         [SetUp]
         public void SetupHSTests()
         {
-            PlateFinGeometryParameters testParameters = new PlateFinGeometryParameters();
-            PlateFinGeometry testGeom;
-            testParameters.FinThickness = .001;
-            testParameters.FlowLength = .010;
-            testParameters.Width = .040;
-            testParameters.FinHeight = .035;
-            testParameters.BaseThickness = .005;
-            testParameters.NumberOfFins = 11;
-            testGeom = new PlateFinGeometry(testParameters);
+            PlateFinGeometry testGeom = new PlateFinGeometry();
+            testGeom.FinThickness = .001;
+            testGeom.FlowLength = .010;
+            testGeom.Width = .040;
+            testGeom.FinHeight = .035;
+            testGeom.BaseThickness = .005;
+            testGeom.NumberOfFins = 11;
             
             hs = new PlateFinHeatsink(new Aluminum(), testGeom);
             hs.CFM = 5;
@@ -118,7 +116,7 @@ namespace HeatSinkr.Tests
         [Test]
         public void ThrowExpectionIfNotDeveloping()
         {
-            hs.HeatSinkGeometry.GeometryDetails.FlowLength = 500;
+            hs.HeatSinkGeometry.FlowLength = 500;
             Assert.Throws<InvalidProgramException>(delegate { var DP = hs.PressureDrop; });
         }
 
