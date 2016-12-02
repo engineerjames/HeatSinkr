@@ -72,6 +72,15 @@ namespace HeatSinkr.Tests
             hsCurveGen.AddHeatsink(hs);
 
             var TrCurves = hsCurveGen.GetThermalResistanceCurves(0.5, 15);
+
+            for (int i = 0; i < TrCurves.Count; i++)
+            {
+                if (i > 0)
+                {
+                    Assert.Less(TrCurves[0][i].Y, TrCurves[0][i - 1].Y);
+                    Assert.Greater(TrCurves[0][i].X, TrCurves[0][i - 1].X);
+                }
+            }
         }
     }
 }

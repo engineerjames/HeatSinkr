@@ -122,7 +122,7 @@ namespace HeatSinkr.Tests
             Assert.AreEqual(Nu_Laminar_Expected, Nu_Laminar_Actual, RoughEpsilon);
 
             hs.CFM = 20;
-            var Nu_Turbulent_Expected = 12.5133233;
+            var Nu_Turbulent_Expected = 18.37121094422;
             var Nu_Turbulent_Actual = hs.Nu;
             Assert.AreEqual(Nu_Turbulent_Expected, Nu_Turbulent_Actual, RoughEpsilon * 10);
         }

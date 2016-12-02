@@ -55,23 +55,17 @@ namespace HeatSinkr.Library
 
         private List<DataPoint> GenerateThermalResistancecurve(Heatsink hs, double LowCFM, double HighCFM)
         {
-            var delta = (HighCFM - LowCFM) / (InterpolationPoints - 1);            
+            var delta = (HighCFM - LowCFM) / (InterpolationPoints - 1);
             var TrCurve = new List<DataPoint>();
-            
+
             for (int i = 0; i < InterpolationPoints; i++)
             {
                 var cfm = LowCFM + delta * i;
                 hs.CFM = cfm;
-                System.Diagnostics.Debug.WriteLine(hs.FlowCondition.ToString());
                 TrCurve.Add(new DataPoint(cfm, hs.ThermalResistance_Convection));
             }
 
-            foreach (DataPoint dp in TrCurve)
-            {
-                System.Diagnostics.Debug.WriteLine(dp.X + ", " + dp.Y);
-            }
-
-            return TrCurve;            
+            return TrCurve;
         }
 
         public void AddHeatsink(Heatsink heatsinkToAdd)
@@ -90,12 +84,12 @@ namespace HeatSinkr.Library
             {
                 if (_Instance == null)
                     _Instance = new HeatsinkCurveGenerator();
-                
+
                 return _Instance;
             }
         }
 
-        
+
 
     }
 }
