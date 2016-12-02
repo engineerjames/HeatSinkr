@@ -27,7 +27,7 @@ namespace HeatSinkr.Library
                 var gapThickness = this.HeatSinkGeometry.Pitch;
                 var A_duct = gapThickness * hs.FinHeight;
                 var N_ducts = hs.NumberOfFins - 1;
-                var Q = Units.ConvertCFMToMetersCubedPerSecond(CFM) / N_ducts;
+                var Q = Convert.CFMToMCubedPerSecond(CFM) / N_ducts;
                 var result = Q / A_duct;
                 return result;
             }
@@ -86,7 +86,7 @@ namespace HeatSinkr.Library
         {
             get
             {
-                return Units.ConvertCFMToMetersCubedPerSecond(CFM) / FlowArea;
+                return Convert.CFMToMCubedPerSecond(CFM) / FlowArea;
             }
         }
 
