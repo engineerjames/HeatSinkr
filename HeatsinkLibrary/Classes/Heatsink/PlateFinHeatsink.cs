@@ -18,7 +18,6 @@ namespace HeatSinkr.Library
             get
             {
                 var hs = Geometry;
-
                 var gapThickness = hs.Pitch;
                 var A_duct = gapThickness * hs.FinHeight;
                 var N_ducts = hs.NumberOfFins - 1;

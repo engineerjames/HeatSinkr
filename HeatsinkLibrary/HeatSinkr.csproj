@@ -37,6 +37,7 @@
     <Compile Include="Classes\Materials\Copper.cs" />
     <Compile Include="Classes\Materials\Material.cs" />
     <Compile Include="Classes\Utility\HeatsinkCurveGenerator.cs" />
+    <Compile Include="Classes\Utility\IHeatsinkWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\Heatsink\Geometry.cs" />
     <Compile Include="Classes\Heatsink\Heatsink.cs" />

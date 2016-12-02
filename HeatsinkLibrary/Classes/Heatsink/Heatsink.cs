@@ -20,7 +20,7 @@
         public FlowCondition FlowCondition
         {
             get
-            {
+            {                
                 if (ReynoldsNumber < 2300.0)
                     return FlowCondition.Laminar;
                 else if (ReynoldsNumber > 2300.0 && ReynoldsNumber < 4000.0)

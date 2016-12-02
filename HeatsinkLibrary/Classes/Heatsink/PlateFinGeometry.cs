@@ -6,11 +6,11 @@ namespace HeatSinkr.Library
     {
         public PlateFinGeometry() : base()
         {
-
+            
         }
 
         /// <summary>
-        /// [mm]
+        /// Gap between heatsink fins [m]
         /// </summary>
         public override double Pitch
         {
@@ -23,9 +23,8 @@ namespace HeatSinkr.Library
         }
 
         /// <summary>
-        /// [mm^3]
+        /// Volume of the entire heatsink [m^3]
         /// </summary>
-        /// <returns></returns>
         public override double Volume
         {
             get
@@ -35,9 +34,8 @@ namespace HeatSinkr.Library
         }
 
         /// <summary>
-        /// [mm^2]
+        /// Surface area of the entire heatsink [m^2]
         /// </summary>
-        /// <returns></returns>
         public override double SurfaceArea
         {
             get
@@ -59,7 +57,7 @@ namespace HeatSinkr.Library
 
 
         /// <summary>
-        /// [mm]
+        /// Characteristic Length used in Reynold's number calculation - [m]
         /// </summary>
         public override double CharacteristicLength
         {
@@ -74,7 +72,7 @@ namespace HeatSinkr.Library
         }
 
         /// <summary>
-        /// Unitless
+        /// Fin aspect ratio (gap/fin height) [Unitless]
         /// </summary>
         public override double AspectRatio
         {
@@ -85,7 +83,7 @@ namespace HeatSinkr.Library
         }
 
         /// <summary>
-        /// [m]
+        /// Size of the heatsink in the flow direction [m]
         /// </summary>
         public override double FlowLength
         {
@@ -104,7 +102,7 @@ namespace HeatSinkr.Library
         private double _FlowLength;
 
         /// <summary>
-        /// [m]
+        /// Size of the heatsink in the non-flow direction [m]
         /// </summary>
 		public override double Width
         {
@@ -123,7 +121,7 @@ namespace HeatSinkr.Library
         private double _Width;
 
         /// <summary>
-        /// Number of fins for the heatsink
+        /// Number of fins present on the heatsink [Unitless]
         /// </summary>
         public override int NumberOfFins
         {
@@ -153,9 +151,9 @@ namespace HeatSinkr.Library
         private int _NumberOfFins;
 
         /// <summary>
-        /// [m]
+        /// Height of the overall heatsink [m]
         /// </summary>
-		public override double Height
+        public override double Height
         {
             get
             {
@@ -164,7 +162,7 @@ namespace HeatSinkr.Library
         }
 
         /// <summary>
-        /// [m]
+        /// Height of the fins [m]
         /// </summary>
 		public override double FinHeight
         {
@@ -183,7 +181,7 @@ namespace HeatSinkr.Library
         private double _FinHeight;
 
         /// <summary>
-        /// [m]
+        /// Thickness of the fin [m]
         /// </summary>
 		public override double FinThickness
         {
@@ -202,7 +200,7 @@ namespace HeatSinkr.Library
         private double _FinThickness;
 
         /// <summary>
-        /// [m]
+        /// Thickness of the heatsink base [m]
         /// </summary>
 		public override double BaseThickness
         {
