@@ -165,7 +165,7 @@ namespace HeatSinkr.Library
         {
             get
             {
-                if (this.FlowCondition == FlowCondition.Laminar)
+                if (this.FlowCondition == FlowCondition.Laminar || FlowCondition == FlowCondition.Transient)
                 {
                     var dL = HydraulicDiameter / Geometry.FlowLength;
                     var Re = ReynoldsNumber;

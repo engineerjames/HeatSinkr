@@ -11,10 +11,67 @@ namespace HeatSinkr.Tests
     [TestFixture]
     class CurveGeneratorTests
     {
+        PlateFinHeatsink hs;
+        HeatSource heat;
+        public const double Epsilon = .000001;
+        public const double RoughEpsilon = 0.01;
+
+        [SetUp]
+        public void SetupHSTests()
+        {
+            PlateFinGeometry testGeom = new PlateFinGeometry();
+            testGeom.FinThickness = .001;
+            testGeom.FlowLength = .010;
+            testGeom.Width = .040;
+            testGeom.FinHeight = .035;
+            testGeom.BaseThickness = .005;
+            testGeom.NumberOfFins = 11;
+
+            hs = new PlateFinHeatsink(new Aluminum(), testGeom);
+            hs.CFM = 5;
+
+            heat = new HeatSource(4);
+            heat.Length = 0.010;
+            heat.Width = 0.010;
+            hs.Source = heat;
+        }
+
         [Test]
-        public void CanSetHeatsink()
+        public void CanGrabOnlyOneInstance()
         {
             var hsCurveGen = HeatsinkCurveGenerator.Instance;
+            var hsCurveGen2 = HeatsinkCurveGenerator.Instance;
+
+            Assert.AreSame(hsCurveGen, hsCurveGen2);
+        }
+
+        [Test]
+        public void CannotAnalyzeZeroHeatsinks()
+        {
+            var hsCurveGen = HeatsinkCurveGenerator.Instance;
+            Assert.Throws<InvalidOperationException>(delegate { hsCurveGen.GetThermalResistanceCurves(0.5, 15.0); });
+        }
+
+        [Test]
+        public void CannotPassInInvalidCFM()
+        {
+            var hsCurveGen = HeatsinkCurveGenerator.Instance;
+            hsCurveGen.AddHeatsink(hs);
+
+            // Shouldn't be able to pass in 0 or less into the low CFM
+            Assert.Throws<InvalidOperationException>(delegate { hsCurveGen.GetThermalResistanceCurves(-1.0, 1.0); });
+
+            // Shouldn't be able to pass in 0 or less into the high CFM
+            Assert.Throws<InvalidOperationException>(delegate { hsCurveGen.GetThermalResistanceCurves(1.0, -1.0); });
+        }
+
+        [Test]
+        public void CFMCurveIsAccurate()
+        {
+            var hsCurveGen = HeatsinkCurveGenerator.Instance;
+            hsCurveGen.AddHeatsink(hs);
+
+            var TrCurves = hsCurveGen.GetThermalResistanceCurves(0.5, 15);
         }
     }
 }
