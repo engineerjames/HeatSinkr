@@ -1,22 +1,23 @@
 ﻿namespace HeatSinkr.Library
 {
-    public abstract class Heatsink<T>
+    public abstract class Heatsink
     {
-        public Heatsink(Material HeatSinkMaterial, Geometry<T> HeatSinkGeometry, double InletAirTemperature = 35)
+        public Heatsink(Material Material, Geometry Geometry, double InletAirTemperature = 35)
         {
-            this.HeatSinkMaterial = HeatSinkMaterial;
-            this.HeatSinkGeometry = HeatSinkGeometry;
+            this.Material = Material;
+            this.Geometry = Geometry;
             InletAir = new Air(InletAirTemperature);
-			Source = new HeatSource();
+            Source = new HeatSource();
         }
 
-        public virtual Geometry<T> HeatSinkGeometry { get; set; }
-        public virtual Material HeatSinkMaterial { get; set; }
-
+        public Geometry Geometry { get; set; }
+        public Material Material { get; set; }
         public Air InletAir;
         public HeatSource Source;
 
-        public virtual FlowCondition FlowCondition
+        public double CFM { get; set; }
+        
+        public FlowCondition FlowCondition
         {
             get
             {
@@ -30,7 +31,6 @@
         }
 
         public abstract double EntranceLength { get; }
-        public abstract double CFM { get; set; }
         public abstract double IncidentFlowVelocity { get; }
         public abstract double ChannelVelocity { get; }
         public abstract double HydraulicDiameter { get; }
@@ -45,7 +45,7 @@
         public abstract double ThermalResistance_Convection { get; }
         public abstract double ThermalResistance_Conduction { get; }
         public abstract double ThermalResistance_Caloric { get; }
-		public abstract double ThermalResistance_Spreading { get; }
+        public abstract double ThermalResistance_Spreading { get; }
 
         /// <summary>
         /// Total thermal resistance [K/W]
@@ -54,11 +54,9 @@
         {
             get
             {
-				return ThermalResistance_Caloric + ThermalResistance_Conduction + ThermalResistance_Convection + ThermalResistance_Spreading;
+                return ThermalResistance_Caloric + ThermalResistance_Conduction + ThermalResistance_Convection + ThermalResistance_Spreading;
             }
         }
-
-       
 
     }
 

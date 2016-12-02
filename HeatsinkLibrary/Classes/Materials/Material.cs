@@ -11,7 +11,7 @@ namespace HeatSinkr.Library
 
         public virtual double DynamicViscosity { get; set; }
 
-        public virtual double KinematicViscosity
+        public double KinematicViscosity
         {
             get
             {
@@ -23,6 +23,6 @@ namespace HeatSinkr.Library
 
         public virtual double Diffusivity { get; }
 
-        public double Temperature { get; set; }
+        public double Temperature { get; set; } = 35.0;
     }
 }

@@ -35,7 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GeometryTests\GeometryTest.cs" />
-    <Compile Include="HeatsinkTests\HeatsinkTest.cs" />
+    <Compile Include="HeatsinkTests\PlateFinHeatsinkTest.cs" />
     <Compile Include="HeatSourceTests\HeatSourceTests.cs" />
     <Compile Include="MaterialTests\AirTest.cs" />
     <Compile Include="MaterialTests\AluminumTest.cs" />
