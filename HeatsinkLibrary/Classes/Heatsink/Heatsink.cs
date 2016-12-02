@@ -2,21 +2,21 @@
 {
     public abstract class Heatsink
     {
-        public Heatsink(Material HeatSinkMaterial, Geometry HeatSinkGeometry, double InletAirTemperature = 35)
+        public Heatsink(Material HeatsinkMaterial, Geometry HeatsinkGeometry, double InletAirTemperature = 35)
         {
-            this.HeatSinkMaterial = HeatSinkMaterial;
-            this.HeatSinkGeometry = HeatSinkGeometry;
+            this.HeatsinkMaterial = HeatsinkMaterial;
+            this.HeatsinkGeometry = HeatsinkGeometry;
             InletAir = new Air(InletAirTemperature);
 			Source = new HeatSource();
         }
 
-        public virtual Geometry HeatSinkGeometry { get; set; }
-        public virtual Material HeatSinkMaterial { get; set; }
-
+        public Geometry HeatsinkGeometry { get; set; }
+        public Material HeatsinkMaterial { get; set; }
         public Air InletAir;
         public HeatSource Source;
 
-        public virtual FlowCondition FlowCondition
+        public double CFM { get; set; }
+        public FlowCondition FlowCondition
         {
             get
             {
@@ -30,7 +30,7 @@
         }
 
         public abstract double EntranceLength { get; }
-        public abstract double CFM { get; set; }
+        
         public abstract double IncidentFlowVelocity { get; }
         public abstract double ChannelVelocity { get; }
         public abstract double HydraulicDiameter { get; }

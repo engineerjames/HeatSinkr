@@ -114,13 +114,6 @@ namespace HeatSinkr.Tests
         }
 
         [Test]
-        public void ThrowExpectionIfNotDeveloping()
-        {
-            hs.HeatSinkGeometry.FlowLength = 500;
-            Assert.Throws<InvalidProgramException>(delegate { var DP = hs.PressureDrop; });
-        }
-
-        [Test]
         public void NusseltNumberIsAccurate()
         {
             hs.CFM = 5.0;
