@@ -4,9 +4,9 @@ using HeatSinkr.Library;
 
 namespace HeatSinkr.Tests
 {
-	[TestFixture]
-	public class PlateFinHeatsinkTest
-	{
+    [TestFixture]
+    public class PlateFinHeatsinkTest
+    {
         PlateFinHeatsink hs;
         HeatSource heat;
         public const double Epsilon = .000001;
@@ -22,13 +22,13 @@ namespace HeatSinkr.Tests
             testGeom.FinHeight = .035;
             testGeom.BaseThickness = .005;
             testGeom.NumberOfFins = 11;
-            
+
             hs = new PlateFinHeatsink(new Aluminum(), testGeom);
             hs.CFM = 5;
 
-			heat = new HeatSource(4);
-			heat.Length = 0.010;
-			heat.Width = 0.010;
+            heat = new HeatSource(4);
+            heat.Length = 0.010;
+            heat.Width = 0.010;
             hs.Source = heat;
         }
 
@@ -183,17 +183,16 @@ namespace HeatSinkr.Tests
             Assert.AreEqual(Tr_Caloric_Expected, Tr_Caloric_Actual, RoughEpsilon * 10);
         }
 
-		[Test]
-		public void SpreadingThermalResistanceIsAccurate()
-		{
-			var Tr_Spreading_Expected = 0.13925;
-			var Tr_Spreading_Actual = hs.ThermalResistance_Spreading;
-			Assert.AreEqual(Tr_Spreading_Expected, Tr_Spreading_Actual, RoughEpsilon);
-		}
-        
+        [Test]
+        public void SpreadingThermalResistanceIsAccurate()
+        {
+            var Tr_Spreading_Expected = 0.13925;
+            var Tr_Spreading_Actual = hs.ThermalResistance_Spreading;
+            Assert.AreEqual(Tr_Spreading_Expected, Tr_Spreading_Actual, RoughEpsilon);
+        }
+
+
+
     }
-
-
-
 }
 
