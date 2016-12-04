@@ -4,13 +4,13 @@ using System.Runtime.CompilerServices;
 // Information about this assembly is defined by the following attributes. 
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle("HeatsinkLibrary")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("HeatSinkr.Library")]
+[assembly: AssemblyDescription("HeatSinkr Library (PCL)")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("armes")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("N/A")]
+[assembly: AssemblyProduct("N/A")]
+[assembly: AssemblyCopyright("James L. Armes")]
+[assembly: AssemblyTrademark("N/A")]
 [assembly: AssemblyCulture("")]
 
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".

@@ -45,9 +45,9 @@
     <Compile Include="UtilityTests\UnitsTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HeatsinkLibrary\HeatSinkr.csproj">
+    <ProjectReference Include="..\HeatsinkLibrary\HeatSinkr.Library.csproj">
       <Project>{32F7A4D7-CD95-42F7-B9CE-BB49F93E0056}</Project>
-      <Name>HeatSinkr</Name>
+      <Name>HeatSinkr.Library</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
