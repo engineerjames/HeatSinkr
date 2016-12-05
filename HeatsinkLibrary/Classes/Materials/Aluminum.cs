@@ -11,6 +11,7 @@ namespace HeatSinkr.Library
         public Aluminum(double Temperature)
         {
             this.Temperature = Temperature;
+            this.Type = MaterialType.Aluminum;
         }
 
         public Aluminum() { }

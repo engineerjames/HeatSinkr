@@ -32,27 +32,33 @@ namespace HeatSinkr.UI
         public MainPage()
         {
             this.InitializeComponent();
-
-            InitializeMaterialComboBox();
-            
             this.DataContext = ViewModel;
-            
+            InitializeMaterialComboBox();
         }
 
         private void InitializeMaterialComboBox()
         {
+            // Initialize list with all available materials
             foreach (var type in System.Enum.GetValues(typeof(MaterialType)))
             {
                 Materials.Add(type.ToString());
             }
             MaterialComboBox.ItemsSource = Materials;
+
+            // Set current heatsink material
+            MaterialComboBox.SelectedItem = Enum.GetName(typeof(MaterialType), ViewModel.hs.Material.Type);
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("Selection changed!");
             System.Diagnostics.Debug.WriteLine("Selected: " + MaterialComboBox.SelectedItem.ToString());
+            var combo = sender as ComboBox;
 
+            MaterialType mat;
+            Enum.TryParse(combo.SelectedItem.ToString(), out mat);
+
+            ViewModel.Material = MaterialFactory.GetMaterial(mat);
         }
     }
 }

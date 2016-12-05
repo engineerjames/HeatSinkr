@@ -42,5 +42,7 @@ namespace HeatSinkr.Library
         /// Temperature [°C] - DEFAULT IS 35°C
         /// </summary>
         public double Temperature { get; set; } = 35.0;
+
+        public MaterialType Type { get; set; }
     }
 }

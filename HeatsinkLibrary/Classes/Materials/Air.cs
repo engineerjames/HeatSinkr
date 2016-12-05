@@ -15,6 +15,7 @@ namespace HeatSinkr.Library
         public Air(double AirTemperatureInC)
         {
             Temperature = AirTemperatureInC;
+            this.Type = MaterialType.Air;
         }
 
         /// <summary>

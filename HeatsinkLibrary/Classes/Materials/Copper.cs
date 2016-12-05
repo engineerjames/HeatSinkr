@@ -9,6 +9,7 @@
         public Copper(double Temperature)
         {
             this.Temperature = Temperature;
+            this.Type = MaterialType.Copper;
         }
 
         public Copper() { }
