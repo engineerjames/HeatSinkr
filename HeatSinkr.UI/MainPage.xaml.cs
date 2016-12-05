@@ -46,7 +46,7 @@ namespace HeatSinkr.UI
             MaterialComboBox.ItemsSource = Materials;
 
             // Set current heatsink material
-            MaterialComboBox.SelectedItem = Enum.GetName(typeof(MaterialType), ViewModel.hs.Material.Type);
+            MaterialComboBox.SelectedItem = Enum.GetName(typeof(MaterialType), ViewModel.Material.Type);
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -6,7 +6,7 @@ namespace HeatSinkr.UI.ViewModels
 {
     public class HeatSinkViewModel : ViewModelBase
     {
-        public Heatsink hs { get; set; }
+        private Heatsink hs { get; set; }
 
         public double Pitch
         {
