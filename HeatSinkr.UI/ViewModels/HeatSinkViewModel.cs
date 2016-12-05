@@ -113,7 +113,7 @@ namespace HeatSinkr.UI.ViewModels
 
         public HeatSinkViewModel()
         {
-            hs = PlateFinHeatsink.DefaultHeatsink;
+            hs = HeatsinkFactory.GetDefaultHeatsink(HeatsinkType.PlateFin);
             _Width = hs.Geometry.Width;
             _FlowLength = hs.Geometry.FlowLength;
 

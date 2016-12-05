@@ -54,7 +54,7 @@
         {
             get
             {
-                return ThermalResistance_Caloric + ThermalResistance_Conduction + ThermalResistance_Convection + ThermalResistance_Spreading;
+                return ThermalResistance_Caloric + ThermalResistance_Convection + ThermalResistance_Spreading;
             }
         }
 

@@ -191,7 +191,16 @@ namespace HeatSinkr.Tests
             Assert.AreEqual(Tr_Spreading_Expected, Tr_Spreading_Actual, RoughEpsilon);
         }
 
+        [Test]
+        public void ThermalResistanceShouldIncreaseWithIncreaseWidth()
+        {
+            var currentThermalResistance = hs.ThermalResistance_Total;
 
+            hs.Geometry.Width = 0.050;
+            var newThermalResistance = hs.ThermalResistance_Total;
+
+            Assert.Greater(newThermalResistance, currentThermalResistance);
+        }
 
     }
 }
