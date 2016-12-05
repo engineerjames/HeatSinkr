@@ -336,5 +336,36 @@ namespace HeatSinkr.Library
             var Ke = 1 - (2.76 * Sigma) + (Sigma * Sigma);
             return Ke;
         }
+        
+        public static PlateFinHeatsink DefaultHeatsink
+        {
+            get
+            {
+                return GetDefaultHeatsink();
+            }
+        }    
+        
+
+        private static PlateFinHeatsink GetDefaultHeatsink()
+        {
+            PlateFinGeometry testGeom = new PlateFinGeometry();
+            testGeom.FinThickness = .001;
+            testGeom.FlowLength = .010;
+            testGeom.Width = .040;
+            testGeom.FinHeight = .035;
+            testGeom.BaseThickness = .005;
+            testGeom.NumberOfFins = 11;
+
+            var hs = new PlateFinHeatsink(new Aluminum(), testGeom);
+            hs.CFM = 5;
+
+            var heat = new HeatSource(5);
+            heat.Length = 0.010;
+            heat.Width = 0.010;
+            hs.Source = heat;
+
+            return hs;
+        }
+
     }
 }

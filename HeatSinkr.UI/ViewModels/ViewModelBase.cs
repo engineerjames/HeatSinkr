@@ -10,6 +10,8 @@ namespace HeatSinkr.UI.ViewModels
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
+        public List<string> ModelOutputs { get; set; } = new List<string>();
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName]string propertyName = null)
@@ -22,7 +24,14 @@ namespace HeatSinkr.UI.ViewModels
             if (EqualityComparer<T>.Default.Equals(field, value)) return false;
             field = value;
             OnPropertyChanged(propertyName);
+            SyncModelOutputs();
             return true;
+        }
+
+        private void SyncModelOutputs()
+        {
+            foreach (string Property in ModelOutputs)
+                OnPropertyChanged(Property);
         }
     }
 }

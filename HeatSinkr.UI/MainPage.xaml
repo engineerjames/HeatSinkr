@@ -11,24 +11,24 @@
         <viewModel:HeatSinkViewModel/>
     </Page.DataContext>
     
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderBrush="Black" BorderThickness="2">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
         <!-- Header Row -->
-        <Grid Grid.Column="0" Grid.Row="0" BorderBrush="Black" BorderThickness="2">
+        <Grid Grid.Column="0" Grid.Row="0">
         <Viewbox Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock TextWrapping="Wrap" Text="Information" />
         </Viewbox>
         </Grid>
 
-        <Grid Grid.Column="1" Grid.Row="0" BorderBrush="Black" BorderThickness="2">
+        <Grid Grid.Column="1" Grid.Row="0">
             <Viewbox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
                 <TextBlock Text="Performance Charts" />
             </Viewbox>
@@ -40,11 +40,21 @@
         <!-- End Web View -->
         
         <!-- Information View -->
-        <Grid Grid.Column="0" Grid.Row="1" BorderBrush="Black" BorderThickness="2">
-            <RelativePanel>
-                <TextBlock Text="Heatsink Type:"/>
-                
-            </RelativePanel>  
+        <Grid Grid.Column="0" Grid.Row="1">
+            <StackPanel Orientation="Vertical">
+                <Grid>
+                    <TextBlock Text="Width:" VerticalAlignment="Center" Margin="10"/>
+                    <TextBox Text="{Binding Width, Mode=TwoWay}" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="5"/>
+                </Grid>
+                <Grid>
+                    <TextBlock Text="Length:" VerticalAlignment="Center" Margin="10"/>
+                    <TextBox Text="{Binding FlowLength, Mode=TwoWay}" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="5"/>
+                </Grid>
+                <Grid>
+                    <TextBlock Text="Thermal Resistance:" VerticalAlignment="Center" Margin="10"/>
+                    <TextBox Text="{Binding ThermalResistance_Convection, Mode=OneWay}" IsReadOnly="True" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="5"/>
+                </Grid>
+            </StackPanel>
         </Grid>
         <!-- End Information View -->
         
