@@ -53,6 +53,10 @@
                     <TextBlock Text="Heatsink Material:" VerticalAlignment="Center" Margin="10"/>
                     <ComboBox Name="MaterialComboBox" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" Width="150" SelectionChanged="ComboBox_SelectionChanged"/> 
                 </Grid>
+                <Grid>
+                    <TextBlock Text="Inlet Air Temperature [°C]" VerticalAlignment="Center" Margin="10"/>
+                    <TextBox Text="{Binding InletAirTemperature, Mode=TwoWay}" Width="100" VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Center" Margin="10"/>
+                </Grid>
                 <TextBlock Text="Geometry Parameters" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" FontWeight="Bold" />
                 <Grid>
                     <TextBlock Text="Width [mm]:" VerticalAlignment="Center" Margin="10"/>
@@ -83,7 +87,11 @@
                 <TextBlock Text="Performance Outputs" Padding="10" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <Grid>
                     <TextBlock Text="Pressure Drop [inH2O]:" VerticalAlignment="Center" Margin="10"/>
-                    <TextBox Text="{Binding PressureDrop, Mode=TwoWay}" IsReadOnly="True" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="10" Background="Gray"/>
+                    <TextBox Text="{Binding PressureDrop, Mode=OneWay}" IsReadOnly="True" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="10" Background="Gray"/>
+                </Grid>
+                <Grid>
+                    <TextBlock Text="Fin Efficiency [%]:" VerticalAlignment="Center" Margin="10"/>
+                    <TextBox Text="{Binding FinEfficiency, Mode=OneWay}" IsReadOnly="True" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="10" Background="Gray"/>
                 </Grid>
                 <Grid>
                     <TextBlock Text="Spreading Resistance [°C/W]:" VerticalAlignment="Center" Margin="10"/>

@@ -182,6 +182,28 @@ namespace HeatSinkr.UI.ViewModels
             }
         }
 
+        private double _InletAirTemperature;
+        public double InletAirTemperature
+        {
+            get
+            {
+                return hs.InletAir.Temperature;
+            }
+            set
+            {
+                hs.InletAir.Temperature = value;
+                SetField(ref _InletAirTemperature, value);
+            }
+        }
+
+        public double FinEfficiency
+        {
+            get
+            {
+                return hs.FinEfficiency;
+            }
+        }
+
         public HeatSinkViewModel()
         {
             hs = HeatsinkFactory.GetDefaultHeatsink(HeatsinkType.PlateFin);
@@ -192,12 +214,15 @@ namespace HeatSinkr.UI.ViewModels
             _FinHeight = hs.Geometry.FinHeight;
             _BaseThickness = hs.Geometry.BaseThickness;
             _CFM = hs.CFM;
+            _InletAirTemperature = hs.InletAir.Temperature;
             
+
             // Initialize Model Outputs - things that need to get updated whenever changes are made to the input parameters
             ModelOutputs.Add(nameof(ThermalResistance_Convection));
             ModelOutputs.Add(nameof(ThermalResistance_Spreading));
             ModelOutputs.Add(nameof(ThermalResistance_Total));
             ModelOutputs.Add(nameof(PressureDrop));
+            ModelOutputs.Add(nameof(FinEfficiency));
         }
 
 
