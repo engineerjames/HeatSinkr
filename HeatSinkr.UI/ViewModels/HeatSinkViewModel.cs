@@ -1,5 +1,6 @@
 ﻿using HeatSinkr.Library;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace HeatSinkr.UI.ViewModels
 {
@@ -70,8 +71,23 @@ namespace HeatSinkr.UI.ViewModels
             }
             set
             {
-                SetField<int>(ref _NumberOfFins, value);
                 hs.Geometry.NumberOfFins = value;
+                SetField<int>(ref _NumberOfFins, value);
+            }
+        }
+
+        private double _FinHeight;
+        public double FinHeight
+        {
+            get
+            {
+                return Convert.MtoMM(_FinHeight);
+            }
+            set
+            {
+                value = Convert.MMtoM(value);
+                hs.Geometry.FinHeight = value;
+                SetField<double>(ref _FinHeight, value);
             }
         }
 
@@ -80,12 +96,13 @@ namespace HeatSinkr.UI.ViewModels
         {
             get
             {
-                return _FinThickness;
+                return Convert.MtoMM(_FinThickness);
             }
             set
             {
-                SetField<double>(ref _FinThickness, value);
+                value = Convert.MMtoM(value);
                 hs.Geometry.FinThickness = value;
+                SetField<double>(ref _FinThickness, value);
             }
         }
 
@@ -94,12 +111,13 @@ namespace HeatSinkr.UI.ViewModels
         {
             get
             {
-                return _BaseThickness;
+                return Convert.MtoMM(_BaseThickness);
             }
             set
             {
-                SetField<double>(ref _BaseThickness, value);
+                value = Convert.MMtoM(value);
                 hs.Geometry.BaseThickness = value;
+                SetField<double>(ref _BaseThickness, value);
             }
         }
 
@@ -111,14 +129,75 @@ namespace HeatSinkr.UI.ViewModels
             }
         }
 
+        public double ThermalResistance_Spreading
+        {
+            get
+            {
+                return hs.ThermalResistance_Spreading;
+            }
+        }
+
+
+        public double ThermalResistance_Total
+        {
+            get
+            {
+                return hs.ThermalResistance_Total;
+            }
+        }
+
+        public double PressureDrop
+        {
+            get
+            {
+                return Convert.PaToInH2O(hs.PressureDrop);
+            }
+        }
+
+        private double _CFM;
+        public double CFM
+        {
+            get
+            {
+                return _CFM;
+            }
+            set
+            {
+                hs.CFM = value;
+                SetField<double>(ref _CFM, value);
+            }
+        }
+
+        private Material _Material;
+        public Material Material
+        {
+            get
+            {
+                return hs.Material;
+            }
+            set
+            {
+                hs.Material = value;
+                SetField<Material>(ref _Material, value);
+            }
+        }
+
         public HeatSinkViewModel()
         {
             hs = HeatsinkFactory.GetDefaultHeatsink(HeatsinkType.PlateFin);
             _Width = hs.Geometry.Width;
             _FlowLength = hs.Geometry.FlowLength;
-
-            // Initialize Model Outputs
-            base.ModelOutputs.Add(nameof(ThermalResistance_Convection));
+            _FinThickness = hs.Geometry.FinThickness;
+            _NumberOfFins = hs.Geometry.NumberOfFins;
+            _FinHeight = hs.Geometry.FinHeight;
+            _BaseThickness = hs.Geometry.BaseThickness;
+            _CFM = hs.CFM;
+            
+            // Initialize Model Outputs - things that need to get updated whenever changes are made to the input parameters
+            ModelOutputs.Add(nameof(ThermalResistance_Convection));
+            ModelOutputs.Add(nameof(ThermalResistance_Spreading));
+            ModelOutputs.Add(nameof(ThermalResistance_Total));
+            ModelOutputs.Add(nameof(PressureDrop));
         }
 
 

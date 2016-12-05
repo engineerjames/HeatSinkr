@@ -13,7 +13,7 @@ namespace HeatSinkr.Tests
         [Test]
         public void CanMaterialBeConstructed()
         {
-            Material mat = new Air(50);
+            Material mat = MaterialFactory.GetMaterial(MaterialType.Air);
             
             Assert.IsNotNull(mat);
         }

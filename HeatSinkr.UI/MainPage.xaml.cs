@@ -1,6 +1,8 @@
-﻿using HeatSinkr.UI.ViewModels;
+﻿using HeatSinkr.Library;
+using HeatSinkr.UI.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -23,9 +25,34 @@ namespace HeatSinkr.UI
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
+        private ObservableCollection<string> Materials = new ObservableCollection<string>();
+        private HeatSinkViewModel ViewModel { get; set; } = new HeatSinkViewModel();
+
         public MainPage()
         {
             this.InitializeComponent();
+
+            InitializeMaterialComboBox();
+            
+            this.DataContext = ViewModel;
+            
+        }
+
+        private void InitializeMaterialComboBox()
+        {
+            foreach (var type in System.Enum.GetValues(typeof(MaterialType)))
+            {
+                Materials.Add(type.ToString());
+            }
+            MaterialComboBox.ItemsSource = Materials;
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Selection changed!");
+            System.Diagnostics.Debug.WriteLine("Selected: " + MaterialComboBox.SelectedItem.ToString());
+
         }
     }
 }

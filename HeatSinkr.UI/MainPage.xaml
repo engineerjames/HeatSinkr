@@ -7,52 +7,95 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="using:HeatSinkr.UI.ViewModels"
     mc:Ignorable="d">
-    <Page.DataContext>
+    <!--<Page.DataContext>
         <viewModel:HeatSinkViewModel/>
-    </Page.DataContext>
-    
+    </Page.DataContext>-->
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="350" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="8*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
+
         <!-- Header Row -->
         <Grid Grid.Column="0" Grid.Row="0">
         <Viewbox Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock TextWrapping="Wrap" Text="Information" />
+        <TextBlock TextWrapping="Wrap" Text="Information" Padding="10" />
         </Viewbox>
         </Grid>
 
-        <Grid Grid.Column="1" Grid.Row="0">
+        <Grid Grid.Column="2" Grid.Row="0">
             <Viewbox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
-                <TextBlock Text="Performance Charts" />
+                <TextBlock Text="Performance Charts" TextWrapping="Wrap" Padding="10" />
             </Viewbox>
         </Grid>
         <!-- End Header Row -->
         
         <!-- Web View -->
-        <WebView Grid.Column="1" Grid.Row="1" Name="webView" />
+        <WebView Grid.Column="2" Grid.Row="1" Name="webView" />
         <!-- End Web View -->
         
         <!-- Information View -->
         <Grid Grid.Column="0" Grid.Row="1">
             <StackPanel Orientation="Vertical">
+                <TextBlock Text="Input Parameters" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" FontWeight="Bold"/>
                 <Grid>
-                    <TextBlock Text="Width:" VerticalAlignment="Center" Margin="10"/>
-                    <TextBox Text="{Binding Width, Mode=TwoWay}" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="5"/>
+                    <TextBlock Text="Volumetric Flowrate [CFM]:" VerticalAlignment="Center" Margin="10"/>
+                    <TextBox Text="{Binding CFM, Mode=TwoWay}" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="10"/>
                 </Grid>
                 <Grid>
-                    <TextBlock Text="Length:" VerticalAlignment="Center" Margin="10"/>
-                    <TextBox Text="{Binding FlowLength, Mode=TwoWay}" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="5"/>
+                    <TextBlock Text="Heatsink Material:" VerticalAlignment="Center" Margin="10"/>
+                    <ComboBox Name="MaterialComboBox" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10" Width="150" SelectionChanged="ComboBox_SelectionChanged"/> 
+                </Grid>
+                <TextBlock Text="Geometry Parameters" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" FontWeight="Bold" />
+                <Grid>
+                    <TextBlock Text="Width [mm]:" VerticalAlignment="Center" Margin="10"/>
+                    <TextBox Text="{Binding Width, Mode=TwoWay}" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="10"/>
                 </Grid>
                 <Grid>
-                    <TextBlock Text="Thermal Resistance:" VerticalAlignment="Center" Margin="10"/>
-                    <TextBox Text="{Binding ThermalResistance_Convection, Mode=OneWay}" IsReadOnly="True" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="5"/>
+                    <TextBlock Text="Length [mm]:" VerticalAlignment="Center" Margin="10"/>
+                    <TextBox Text="{Binding FlowLength, Mode=TwoWay}" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="10"/>
+                </Grid>
+                <Grid>
+                    <TextBlock Text="Number of Fins: " VerticalAlignment="Center" Margin="10"/>
+                    <TextBox Text="{Binding NumberOfFins, Mode=TwoWay}" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="10"/>
+                </Grid>
+                <Grid>
+                    <TextBlock Text="Fin Height [mm]: " VerticalAlignment="Center" Margin="10"/>
+                    <TextBox Text="{Binding FinHeight, Mode=TwoWay}" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="10"/>
+                </Grid>
+                <Grid>
+                    <TextBlock Text="Fin Thickness [mm]:" VerticalAlignment="Center" Margin="10"/>
+                    <TextBox Text="{Binding FinThickness, Mode=TwoWay}" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="10"/>
+                </Grid>
+                <Grid>
+                    <TextBlock Text="Base Thickness [mm]:" VerticalAlignment="Center" Margin="10"/>
+                    <TextBox Text="{Binding BaseThickness, Mode=TwoWay}" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="10"/>
+                </Grid>
+                
+                <!-- outputs -->
+                <TextBlock Text="Performance Outputs" Padding="10" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Grid>
+                    <TextBlock Text="Pressure Drop [inH2O]:" VerticalAlignment="Center" Margin="10"/>
+                    <TextBox Text="{Binding PressureDrop, Mode=TwoWay}" IsReadOnly="True" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="10" Background="Gray"/>
+                </Grid>
+                <Grid>
+                    <TextBlock Text="Spreading Resistance [°C/W]:" VerticalAlignment="Center" Margin="10"/>
+                    <TextBox Text="{Binding ThermalResistance_Spreading, Mode=OneWay}" IsReadOnly="True" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="10" Background="Gray"/>
+                </Grid>
+                <Grid>
+                    <TextBlock Text="Convection Resistance [°C/W]:" VerticalAlignment="Center" Margin="10"/>
+                    <TextBox Text="{Binding ThermalResistance_Convection, Mode=OneWay}" IsReadOnly="True" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="10" Background="Gray"/>
+                </Grid>
+                <Grid>
+                    <TextBlock Text="Total Resistance [°C/W]:" VerticalAlignment="Center" Margin="10"/>
+                    <TextBox Text="{Binding ThermalResistance_Total, Mode=OneWay}" IsReadOnly="True" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="10" Background="Gray"/>
                 </Grid>
             </StackPanel>
         </Grid>

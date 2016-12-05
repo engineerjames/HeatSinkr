@@ -28,7 +28,7 @@ namespace HeatSinkr.Library
             testGeom.BaseThickness = .005;
             testGeom.NumberOfFins = 11;
 
-            var hs = new PlateFinHeatsink(new Aluminum(), testGeom);
+            var hs = new PlateFinHeatsink(MaterialFactory.GetMaterial(MaterialType.Aluminum), testGeom);
             hs.CFM = 5;
 
             var heat = new HeatSource(4);
