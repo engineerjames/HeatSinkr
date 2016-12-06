@@ -44,5 +44,10 @@ namespace HeatSinkr.Library
         public double Temperature { get; set; } = 35.0;
 
         public MaterialType Type { get; set; }
+
+        public override string ToString()
+        {
+            return Type.ToString() + " - k = " + this.ThermalConductivity;
+        }
     }
 }

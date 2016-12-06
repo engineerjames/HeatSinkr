@@ -1,4 +1,6 @@
 ﻿
+using System.Reflection;
+
 namespace HeatSinkr.Library
 {
     public abstract class Geometry
@@ -62,6 +64,26 @@ namespace HeatSinkr.Library
         /// Height of the overall heatsink [m]
         /// </summary>
         public abstract double Height { get; }
+
+        public override string ToString()
+        {
+            var properties = typeof(Geometry).GetRuntimeProperties();
+            string geometryString = "";
+            int i = 0;
+
+            foreach (PropertyInfo property in properties)
+            {
+                if (i==0)
+                    geometryString += string.Format(property.Name + ", " + property.GetValue(this));
+                else
+                    geometryString += string.Format(System.Environment.NewLine + property.Name + ", " + property.GetValue(this));
+
+                i++;
+            }
+
+
+            return geometryString;
+        }
 
     }
 }

@@ -18,16 +18,6 @@ namespace HeatSinkr.Library
         }
     }
 
-    /// <summary>
-    /// Writes heatsink data to a .CSV file
-    /// </summary>
-    public class CSVHeatsinkWriter : IHeatsinkWriter
-    {
-        void IHeatsinkWriter.Write(Heatsink hs, string directory)
-        {
-            throw new NotImplementedException();
-        }
-    }
 
     /// <summary>
     /// Writes heatsink geometry only to a PDML file for easy import into FloTHERM.

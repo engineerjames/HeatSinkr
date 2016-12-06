@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -7,7 +7,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>UnitTests</RootNamespace>
     <AssemblyName>UnitTests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,17 +42,18 @@
     <Compile Include="MaterialTests\CopperTest.cs" />
     <Compile Include="MaterialTests\AluminumTest.cs" />
     <Compile Include="MaterialTests\MaterialTest.cs" />
+    <Compile Include="UtilityTests\CSVHeatsinkWriterTests.cs" />
     <Compile Include="UtilityTests\CurveGeneratorTests.cs" />
     <Compile Include="UtilityTests\UnitsTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HeatsinkLibrary\HeatSinkr.Library.csproj">
-      <Project>{32F7A4D7-CD95-42F7-B9CE-BB49F93E0056}</Project>
-      <Name>HeatSinkr.Library</Name>
-    </ProjectReference>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+    <ProjectReference Include="..\HeatsinkLibrary\HeatSinkr.Library.csproj">
+      <Project>{32f7a4d7-cd95-42f7-b9ce-bb49f93e0056}</Project>
+      <Name>HeatSinkr.Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

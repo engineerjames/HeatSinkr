@@ -9,8 +9,10 @@
     <OutputType>Library</OutputType>
     <RootNamespace>HeatSinkr.Library</RootNamespace>
     <AssemblyName>HeatSinkr.Library</AssemblyName>
-    <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,14 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Classes\Heat Source\HeatSource.cs" />
     <Compile Include="Classes\Heatsink\PlateFinHeatsink.cs" />
     <Compile Include="Classes\Materials\Air.cs" />
     <Compile Include="Classes\Materials\Aluminum.cs" />
     <Compile Include="Classes\Materials\Copper.cs" />
     <Compile Include="Classes\Materials\Material.cs" />
+    <Compile Include="Classes\Utility\CSVHeatsinkWriter.cs" />
     <Compile Include="Classes\Utility\HeatsinkCurveGenerator.cs" />
     <Compile Include="Classes\Utility\HeatsinkFactory.cs" />
     <Compile Include="Classes\Utility\IHeatsinkWriter.cs" />
@@ -47,7 +48,7 @@
     <Compile Include="Classes\Heatsink\PlateFinGeometry.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="project.json" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
