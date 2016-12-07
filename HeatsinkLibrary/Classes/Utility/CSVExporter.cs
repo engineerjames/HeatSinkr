@@ -7,9 +7,9 @@ namespace HeatSinkr.Library
     /// <summary>
     /// Writes heatsink data to a .CSV file
     /// </summary>
-    public class CSVHeatsinkWriter : IHeatsinkWriter
+    public class CSVExporter : IHeatsinkExporter
     {
-        void IHeatsinkWriter.Write(Heatsink hs, string directory)
+        string IHeatsinkExporter.GetWriteableData(Heatsink hs)
         {
             string textToWrite = "";
             var properties = typeof(Heatsink).GetRuntimeProperties();
@@ -25,7 +25,7 @@ namespace HeatSinkr.Library
                 }
             }
 
-            System.IO.File.WriteAllText(directory, textToWrite);
+            return textToWrite;
         }
     }
 }

@@ -36,10 +36,10 @@
     <Compile Include="Classes\Materials\Aluminum.cs" />
     <Compile Include="Classes\Materials\Copper.cs" />
     <Compile Include="Classes\Materials\Material.cs" />
-    <Compile Include="Classes\Utility\CSVHeatsinkWriter.cs" />
+    <Compile Include="Classes\Utility\CSVExporter.cs" />
     <Compile Include="Classes\Utility\HeatsinkCurveGenerator.cs" />
     <Compile Include="Classes\Utility\HeatsinkFactory.cs" />
-    <Compile Include="Classes\Utility\IHeatsinkWriter.cs" />
+    <Compile Include="Classes\Utility\IHeatsinkExporter.cs" />
     <Compile Include="Classes\Utility\MaterialFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\Heatsink\Geometry.cs" />

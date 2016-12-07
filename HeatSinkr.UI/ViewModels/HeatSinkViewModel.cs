@@ -1,6 +1,7 @@
 ﻿using HeatSinkr.Library;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace HeatSinkr.UI.ViewModels
 {
@@ -225,10 +226,13 @@ namespace HeatSinkr.UI.ViewModels
             ModelOutputs.Add(nameof(FinEfficiency));
         }
 
-        public void WriteHeatsinkData(HeatsinkWriters Writer, StorageFile directory)
+        public async Task<string> WriteHeatsinkData(HeatsinkWriters Writer)
         {
-            IHeatsinkWriter writer = HeatsinkWriterFactory.GetWriter(Writer);
-            writer.Write(this.hs, directory);
+            return await Task.Run(() =>
+             {
+                 IHeatsinkExporter writer = HeatsinkWriterFactory.GetWriter(Writer);
+                 return writer.GetWriteableData(hs);
+             });
         }
 
     }

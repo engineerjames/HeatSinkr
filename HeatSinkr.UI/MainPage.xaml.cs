@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,7 +28,6 @@ namespace HeatSinkr.UI
     /// </summary>
     public sealed partial class MainPage : Page
     {
-
         private ObservableCollection<string> Materials = new ObservableCollection<string>();
         private HeatSinkViewModel ViewModel { get; set; } = new HeatSinkViewModel();
 
@@ -77,7 +77,8 @@ namespace HeatSinkr.UI
         private async void SaveButtonClick(object sender, RoutedEventArgs e)
         {
             StorageFile file = await GetSaveDirectoryAsync();
-            ViewModel.WriteHeatsinkData(HeatsinkWriters.CSV, file.Name);
+            string dataToWrite = await ViewModel.WriteHeatsinkData(HeatsinkWriters.CSV);
+            await Windows.Storage.FileIO.WriteTextAsync(file, dataToWrite);
         }
 
         private async Task<StorageFile> GetSaveDirectoryAsync()
@@ -87,8 +88,17 @@ namespace HeatSinkr.UI
             savePicker.FileTypeChoices.Add("CSV File", new List<string>() { ".csv" });
             savePicker.SuggestedFileName = "Heatsink " + DateTime.Now.ToString();
 
-            StorageFile file = await savePicker.PickSaveFileAsync();
+            StorageFile file = await savePicker.PickSaveFileAsync();         
+
             return file;
+        }
+
+        private async void NotImplementedClickHandler(object sender, RoutedEventArgs e)
+        {
+            var dialog = new MessageDialog("Feature not implemented yet!");
+            dialog.Title = "Error!";
+            dialog.Commands.Add(new UICommand { Label = "Ok", Id = 0 });
+            await dialog.ShowAsync();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace HeatSinkr.Library
         public void CSVFileWritesCorrectData()
         {
             string directory = @"C:\Test";
-            IHeatsinkWriter writer = new CSVHeatsinkWriter();
+            IHeatsinkExporter writer = new CSVHeatsinkWriter();
             writer.Write(HeatsinkFactory.GetDefaultHeatsink(HeatsinkType.PlateFin), directory); 
         }
     }
