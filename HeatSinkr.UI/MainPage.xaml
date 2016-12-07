@@ -100,28 +100,18 @@
                     </Grid>
                 </StackPanel>
             </ScrollViewer>
-        <!-- End Information View -->
-        
-        <!-- Add button to add additional heatsinks -->
-            
-        
-        <!-- Accessory buttons to write heatsink information / charts etc. --><!--
-            <CommandBar Grid.Column="1" Grid.Row="2" VerticalAlignment="Stretch" IsOpen="False" Template="{StaticResource HeatSinkrCommandBarControl}">
-                <AppBarButton Icon="Save" Label="Save"/>
-            </CommandBar>-->
-        
-        
+        <!-- End Information View -->                
+
     </Grid>
     <Page.Resources>
         <MenuFlyout x:Key="Flyout1">
             <MenuFlyoutItem Text="Save to .CSV File"/>
-            <MenuFlyoutItem Text="Save to .PDML File"/>
         </MenuFlyout>
     </Page.Resources>
     <Page.BottomAppBar>
         <CommandBar Grid.Column="0" Grid.Row="2" IsOpen="True" Template="{StaticResource HeatSinkrCommandBarControl}" FontSize="16" IsSticky="True" Closing="CommandBar_Closing">
              <AppBarButton Icon="Add" Click="AppBarButton_Click" Label="Add Heatsink"/>
-             <AppBarButton Icon="Save" Label="Save HS Data" Flyout="{StaticResource Flyout1}"/>
+             <AppBarButton Icon="Save" Label="Save HS Data" Flyout="{StaticResource Flyout1}" Click="SaveButtonClick"/>
         </CommandBar>
     </Page.BottomAppBar>
 

@@ -6,8 +6,10 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -72,6 +74,21 @@ namespace HeatSinkr.UI
             commandBar.IsOpen = true;
         }
 
-      
+        private async void SaveButtonClick(object sender, RoutedEventArgs e)
+        {
+            StorageFile file = await GetSaveDirectoryAsync();
+            ViewModel.WriteHeatsinkData(HeatsinkWriters.CSV, file.Name);
+        }
+
+        private async Task<StorageFile> GetSaveDirectoryAsync()
+        {
+            var savePicker = new Windows.Storage.Pickers.FileSavePicker();
+            savePicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
+            savePicker.FileTypeChoices.Add("CSV File", new List<string>() { ".csv" });
+            savePicker.SuggestedFileName = "Heatsink " + DateTime.Now.ToString();
+
+            StorageFile file = await savePicker.PickSaveFileAsync();
+            return file;
+        }
     }
 }
