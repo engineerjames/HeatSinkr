@@ -60,5 +60,18 @@ namespace HeatSinkr.UI
 
             ViewModel.Material = MaterialFactory.GetMaterial(mat);
         }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Implement me!");
+        }
+
+        private void CommandBar_Closing(object sender, object e)
+        {
+            var commandBar = sender as CommandBar;
+            commandBar.IsOpen = true;
+        }
+
+      
     }
 }

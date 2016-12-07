@@ -225,6 +225,11 @@ namespace HeatSinkr.UI.ViewModels
             ModelOutputs.Add(nameof(FinEfficiency));
         }
 
+        public void WriteHeatsinkData(HeatsinkWriters Writer, string directory)
+        {
+            IHeatsinkWriter writer = HeatsinkWriterFactory.GetWriter(Writer);
+            writer.Write(this.hs, directory);
+        }
 
     }
 }

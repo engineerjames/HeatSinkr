@@ -6,10 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="using:HeatSinkr.UI.ViewModels"
-    mc:Ignorable="d">
-    <!--<Page.DataContext>
-        <viewModel:HeatSinkViewModel/>
-    </Page.DataContext>-->
+    mc:Ignorable="d"
+    >
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         
@@ -20,21 +18,16 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="10*"/>
-            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
         <!-- Header Row -->
-        <Grid Grid.Column="0" Grid.Row="0">
-        <Viewbox Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Viewbox Grid.Column="0" Grid.Row="0" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock TextWrapping="Wrap" Text="Information" Padding="10" />
         </Viewbox>
-        </Grid>
 
-        <Grid Grid.Column="2" Grid.Row="0">
             <Viewbox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
                 <TextBlock Text="Performance Charts" TextWrapping="Wrap" Padding="10" />
             </Viewbox>
-        </Grid>
         <!-- End Header Row -->
         
         <!-- Web View -->
@@ -42,8 +35,7 @@
         <!-- End Web View -->
         
         <!-- Information View -->
-        <Grid Grid.Column="0" Grid.Row="1">
-            <ScrollViewer>
+            <ScrollViewer Grid.Column="0" Grid.Row="1">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="Input Parameters" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" FontWeight="Bold"/>
                     <Grid>
@@ -108,9 +100,31 @@
                     </Grid>
                 </StackPanel>
             </ScrollViewer>
-        </Grid>
         <!-- End Information View -->
         
+        <!-- Add button to add additional heatsinks -->
+            
+        
+        <!-- Accessory buttons to write heatsink information / charts etc. --><!--
+            <CommandBar Grid.Column="1" Grid.Row="2" VerticalAlignment="Stretch" IsOpen="False" Template="{StaticResource HeatSinkrCommandBarControl}">
+                <AppBarButton Icon="Save" Label="Save"/>
+            </CommandBar>-->
+        
+        
     </Grid>
+    <Page.Resources>
+        <MenuFlyout x:Key="Flyout1">
+            <MenuFlyoutItem Text="Save to .CSV File"/>
+            <MenuFlyoutItem Text="Save to .PDML File"/>
+        </MenuFlyout>
+    </Page.Resources>
+    <Page.BottomAppBar>
+        <CommandBar Grid.Column="0" Grid.Row="2" IsOpen="True" Template="{StaticResource HeatSinkrCommandBarControl}" FontSize="16" IsSticky="True" Closing="CommandBar_Closing">
+             <AppBarButton Icon="Add" Click="AppBarButton_Click" Label="Add Heatsink"/>
+             <AppBarButton Icon="Save" Label="Save HS Data" Flyout="{StaticResource Flyout1}"/>
+        </CommandBar>
+    </Page.BottomAppBar>
 
+  
+    
 </Page>
