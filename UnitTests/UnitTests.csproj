@@ -42,7 +42,6 @@
     <Compile Include="MaterialTests\CopperTest.cs" />
     <Compile Include="MaterialTests\AluminumTest.cs" />
     <Compile Include="MaterialTests\MaterialTest.cs" />
-    <Compile Include="UtilityTests\CSVHeatsinkWriterTests.cs" />
     <Compile Include="UtilityTests\CurveGeneratorTests.cs" />
     <Compile Include="UtilityTests\UnitsTests.cs" />
   </ItemGroup>

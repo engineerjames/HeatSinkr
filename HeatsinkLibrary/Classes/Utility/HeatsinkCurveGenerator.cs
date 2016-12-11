@@ -5,8 +5,8 @@ namespace HeatSinkr.Library
 {
     public struct DataPoint
     {
-        public double X;
-        public double Y;
+        public double X { get; set; }
+        public double Y { get; set; }
 
         public DataPoint(double X, double Y)
         {
@@ -16,7 +16,7 @@ namespace HeatSinkr.Library
 
         public override string ToString()
         {
-            return String.Format("X: {0}, Y: {1}", X, Y);
+            return "{" + string.Format("x:{0}, y:{1}", this.X, this.Y) + "}";
         }
     }
 

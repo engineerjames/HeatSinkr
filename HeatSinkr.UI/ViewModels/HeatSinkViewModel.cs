@@ -205,6 +205,15 @@ namespace HeatSinkr.UI.ViewModels
             }
         }
 
+
+        public string ThermalResistanceCurve
+        {
+            get
+            {
+                return GetThermalResistanceCurveData();
+            }
+        }
+
         public HeatSinkViewModel()
         {
             hs = HeatsinkFactory.GetDefaultHeatsink(HeatsinkType.PlateFin);
@@ -223,8 +232,9 @@ namespace HeatSinkr.UI.ViewModels
             ModelOutputs.Add(nameof(ThermalResistance_Spreading));
             ModelOutputs.Add(nameof(ThermalResistance_Total));
             ModelOutputs.Add(nameof(PressureDrop));
-            ModelOutputs.Add(nameof(FinEfficiency));
+            ModelOutputs.Add(nameof(FinEfficiency));           
         }
+   
 
         public async Task<string> WriteHeatsinkData(HeatsinkWriters Writer)
         {
@@ -233,6 +243,35 @@ namespace HeatSinkr.UI.ViewModels
                  IHeatsinkExporter writer = HeatsinkWriterFactory.GetWriter(Writer);
                  return writer.GetWriteableData(hs);
              });
+        }
+
+        private string GetThermalResistanceCurveData()
+        {
+
+            var cg = CurveGenerator.Instance;
+            cg.AddHeatsink(hs);
+            var datapoints = cg.GetThermalResistanceCurves(CFM - CFM * 0.4, CFM + CFM * 0.4);
+            string jChartDataPoints = "var chartData = [";
+
+            for (int i = 0; i < datapoints[0].Count; i++)
+            {
+                if (i != datapoints[0].Count - 1)
+                {
+                    jChartDataPoints += datapoints[0][i].ToString() + ",";
+                }
+                else
+                {
+                    jChartDataPoints += datapoints[0][i];
+                }
+            }
+
+            jChartDataPoints += "];";
+
+            System.Diagnostics.Debug.WriteLine(jChartDataPoints);
+
+            return jChartDataPoints;
+
+
         }
 
     }

@@ -36,6 +36,30 @@ namespace HeatSinkr.UI
             this.InitializeComponent();
             this.DataContext = ViewModel;
             InitializeMaterialComboBox();
+            CopyFilesIntoAppData();
+        }
+
+        private async void CopyFilesIntoAppData()
+        {
+            try
+            {
+                var file1 = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///WebViewAssets/baseWebView.js"));
+                System.Diagnostics.Debug.WriteLine(file1.Path);
+                var file2 = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///WebViewAssets/Chart.js"));
+                System.Diagnostics.Debug.WriteLine(file2.Path);
+                var file3 = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///WebViewAssets/index.html"));
+                System.Diagnostics.Debug.WriteLine(file3.Path);
+
+                var appData = await ApplicationData.Current.LocalFolder.GetFolderAsync("WebAssets");
+                await file1.MoveAsync(appData);
+                await file2.MoveAsync(appData);
+                await file3.MoveAsync(appData);
+            }
+            catch (Exception ex)
+            {
+                
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
         }
 
         private void InitializeMaterialComboBox()
@@ -53,8 +77,7 @@ namespace HeatSinkr.UI
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Selection changed!");
-            System.Diagnostics.Debug.WriteLine("Selected: " + MaterialComboBox.SelectedItem.ToString());
+           
             var combo = sender as ComboBox;
 
             MaterialType mat;
@@ -65,7 +88,19 @@ namespace HeatSinkr.UI
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Implement me!");
+            try
+            {
+                System.Diagnostics.Debug.WriteLine("Implement me!");
+                var html = HTMLEditor.Instance;
+                var chartData = ViewModel.ThermalResistanceCurve;
+                html.UpdateHTML(chartData);
+                webView.Refresh();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Error during Click Handling!");
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
         }
 
         private void CommandBar_Closing(object sender, object e)
