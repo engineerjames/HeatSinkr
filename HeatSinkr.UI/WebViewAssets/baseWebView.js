@@ -4,7 +4,7 @@ var myChart = new Chart(chart, {
     type: 'line',
     data: {
         datasets: [{
-            label: 'Heatsink Thermal Resistance',
+            label: 'Thermal Resistance',
             data: chartData
         }]
     },
@@ -12,7 +12,22 @@ var myChart = new Chart(chart, {
         scales: {
             xAxes: [{
                 type: 'linear',
-                position: 'bottom'
+                position: 'bottom',
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Volumetric Flow Rate [CFM]'
+                }
+            }],
+            yAxes: [{
+                type: 'linear',
+                position: 'left',
+                ticks: {
+                    beginAtZero: true
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Thermal Resistance [K/W]'
+                }
             }]
         },
         responsive: false
