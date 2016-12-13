@@ -29,16 +29,15 @@ namespace HeatSinkr.UI
             }
         }
 
-        private HTMLEditor()
-        {
-        }
-
         private async Task GetJavaScriptFile()
         {
             try
             {
-                appData = await appData.GetFolderAsync("WebAssets");
-
+                if (!appData.Path.Contains("WebAssets"))
+                {
+                    appData = await appData.GetFolderAsync("WebAssets");
+                }
+                
                 StorageFile javaScriptFile = await appData.GetFileAsync("baseWebView.js");
                 var fullText = await FileIO.ReadLinesAsync(javaScriptFile);
                 JSText = fullText.ToList();

@@ -260,7 +260,7 @@ namespace HeatSinkr.UI.ViewModels
 
             var cg = CurveGenerator.Instance;
             cg.AddHeatsink(hs);
-            var datapoints = cg.GetThermalResistanceCurves(CFM - CFM * 0.4, CFM + CFM * 0.4);
+            var datapoints = cg.GetThermalResistanceCurves(CalculateLowCFM(CFM), CalculateHighCFM(CFM));
             string jChartDataPoints = "var chartData = [";
 
             for (int i = 0; i < datapoints[0].Count; i++)
@@ -277,10 +277,22 @@ namespace HeatSinkr.UI.ViewModels
 
             jChartDataPoints += "];";
 
-            System.Diagnostics.Debug.WriteLine(jChartDataPoints);
-
             return jChartDataPoints;
         }
 
+        private double CalculateHighCFM(double currentCFM)
+        {
+            return (CFM + CFM * 0.9);
+        }
+
+        private double CalculateLowCFM(double currentCFM)
+        {
+            var lowCFM = CFM - CFM * 0.9;
+
+            if (lowCFM < 0.5)
+                lowCFM = 0.5;
+
+            return lowCFM;
+        }
     }
 }

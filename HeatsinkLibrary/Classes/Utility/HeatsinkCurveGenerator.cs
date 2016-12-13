@@ -80,6 +80,11 @@ namespace HeatSinkr.Library
             Heatsinks.Remove(heatsinkToRemove);
         }
 
+        public void ClearHeatsinks()
+        {
+            Heatsinks.Clear();
+        }
+
         public static CurveGenerator Instance
         {
             get

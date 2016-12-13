@@ -39,9 +39,9 @@ namespace HeatSinkr.UI
                 var file3 = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///WebViewAssets/index.html"));
                 var appData = await ApplicationData.Current.LocalFolder.GetFolderAsync("WebAssets");
                 
-                await file1.MoveAsync(appData, file1.DisplayName, NameCollisionOption.ReplaceExisting);
-                await file2.MoveAsync(appData, file2.DisplayName, NameCollisionOption.ReplaceExisting);
-                await file3.MoveAsync(appData, file3.DisplayName, NameCollisionOption.ReplaceExisting);
+                await file1.CopyAsync(appData, file1.DisplayName, NameCollisionOption.ReplaceExisting);
+                await file2.CopyAsync(appData, file2.DisplayName, NameCollisionOption.ReplaceExisting);
+                await file3.CopyAsync(appData, file3.DisplayName, NameCollisionOption.ReplaceExisting);
             }
             catch (Exception ex)
             {
@@ -115,10 +115,12 @@ namespace HeatSinkr.UI
         {
             try
             {
+
                 var html = HTMLEditor.Instance;
                 var chartData = ViewModel.ThermalResistanceCurve;
                 html.UpdateHTML(chartData);
                 webView.Refresh();
+
             }
             catch (Exception ex)
             {
