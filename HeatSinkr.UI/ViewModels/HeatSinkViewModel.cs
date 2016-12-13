@@ -9,6 +9,8 @@ namespace HeatSinkr.UI.ViewModels
     {
         private Heatsink hs { get; set; }
 
+        private const int ThermalResistanceDecimalPlaces = 2;
+
         public double Pitch
         {
             get
@@ -126,7 +128,8 @@ namespace HeatSinkr.UI.ViewModels
         {
             get
             {
-                return hs.ThermalResistance_Convection;
+                var Tr = System.Math.Round(hs.ThermalResistance_Convection, ThermalResistanceDecimalPlaces);
+                return Tr;
             }
         }
 
@@ -134,7 +137,8 @@ namespace HeatSinkr.UI.ViewModels
         {
             get
             {
-                return hs.ThermalResistance_Spreading;
+                var Tr = System.Math.Round(hs.ThermalResistance_Spreading, ThermalResistanceDecimalPlaces);
+                return Tr;
             }
         }
 
@@ -143,7 +147,8 @@ namespace HeatSinkr.UI.ViewModels
         {
             get
             {
-                return hs.ThermalResistance_Total;
+                var Tr = System.Math.Round(hs.ThermalResistance_Total, ThermalResistanceDecimalPlaces);
+                return Tr;
             }
         }
 
@@ -151,7 +156,9 @@ namespace HeatSinkr.UI.ViewModels
         {
             get
             {
-                return Convert.PaToInH2O(hs.PressureDrop);
+                var dp = Convert.PaToInH2O(hs.PressureDrop);
+                dp = System.Math.Round(dp, 4);
+                return dp;
             }
         }
 
@@ -201,7 +208,9 @@ namespace HeatSinkr.UI.ViewModels
         {
             get
             {
-                return hs.FinEfficiency;
+                var eta = hs.FinEfficiency * 100;
+                eta = System.Math.Round(eta, 2);
+                return eta;
             }
         }
 
@@ -245,6 +254,7 @@ namespace HeatSinkr.UI.ViewModels
              });
         }
 
+
         private string GetThermalResistanceCurveData()
         {
 
@@ -270,8 +280,6 @@ namespace HeatSinkr.UI.ViewModels
             System.Diagnostics.Debug.WriteLine(jChartDataPoints);
 
             return jChartDataPoints;
-
-
         }
 
     }

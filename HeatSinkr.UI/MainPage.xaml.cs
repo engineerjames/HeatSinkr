@@ -3,21 +3,11 @@ using HeatSinkr.UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -85,19 +75,7 @@ namespace HeatSinkr.UI
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                System.Diagnostics.Debug.WriteLine("Implement me!");
-                var html = HTMLEditor.Instance;
-                var chartData = ViewModel.ThermalResistanceCurve;
-                html.UpdateHTML(chartData);
-                webView.Refresh();
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Error during Click Handling!");
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
-            }
+           
         }
 
         private void CommandBar_Closing(object sender, object e)
@@ -131,6 +109,21 @@ namespace HeatSinkr.UI
             dialog.Title = "Error!";
             dialog.Commands.Add(new UICommand { Label = "Ok", Id = 0 });
             await dialog.ShowAsync();
+        }
+
+        private void Output_Value_Changed(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                var html = HTMLEditor.Instance;
+                var chartData = ViewModel.ThermalResistanceCurve;
+                html.UpdateHTML(chartData);
+                webView.Refresh();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Output_Value_Changed Error: " + ex.ToString());
+            }
         }
     }
 }

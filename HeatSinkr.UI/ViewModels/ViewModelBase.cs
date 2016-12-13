@@ -13,7 +13,7 @@ namespace HeatSinkr.UI.ViewModels
         public List<string> ModelOutputs { get; set; } = new List<string>();
 
         public event PropertyChangedEventHandler PropertyChanged;
-
+                
         protected void OnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
