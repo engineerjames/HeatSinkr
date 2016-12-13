@@ -27,7 +27,7 @@
         <!-- End Header Row -->
         
         <!-- Web View -->
-        <WebView Grid.Column="2" Grid.Row="1" Name="webView" Source="ms-appdata:///local/WebAssets/index.html" />
+        <WebView Grid.Column="2" Grid.Row="1" Name="webView" />
         <!-- End Web View -->
         
         <!-- Information View -->

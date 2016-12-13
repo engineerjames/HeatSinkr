@@ -37,6 +37,7 @@ namespace HeatSinkr.UI
             this.DataContext = ViewModel;
             InitializeMaterialComboBox();
             CopyFilesIntoAppData();
+            webView.Source = new Uri("ms-appdata:///local/WebAssets/index.html");
         }
 
         private async void CopyFilesIntoAppData()
@@ -44,21 +45,17 @@ namespace HeatSinkr.UI
             try
             {
                 var file1 = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///WebViewAssets/baseWebView.js"));
-                System.Diagnostics.Debug.WriteLine(file1.Path);
                 var file2 = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///WebViewAssets/Chart.js"));
-                System.Diagnostics.Debug.WriteLine(file2.Path);
                 var file3 = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///WebViewAssets/index.html"));
-                System.Diagnostics.Debug.WriteLine(file3.Path);
-
                 var appData = await ApplicationData.Current.LocalFolder.GetFolderAsync("WebAssets");
-                await file1.MoveAsync(appData);
-                await file2.MoveAsync(appData);
-                await file3.MoveAsync(appData);
+                
+                await file1.MoveAsync(appData, file1.DisplayName, NameCollisionOption.ReplaceExisting);
+                await file2.MoveAsync(appData, file2.DisplayName, NameCollisionOption.ReplaceExisting);
+                await file3.MoveAsync(appData, file3.DisplayName, NameCollisionOption.ReplaceExisting);
             }
             catch (Exception ex)
             {
-                
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                System.Diagnostics.Debug.WriteLine("CopyFilesIntoAppData Error: " + ex.ToString());
             }
         }
 

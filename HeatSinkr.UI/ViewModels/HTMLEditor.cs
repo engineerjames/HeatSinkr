@@ -11,7 +11,6 @@ namespace HeatSinkr.UI
     public class HTMLEditor
     {
         private static int i = 0;
-        private StorageFile javaScriptFile;
         private List<string> JSText;
         private StorageFolder appData = ApplicationData.Current.LocalFolder;
 
@@ -28,7 +27,7 @@ namespace HeatSinkr.UI
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                System.Diagnostics.Debug.WriteLine("UpdateHTML Error: " + ex.ToString());
             }
         }
 
@@ -42,14 +41,9 @@ namespace HeatSinkr.UI
             {
                 appData = await appData.GetFolderAsync("WebAssets");
 
-                this.javaScriptFile = await appData.GetFileAsync("baseWebView.js");
-                System.Diagnostics.Debug.WriteLine("Javascript file: " + javaScriptFile?.DisplayName + " at " + javaScriptFile.Path);
+                StorageFile javaScriptFile = await appData.GetFileAsync("baseWebView.js");
                 var fullText = await FileIO.ReadLinesAsync(javaScriptFile);
                 JSText = fullText.ToList();
-                foreach (string line in JSText)
-                {
-                    System.Diagnostics.Debug.WriteLine("FULL TEXT: " + line);
-                }
             }
             catch (Exception ex)
             {
