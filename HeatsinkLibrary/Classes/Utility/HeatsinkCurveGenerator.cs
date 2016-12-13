@@ -23,7 +23,9 @@ namespace HeatSinkr.Library
 
         public override string ToString()
         {
-            return "{" + string.Format("x:{0}, y:{1}", this.X, this.Y) + "}";
+            var dispX = Math.Round(X, 3);
+            var dispY = Math.Round(Y, 3);
+            return "{" + string.Format("x:{0}, y:{1}", dispX, dispY) + "}";
         }
     }
 
@@ -71,7 +73,7 @@ namespace HeatSinkr.Library
             {
                 var cfm = LowCFM + delta * i;
                 hs.CFM = cfm;
-                TrCurve.Add(new DataPoint(cfm, hs.ThermalResistance_Convection));
+                TrCurve.Add(new DataPoint(cfm, hs.ThermalResistance_Total));
             }
 
             return TrCurve;
