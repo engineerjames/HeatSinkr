@@ -120,7 +120,6 @@ namespace HeatSinkr.UI
                 var chartData = ViewModel.ThermalResistanceCurve;
                 html.UpdateHTML(chartData);
                 webView.Refresh();
-
             }
             catch (Exception ex)
             {

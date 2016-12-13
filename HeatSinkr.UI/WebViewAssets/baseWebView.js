@@ -16,6 +16,10 @@ var myChart = new Chart(chart, {
                 scaleLabel: {
                     display: true,
                     labelString: 'Volumetric Flow Rate [CFM]'
+                },
+                ticks: {
+                    min: 0.5,
+                    stepSize: 0.5
                 }
             }],
             yAxes: [{

@@ -5,7 +5,14 @@ namespace HeatSinkr.Library
 {
     public struct DataPoint
     {
+        /// <summary>
+        /// X coordinate
+        /// </summary>
         public double X { get; set; }
+
+        /// <summary>
+        /// Y coordinate
+        /// </summary>
         public double Y { get; set; }
 
         public DataPoint(double X, double Y)
