@@ -75,24 +75,24 @@
                     <!-- outputs -->
                     <TextBlock Text="Performance Outputs" Padding="10" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     <Grid>
-                        <TextBlock Text="Pressure Drop [inH2O]:" VerticalAlignment="Center" Margin="10"/>
-                    <TextBox Text="{Binding PressureDrop, Mode=OneWay}" IsReadOnly="True" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="10,10,30,10" Background="Gray" />
+                        <TextBlock Text="Pressure Drop [inH2O]:" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                    <TextBox Text="{Binding PressureDrop, Mode=OneWay}" Style="{StaticResource OutputStyle}" />
                 </Grid>
                     <Grid>
-                        <TextBlock Text="Fin Efficiency [%]:" VerticalAlignment="Center" Margin="10"/>
-                        <TextBox Text="{Binding FinEfficiency, Mode=OneWay}" IsReadOnly="True" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="10,10,30,10" Background="Gray"/>
+                    <TextBlock Text="Fin Efficiency [%]:" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                        <TextBox Text="{Binding FinEfficiency, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Spreading Resistance [°C/W]:" VerticalAlignment="Center" Margin="10"/>
-                        <TextBox Text="{Binding ThermalResistance_Spreading, Mode=OneWay}" IsReadOnly="True" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="10,10,30,10" Background="Gray"/>
+                    <TextBlock Text="Spreading Resistance [°C/W]:" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                        <TextBox Text="{Binding ThermalResistance_Spreading, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Convection Resistance [°C/W]:" VerticalAlignment="Center" Margin="10"/>
-                        <TextBox Text="{Binding ThermalResistance_Convection, Mode=OneWay}" IsReadOnly="True" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="10,10,30,10" Background="Gray"/>
+                    <TextBlock Text="Convection Resistance [°C/W]:" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                        <TextBox Text="{Binding ThermalResistance_Convection, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Total Resistance [°C/W]:" VerticalAlignment="Center" Margin="10"/>
-                        <TextBox Text="{Binding ThermalResistance_Total, Mode=OneWay}" IsReadOnly="True" Width="100" VerticalAlignment="Center" TextAlignment="Center" HorizontalAlignment="Right" Margin="10,10,30,10" Background="Gray" TextChanged="Output_Value_Changed"/>
+                    <TextBlock Text="Total Resistance [°C/W]:" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                        <TextBox Text="{Binding ThermalResistance_Total, Mode=OneWay}" Style="{StaticResource OutputStyle}" TextChanged="Output_Value_Changed"/>
                     </Grid>
                 </StackPanel>
             </ScrollViewer>
@@ -113,6 +113,7 @@
         </CommandBar>
     </Page.BottomAppBar>
 
-  
     
+
+
 </Page>
