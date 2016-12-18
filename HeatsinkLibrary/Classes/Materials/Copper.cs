@@ -12,7 +12,10 @@
             this.Type = MaterialType.Copper;
         }
 
-        public Copper() { }
+        public Copper()
+        {
+            this.Type = MaterialType.Copper;
+        }
 
         public override double ThermalConductivity
         {

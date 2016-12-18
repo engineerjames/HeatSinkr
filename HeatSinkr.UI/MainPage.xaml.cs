@@ -56,6 +56,7 @@ namespace HeatSinkr.UI
             {
                 Materials.Add(type.ToString());
             }
+
             MaterialComboBox.ItemsSource = Materials;
 
             // Set current heatsink material
@@ -69,8 +70,10 @@ namespace HeatSinkr.UI
 
             MaterialType mat;
             Enum.TryParse(combo.SelectedItem.ToString(), out mat);
+            var materialToAssign = MaterialFactory.GetMaterial(mat);
+            ViewModel.Material = materialToAssign;
 
-            ViewModel.Material = MaterialFactory.GetMaterial(mat);
+            System.Diagnostics.Debug.WriteLine("New HS material: Total = " + ViewModel.ThermalResistance_Total);
         }
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
@@ -130,6 +133,7 @@ namespace HeatSinkr.UI
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
             mySplitView.IsPaneOpen = !mySplitView.IsPaneOpen;
+            webView.Refresh();
         }
     }
 }

@@ -186,7 +186,7 @@ namespace HeatSinkr.UI.ViewModels
             set
             {
                 hs.Material = value;
-                SetField<Material>(ref _Material, value);
+                SetField(ref _Material, value);
             }
         }
 
@@ -234,7 +234,7 @@ namespace HeatSinkr.UI.ViewModels
             _BaseThickness = hs.Geometry.BaseThickness;
             _CFM = hs.CFM;
             _InletAirTemperature = hs.InletAir.Temperature;
-            
+            _Material = hs.Material;            
 
             // Initialize Model Outputs - things that need to get updated whenever changes are made to the input parameters
             ModelOutputs.Add(nameof(ThermalResistance_Convection));
@@ -276,7 +276,8 @@ namespace HeatSinkr.UI.ViewModels
             }
 
             jChartDataPoints += "];";
-
+            System.Diagnostics.Debug.WriteLine("JCHART DP: " + jChartDataPoints);
+            System.Diagnostics.Debug.WriteLine("Material is ^ " + hs.Material);
             return jChartDataPoints;
         }
 

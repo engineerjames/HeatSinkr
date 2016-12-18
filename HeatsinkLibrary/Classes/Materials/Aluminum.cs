@@ -14,7 +14,10 @@ namespace HeatSinkr.Library
             this.Type = MaterialType.Aluminum;
         }
 
-        public Aluminum() { }
+        public Aluminum()
+        {
+            this.Type = MaterialType.Aluminum;
+        }
 
         public override double ThermalConductivity
         {

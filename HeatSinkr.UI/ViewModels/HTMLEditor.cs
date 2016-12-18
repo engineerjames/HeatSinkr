@@ -8,7 +8,6 @@ namespace HeatSinkr.UI
 {
     public class HTMLEditor
     {
-        private static int i = 0;
         private List<string> JSText;
         private StorageFolder appData = ApplicationData.Current.LocalFolder;
 

@@ -45,18 +45,20 @@ namespace HeatSinkr.Library
         /// <param name="HighCFM">Highest CFM on the curve</param>
         /// <returns>List of plottable X/Y coordinates for each heatsink in the collection</returns>
         public List<List<DataPoint>> GetThermalResistanceCurves(double LowCFM, double HighCFM)
-        {
+        {            
             if (!CFMIsValid(LowCFM) || !CFMIsValid(HighCFM) || LowCFM >= HighCFM)
                 throw new InvalidOperationException("Invalid CFM value passed in: Low: " + LowCFM + ", High: " + HighCFM);
             if (Heatsinks.Count <= 0)
                 throw new InvalidOperationException("Can't generate thermal resistance curve for no heatsinks.  Try adding heatsink to the list (AddHeatSink)");
 
             DataPoints.Clear();
-
+            
             foreach (Heatsink hs in Heatsinks)
             {
+                var OriginalCFM = hs.CFM;
                 var hsCurve = GenerateThermalResistancecurve(hs, LowCFM, HighCFM);
                 DataPoints.Add(hsCurve);
+                hs.CFM = OriginalCFM;
             }
 
             return DataPoints;

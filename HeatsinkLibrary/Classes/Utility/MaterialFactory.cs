@@ -12,6 +12,8 @@ namespace HeatSinkr.Library
     {
         public static Material GetMaterial(MaterialType type, double Temperature = 35.0)
         {
+            System.Diagnostics.Debug.WriteLine("Getting material of type: " + type);
+
             switch (type)
             {
                 case MaterialType.Aluminum:
