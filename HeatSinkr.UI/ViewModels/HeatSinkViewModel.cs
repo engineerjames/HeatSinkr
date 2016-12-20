@@ -223,6 +223,23 @@ namespace HeatSinkr.UI.ViewModels
             }
         }
 
+        public FlowCondition CurrentFlowCondition
+        {
+            get
+            {
+                return hs.FlowCondition;
+            }
+        }
+
+        public double ReynoldsNumber
+        {
+            get
+            {
+                var Re = hs.ReynoldsNumber;
+                return System.Math.Round(Re);
+            }
+        }
+
         public HeatSinkViewModel()
         {
             hs = HeatsinkFactory.GetDefaultHeatsink(HeatsinkType.PlateFin);
@@ -234,14 +251,16 @@ namespace HeatSinkr.UI.ViewModels
             _BaseThickness = hs.Geometry.BaseThickness;
             _CFM = hs.CFM;
             _InletAirTemperature = hs.InletAir.Temperature;
-            _Material = hs.Material;            
+            _Material = hs.Material;
 
             // Initialize Model Outputs - things that need to get updated whenever changes are made to the input parameters
+            ModelOutputs.Add(nameof(CurrentFlowCondition));
             ModelOutputs.Add(nameof(ThermalResistance_Convection));
             ModelOutputs.Add(nameof(ThermalResistance_Spreading));
             ModelOutputs.Add(nameof(ThermalResistance_Total));
             ModelOutputs.Add(nameof(PressureDrop));
-            ModelOutputs.Add(nameof(FinEfficiency));           
+            ModelOutputs.Add(nameof(FinEfficiency));
+            ModelOutputs.Add(nameof(ReynoldsNumber));         
         }
    
 
@@ -276,8 +295,7 @@ namespace HeatSinkr.UI.ViewModels
             }
 
             jChartDataPoints += "];";
-            System.Diagnostics.Debug.WriteLine("JCHART DP: " + jChartDataPoints);
-            System.Diagnostics.Debug.WriteLine("Material is ^ " + hs.Material);
+
             return jChartDataPoints;
         }
 

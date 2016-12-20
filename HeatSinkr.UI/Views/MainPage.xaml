@@ -8,13 +8,9 @@
     xmlns:viewModel="using:HeatSinkr.UI.ViewModels"
     mc:Ignorable="d"
     >
-    <SplitView x:Name="mySplitView" DisplayMode="CompactOverlay" IsPaneOpen="False" CompactPaneLength="50" OpenPaneLength="150">
-        <SplitView.Pane>
-            <Button x:Name="HamburgerButton" Content="&#xE700;" Width="50" Height="50" Background="Transparent" Click="HamburgerButton_Click"/>
-        </SplitView.Pane>
-        <SplitView.Content>
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Name="mainUIGrid">
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400" />
             <ColumnDefinition Width="*" />
@@ -29,82 +25,86 @@
 
         <TextBlock Grid.Column="1" Grid.Row="0" Text="Performance Charts" TextWrapping="Wrap" Padding="10" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" />
         <!-- End Header Row -->
-        
+
         <!-- Web View -->
         <WebView Grid.Column="2" Grid.Row="1" Name="webView" />
         <!-- End Web View -->
-        
+
         <!-- Information View -->
-            <ScrollViewer Grid.Column="0" Grid.Row="1">
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Input Parameters" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" FontWeight="Bold"/>
-                    <Grid>
+        <ScrollViewer Grid.Column="0" Grid.Row="1" Margin="0,0,0,50">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Input Parameters" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" FontWeight="Bold"/>
+                <Grid>
                     <TextBlock Text="Volumetric Flowrate [CFM]:" Style="{StaticResource LabelStyle}"/>
-                        <TextBox Text="{Binding CFM, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
-                    </Grid>
-                    <Grid>
+                    <TextBox Text="{Binding CFM, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
+                </Grid>
+                <Grid>
                     <TextBlock Text="Heatsink Material:" Style="{StaticResource LabelStyle}"/>
-                        <ComboBox Name="MaterialComboBox" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,10,30,10" Width="150" SelectionChanged="ComboBox_SelectionChanged"/>
-                    </Grid>
-                    <Grid>
+                    <ComboBox Name="MaterialComboBox" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,10,30,10" Width="150" SelectionChanged="ComboBox_SelectionChanged"/>
+                </Grid>
+                <Grid>
                     <TextBlock Text="Inlet Air Temperature [°C]" Style="{StaticResource LabelStyle}"/>
                     <TextBox Text="{Binding InletAirTemperature, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
-                    </Grid>
-                    <TextBlock Text="Geometry Parameters" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" FontWeight="Bold" />
-                    <Grid>
+                </Grid>
+                <TextBlock Text="Geometry Parameters" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" FontWeight="Bold" />
+                <Grid>
                     <TextBlock Text="Width [mm]:" Style="{StaticResource LabelStyle}"/>
                     <TextBox Text="{Binding Width, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
-                    </Grid>
-                    <Grid>
+                </Grid>
+                <Grid>
                     <TextBlock Text="Length [mm]:" Style="{StaticResource LabelStyle}"/>
                     <TextBox Text="{Binding FlowLength, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
-                    </Grid>
-                    <Grid>
+                </Grid>
+                <Grid>
                     <TextBlock Text="Number of Fins: " Style="{StaticResource LabelStyle}"/>
                     <TextBox Text="{Binding NumberOfFins, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
-                    </Grid>
-                    <Grid>
+                </Grid>
+                <Grid>
                     <TextBlock Text="Fin Height [mm]: " Style="{StaticResource LabelStyle}"/>
                     <TextBox Text="{Binding FinHeight, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
-                    </Grid>
-                    <Grid>
-                        <TextBlock Text="Fin Thickness [mm]:" Style="{StaticResource LabelStyle}"/>
+                </Grid>
+                <Grid>
+                    <TextBlock Text="Fin Thickness [mm]:" Style="{StaticResource LabelStyle}"/>
                     <TextBox Text="{Binding FinThickness, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
-                    </Grid>
-                    <Grid>
+                </Grid>
+                <Grid>
                     <TextBlock Text="Base Thickness [mm]:" Style="{StaticResource LabelStyle}"/>
                     <TextBox Text="{Binding BaseThickness, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
-                    </Grid>
+                </Grid>
 
-                    <!-- outputs -->
-                    <TextBlock Text="Performance Outputs" Padding="10" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Grid>
+                <!-- outputs -->
+                <TextBlock Text="Performance Outputs" Padding="10" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Grid>
                     <TextBlock Text="Pressure Drop [inH2O]:" Style="{StaticResource LabelStyle}"/>
                     <TextBox Text="{Binding PressureDrop, Mode=OneWay}" Style="{StaticResource OutputStyle}" />
                 </Grid>
-                    <Grid>
+                <Grid>
+                    <TextBlock Text="Flow Condition:" Style="{StaticResource LabelStyle}"/>
+                    <TextBox Text="{Binding CurrentFlowCondition, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
+                    <TextBox Text="{Binding ReynoldsNumber, Mode=OneWay}" Style="{StaticResource OutputStyle}" Margin="0,0,140,0"/>
+                </Grid>
+                <Grid>
                     <TextBlock Text="Fin Efficiency [%]:" Style="{StaticResource LabelStyle}"/>
-                        <TextBox Text="{Binding FinEfficiency, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
-                    </Grid>
-                    <Grid>
+                    <TextBox Text="{Binding FinEfficiency, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
+                </Grid>
+                <Grid>
                     <TextBlock Text="Spreading Resistance [°C/W]:" Style="{StaticResource LabelStyle}"/>
-                        <TextBox Text="{Binding ThermalResistance_Spreading, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
-                    </Grid>
-                    <Grid>
+                    <TextBox Text="{Binding ThermalResistance_Spreading, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
+                </Grid>
+                <Grid>
                     <TextBlock Text="Convection Resistance [°C/W]:" Style="{StaticResource LabelStyle}"/>
-                        <TextBox Text="{Binding ThermalResistance_Convection, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
-                    </Grid>
-                    <Grid>
+                    <TextBox Text="{Binding ThermalResistance_Convection, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
+                </Grid>
+                <Grid>
                     <TextBlock Text="Total Resistance [°C/W]:" Style="{StaticResource LabelStyle}"/>
-                        <TextBox Text="{Binding ThermalResistance_Total, Mode=OneWay}" Style="{StaticResource OutputStyle}" TextChanged="Output_Value_Changed"/>
-                    </Grid>
-                </StackPanel>
-            </ScrollViewer>
-        <!-- End Information View -->                
+                    <TextBox Text="{Binding ThermalResistance_Total, Mode=OneWay}" Style="{StaticResource OutputStyle}" TextChanged="Output_Value_Changed"/>
+                </Grid>
+
+            </StackPanel>
+        </ScrollViewer>
+        <!-- End Information View -->
 
     </Grid>
-        </SplitView.Content>
-    </SplitView>
     <Page.Resources>
         <MenuFlyout x:Key="Flyout1">
             <MenuFlyoutItem Text=".CSV File" Click="SaveButtonClick"/>

@@ -129,11 +129,5 @@ namespace HeatSinkr.UI
                 System.Diagnostics.Debug.WriteLine("Output_Value_Changed Error: " + ex.ToString());
             }
         }
-
-        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
-        {
-            mySplitView.IsPaneOpen = !mySplitView.IsPaneOpen;
-            webView.Refresh();
-        }
     }
 }
