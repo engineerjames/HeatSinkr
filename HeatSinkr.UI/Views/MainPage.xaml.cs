@@ -6,8 +6,10 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Popups;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -28,6 +30,8 @@ namespace HeatSinkr.UI
             InitializeMaterialComboBox();
             CopyFilesIntoAppData();
             webView.Source = new Uri("ms-appdata:///local/WebAssets/index.html");
+            ApplicationView.PreferredLaunchViewSize = new Windows.Foundation.Size(1250, 800);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
         }
 
         private async void CopyFilesIntoAppData()
@@ -128,6 +132,21 @@ namespace HeatSinkr.UI
             {
                 System.Diagnostics.Debug.WriteLine("Output_Value_Changed Error: " + ex.ToString());
             }
+        }
+
+        private void Toggle_Checked(object sender, RoutedEventArgs e)
+        {
+            var toggle = sender as ToggleButton;
+
+            if ((string)toggle.Content == "-")
+            {
+                toggle.Content = "+";
+            }
+            else
+            {
+                toggle.Content = "-";
+            }
+            
         }
     }
 }

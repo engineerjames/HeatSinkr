@@ -27,9 +27,7 @@ namespace HeatSinkr.UI.Utility
 
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            Visibility visState;
-            var vis = Enum.TryParse<Visibility>((string)value, out visState);
-            return visState;
+            throw new NotImplementedException();
         }
     }
 }

@@ -29,72 +29,77 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Name="mainUIGrid">
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" MinWidth="400"/>
+            <ColumnDefinition Width="10*" MinWidth="400"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="5"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
-
-        <!-- Header Row -->
-        <TextBlock Grid.Column="0" Grid.Row="0" TextWrapping="Wrap" Text="Information" Padding="10" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36"/>
-
-        <TextBlock Grid.Column="1" Grid.Row="0" Text="Performance Charts" TextWrapping="Wrap" Padding="10" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" />
-        <!-- End Header Row -->
-
+        
         <!-- Web View -->
-        <WebView Grid.Column="2" Grid.Row="1" Name="webView" />
+        <Grid Grid.Column="2" Grid.Row="1">
+            <WebView Name="webView" />
+        </Grid>
         <!-- End Web View -->
 
         <!-- Information View -->
         <ScrollViewer Grid.Column="0" Grid.Row="1" Margin="0,0,0,50">
             <StackPanel>
-                <TextBlock Text="Input Parameters" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" FontWeight="Bold"/>
-                <Grid>
-                    <TextBlock Text="Volumetric Flowrate [CFM]:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox Text="{Binding CFM, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
-                </Grid>
-                <Grid>
-                    <TextBlock Text="Heatsink Material:" Style="{StaticResource LabelStyle}"/>
-                    <ComboBox Name="MaterialComboBox" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,10,30,10" Width="150" SelectionChanged="ComboBox_SelectionChanged"/>
-                </Grid>
-                <Grid>
-                    <TextBlock Text="Inlet Air Temperature [°C]" Style="{StaticResource LabelStyle}"/>
-                    <TextBox Text="{Binding InletAirTemperature, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
-                </Grid>
-                
-                <TextBlock Text="Geometry Parameters" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" FontWeight="Bold" />
-                <Grid>
-                    <TextBlock Text="Width [mm]:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox Text="{Binding Width, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
-                </Grid>
-                <Grid>
-                    <TextBlock Text="Length [mm]:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox Text="{Binding FlowLength, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
-                </Grid>
-                <Grid>
-                    <TextBlock Text="Number of Fins: " Style="{StaticResource LabelStyle}"/>
-                    <TextBox Text="{Binding NumberOfFins, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
-                </Grid>
-                <Grid>
-                    <TextBlock Text="Fin Height [mm]: " Style="{StaticResource LabelStyle}"/>
-                    <TextBox Text="{Binding FinHeight, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
-                </Grid>
-                <Grid>
-                    <TextBlock Text="Fin Thickness [mm]:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox Text="{Binding FinThickness, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
-                </Grid>
-                <Grid>
-                    <TextBlock Text="Base Thickness [mm]:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox Text="{Binding BaseThickness, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
-                </Grid>
-
-                <!-- outputs -->
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <TextBlock Text="Performance Outputs" Padding="10" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <ToggleButton x:Name="OutputToggle" Content="+" VerticalAlignment="Center" HorizontalContentAlignment="Center"  Width="Auto" HorizontalAlignment="Right"/>
+                <RelativePanel HorizontalAlignment="Center" Background="{ThemeResource AppBarBackgroundThemeBrush}" Width="400" Padding="5,0,20,0">
+                    <TextBlock Text="Input Parameters" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="10" FontWeight="Bold"/>
+                    <ToggleButton x:Name="inputToggle" IsChecked="True" Content="-" HorizontalContentAlignment="Center" Click="Toggle_Checked" Width="30" Height="Auto" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" />
+                </RelativePanel>
+                <StackPanel Visibility="{Binding ElementName=inputToggle, Path=IsChecked, Converter={StaticResource boolToVisConverter}}">
+                    <Grid>
+                        <TextBlock Text="Volumetric Flowrate [CFM]:" Style="{StaticResource LabelStyle}"/>
+                        <TextBox Text="{Binding CFM, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Heatsink Material:" Style="{StaticResource LabelStyle}"/>
+                        <ComboBox Name="MaterialComboBox" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,10,30,10" Width="150" SelectionChanged="ComboBox_SelectionChanged"/>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Inlet Air Temperature [°C]" Style="{StaticResource LabelStyle}"/>
+                        <TextBox Text="{Binding InletAirTemperature, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
+                    </Grid>
                 </StackPanel>
+                <!-- Geometry Parameters -->
+                <RelativePanel HorizontalAlignment="Center" Background="{ThemeResource AppBarBackgroundThemeBrush}" Width="400" Padding="5,0,20,0">
+                    <TextBlock Text="Geometry Parameters" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10" FontWeight="Bold" />
+                    <ToggleButton x:Name="GeometryToggle" IsChecked="True" Content="-" HorizontalContentAlignment="Center" Click="Toggle_Checked" Width="30" Height="Auto" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                </RelativePanel>
+                <StackPanel Visibility="{Binding ElementName=GeometryToggle, Path=IsChecked, Converter={StaticResource boolToVisConverter}}">
+                    <Grid>
+                        <TextBlock Text="Width [mm]:" Style="{StaticResource LabelStyle}"/>
+                        <TextBox Text="{Binding Width, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Length [mm]:" Style="{StaticResource LabelStyle}"/>
+                        <TextBox Text="{Binding FlowLength, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Number of Fins: " Style="{StaticResource LabelStyle}"/>
+                        <TextBox Text="{Binding NumberOfFins, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Fin Height [mm]: " Style="{StaticResource LabelStyle}"/>
+                        <TextBox Text="{Binding FinHeight, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Fin Thickness [mm]:" Style="{StaticResource LabelStyle}"/>
+                        <TextBox Text="{Binding FinThickness, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Base Thickness [mm]:" Style="{StaticResource LabelStyle}"/>
+                        <TextBox Text="{Binding BaseThickness, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
+                    </Grid>
+                </StackPanel>
+                <!-- outputs -->
+                <RelativePanel HorizontalAlignment="Center" Background="{ThemeResource AppBarBackgroundThemeBrush}" Width="400" Padding="5,0,20,0">
+                    <TextBlock Text="Performance Outputs" Padding="10" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <ToggleButton x:Name="OutputToggle" IsChecked="True" Content="-" HorizontalContentAlignment="Center" Click="Toggle_Checked" Width="30" Height="Auto" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                </RelativePanel>
                 <StackPanel Visibility="{Binding ElementName=OutputToggle, Path=IsChecked, Converter={StaticResource boolToVisConverter}}">
                     <Grid>
                         <TextBlock Text="Pressure Drop [inH2O]:" Style="{StaticResource LabelStyle}"/>
