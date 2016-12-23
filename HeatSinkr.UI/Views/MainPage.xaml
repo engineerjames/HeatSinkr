@@ -6,9 +6,26 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="using:HeatSinkr.UI.ViewModels"
+    xmlns:utilities="using:HeatSinkr.UI.Utility"
     mc:Ignorable="d"
     >
 
+    <Page.Resources>
+        <utilities:BooleanToVisibilityConverter x:Key="boolToVisConverter"/>
+
+        <MenuFlyout x:Key="Flyout1">
+            <MenuFlyoutItem Text=".CSV File" Click="SaveButtonClick"/>
+            <MenuFlyoutItem Text="HTML File" Click="NotImplementedClickHandler"/>
+            <MenuFlyoutItem Text="PDML File" Click="NotImplementedClickHandler"/>
+        </MenuFlyout>
+    </Page.Resources>
+    <Page.BottomAppBar>
+        <CommandBar Grid.Column="0" Grid.Row="2" IsOpen="True" Template="{StaticResource HeatSinkrCommandBarControl}" FontSize="16" IsSticky="True" Closing="CommandBar_Closing">
+            <AppBarButton Icon="Add" Click="AppBarButton_Click" Label="Add Heatsink"/>
+            <AppBarButton Icon="Save" Label="Save HS Data" Flyout="{StaticResource Flyout1}"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Name="mainUIGrid">
 
         <Grid.ColumnDefinitions>
@@ -32,7 +49,7 @@
 
         <!-- Information View -->
         <ScrollViewer Grid.Column="0" Grid.Row="1" Margin="0,0,0,50">
-            <StackPanel Orientation="Vertical">
+            <StackPanel>
                 <TextBlock Text="Input Parameters" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" FontWeight="Bold"/>
                 <Grid>
                     <TextBlock Text="Volumetric Flowrate [CFM]:" Style="{StaticResource LabelStyle}"/>
@@ -46,6 +63,7 @@
                     <TextBlock Text="Inlet Air Temperature [°C]" Style="{StaticResource LabelStyle}"/>
                     <TextBox Text="{Binding InletAirTemperature, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
                 </Grid>
+                
                 <TextBlock Text="Geometry Parameters" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" FontWeight="Bold" />
                 <Grid>
                     <TextBlock Text="Width [mm]:" Style="{StaticResource LabelStyle}"/>
@@ -73,51 +91,43 @@
                 </Grid>
 
                 <!-- outputs -->
-                <TextBlock Text="Performance Outputs" Padding="10" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <Grid>
-                    <TextBlock Text="Pressure Drop [inH2O]:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox Text="{Binding PressureDrop, Mode=OneWay}" Style="{StaticResource OutputStyle}" />
-                </Grid>
-                <Grid>
-                    <TextBlock Text="Flow Condition:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox Text="{Binding CurrentFlowCondition, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
-                    <TextBox Text="{Binding ReynoldsNumber, Mode=OneWay}" Style="{StaticResource OutputStyle}" Margin="0,0,140,0"/>
-                </Grid>
-                <Grid>
-                    <TextBlock Text="Fin Efficiency [%]:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox Text="{Binding FinEfficiency, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
-                </Grid>
-                <Grid>
-                    <TextBlock Text="Spreading Resistance [°C/W]:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox Text="{Binding ThermalResistance_Spreading, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
-                </Grid>
-                <Grid>
-                    <TextBlock Text="Convection Resistance [°C/W]:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox Text="{Binding ThermalResistance_Convection, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
-                </Grid>
-                <Grid>
-                    <TextBlock Text="Total Resistance [°C/W]:" Style="{StaticResource LabelStyle}"/>
-                    <TextBox Text="{Binding ThermalResistance_Total, Mode=OneWay}" Style="{StaticResource OutputStyle}" TextChanged="Output_Value_Changed"/>
-                </Grid>
-
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="Performance Outputs" Padding="10" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <ToggleButton x:Name="OutputToggle" Content="+" VerticalAlignment="Center" HorizontalContentAlignment="Center"  Width="Auto" HorizontalAlignment="Right"/>
+                </StackPanel>
+                <StackPanel Visibility="{Binding ElementName=OutputToggle, Path=IsChecked, Converter={StaticResource boolToVisConverter}}">
+                    <Grid>
+                        <TextBlock Text="Pressure Drop [inH2O]:" Style="{StaticResource LabelStyle}"/>
+                        <TextBox Text="{Binding PressureDrop, Mode=OneWay}" Style="{StaticResource OutputStyle}" />
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Flow Condition:" Style="{StaticResource LabelStyle}"/>
+                        <TextBox Text="{Binding CurrentFlowCondition, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
+                        <TextBox Text="{Binding ReynoldsNumber, Mode=OneWay}" Style="{StaticResource OutputStyle}" Margin="0,0,140,0"/>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Fin Efficiency [%]:" Style="{StaticResource LabelStyle}"/>
+                        <TextBox Text="{Binding FinEfficiency, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Spreading Resistance [°C/W]:" Style="{StaticResource LabelStyle}"/>
+                        <TextBox Text="{Binding ThermalResistance_Spreading, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Convection Resistance [°C/W]:" Style="{StaticResource LabelStyle}"/>
+                        <TextBox Text="{Binding ThermalResistance_Convection, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Total Resistance [°C/W]:" Style="{StaticResource LabelStyle}"/>
+                        <TextBox Text="{Binding ThermalResistance_Total, Mode=OneWay}" Style="{StaticResource OutputStyle}" TextChanged="Output_Value_Changed"/>
+                    </Grid>
+                </StackPanel>
             </StackPanel>
         </ScrollViewer>
         <!-- End Information View -->
 
     </Grid>
-    <Page.Resources>
-        <MenuFlyout x:Key="Flyout1">
-            <MenuFlyoutItem Text=".CSV File" Click="SaveButtonClick"/>
-            <MenuFlyoutItem Text="HTML File" Click="NotImplementedClickHandler"/>
-            <MenuFlyoutItem Text="PDML File" Click="NotImplementedClickHandler"/>
-        </MenuFlyout>
-    </Page.Resources>
-    <Page.BottomAppBar>
-        <CommandBar Grid.Column="0" Grid.Row="2" IsOpen="True" Template="{StaticResource HeatSinkrCommandBarControl}" FontSize="16" IsSticky="True" Closing="CommandBar_Closing">
-             <AppBarButton Icon="Add" Click="AppBarButton_Click" Label="Add Heatsink"/>
-             <AppBarButton Icon="Save" Label="Save HS Data" Flyout="{StaticResource Flyout1}"/>
-        </CommandBar>
-    </Page.BottomAppBar>
+    
 
     
 

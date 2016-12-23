@@ -878,6 +878,5 @@
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="Margin" Value="10,10,30,10"/>
         </Style>
-        
     </Application.Resources>
 </Application>
