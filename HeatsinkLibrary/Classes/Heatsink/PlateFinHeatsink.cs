@@ -137,8 +137,6 @@ namespace HeatSinkr.Library
         {
             get
             {
-                System.Diagnostics.Debug.WriteLine("Flow is developing: " + FlowIsDeveloping().ToString());
-
                 var Pc = CalculateContractionLoss();
                 var Pe = CalculateExpansionLoss();
                 var Pf = CalculateFrictionalLoss();

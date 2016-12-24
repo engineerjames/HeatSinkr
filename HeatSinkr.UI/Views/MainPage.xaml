@@ -8,6 +8,7 @@
     xmlns:viewModel="using:HeatSinkr.UI.ViewModels"
     xmlns:utilities="using:HeatSinkr.UI.Utility"
     mc:Ignorable="d"
+    Loaded="Page_Loaded"
     >
 
     <Page.Resources>
@@ -106,7 +107,7 @@
                         <TextBox Text="{Binding PressureDrop, Mode=OneWay}" Style="{StaticResource OutputStyle}" />
                     </Grid>
                     <Grid>
-                        <TextBlock Text="Flow Condition:" Style="{StaticResource LabelStyle}"/>
+                        <TextBlock Text="Re - Flow Condition:" Style="{StaticResource LabelStyle}"/>
                         <TextBox Text="{Binding CurrentFlowCondition, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
                         <TextBox Text="{Binding ReynoldsNumber, Mode=OneWay}" Style="{StaticResource OutputStyle}" Margin="0,0,140,0"/>
                     </Grid>

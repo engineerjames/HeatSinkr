@@ -147,5 +147,10 @@ namespace HeatSinkr.UI
                 toggle.Content = "-";
             }
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel.CFM = 5.001;
+        }
     }
 }
