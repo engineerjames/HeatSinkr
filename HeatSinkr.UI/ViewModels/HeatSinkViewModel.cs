@@ -223,6 +223,15 @@ namespace HeatSinkr.UI.ViewModels
             }
         }
 
+        public string PressureCurve
+        {
+            get
+            {
+                return GetPressureCurveData();
+            }
+        }
+
+   
         public FlowCondition CurrentFlowCondition
         {
             get
@@ -240,9 +249,13 @@ namespace HeatSinkr.UI.ViewModels
             }
         }
 
+        
+
         public HeatSinkViewModel()
         {
             hs = HeatsinkFactory.GetDefaultHeatsink(HeatsinkType.PlateFin);
+            CurveGenerator.Instance.AddHeatsink(hs);
+
             _Width = hs.Geometry.Width;
             _FlowLength = hs.Geometry.FlowLength;
             _FinThickness = hs.Geometry.FinThickness;
@@ -276,27 +289,46 @@ namespace HeatSinkr.UI.ViewModels
 
         private string GetThermalResistanceCurveData()
         {
-
-            var cg = CurveGenerator.Instance;
-            cg.AddHeatsink(hs);
-            var datapoints = cg.GetThermalResistanceCurves(CalculateLowCFM(CFM), CalculateHighCFM(CFM));
             string jChartDataPoints = "var chartData = [";
 
-            for (int i = 0; i < datapoints[0].Count; i++)
-            {
-                if (i != datapoints[0].Count - 1)
-                {
-                    jChartDataPoints += datapoints[0][i].ToString() + ",";
-                }
-                else
-                {
-                    jChartDataPoints += datapoints[0][i];
-                }
-            }
+            var datapoints = CurveGenerator.Instance.GetThermalResistanceCurves(CalculateLowCFM(CFM), CalculateHighCFM(CFM));
+
+            jChartDataPoints += GenerateChartDataFromDataPoints(datapoints);
 
             jChartDataPoints += "];";
 
             return jChartDataPoints;
+        }
+
+        private string GetPressureCurveData()
+        {
+            string jChartDataPoints = "var chartData2 = [";
+            var datapoints = CurveGenerator.Instance.GetPressureDropCurves(CalculateLowCFM(CFM), CalculateHighCFM(CFM));
+
+            jChartDataPoints += GenerateChartDataFromDataPoints(datapoints);
+
+            jChartDataPoints += "];";
+
+            return jChartDataPoints;    
+        }
+
+
+        private string GenerateChartDataFromDataPoints(List<List<DataPoint>> datapoints)
+        {
+            var dataString = "";
+            for (int i = 0; i < datapoints[0].Count; i++)
+            {
+                if (i!= datapoints[0].Count-1)
+                {
+                    dataString += datapoints[0][i].ToString() + ",";
+                }
+                else
+                {
+                    dataString += datapoints[0][i];
+                }
+            }
+
+            return dataString;
         }
 
         private double CalculateHighCFM(double currentCFM)

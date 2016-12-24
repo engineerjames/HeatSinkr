@@ -33,13 +33,13 @@
             <ColumnDefinition Width="10*" MinWidth="400"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="5"/>
+            <RowDefinition Height="0"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
         
         <!-- Web View -->
         <Grid Grid.Column="2" Grid.Row="1">
-            <WebView Name="webView" />
+            <WebView Name="webView" Margin="5,5,5,50" />
         </Grid>
         <!-- End Web View -->
 
@@ -48,7 +48,7 @@
             <StackPanel>
                 <RelativePanel HorizontalAlignment="Center" Background="{ThemeResource AppBarBackgroundThemeBrush}" Width="400" Padding="5,0,20,0">
                     <TextBlock Text="Input Parameters" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="10" FontWeight="Bold"/>
-                    <ToggleButton x:Name="inputToggle" IsChecked="True" Content="-" HorizontalContentAlignment="Center" Click="Toggle_Checked" Width="30" Height="Auto" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" />
+                    <ToggleButton x:Name="inputToggle" IsChecked="True" Content="-" HorizontalContentAlignment="Center" Click="Toggle_Checked" Width="30" Height="Auto" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
                 </RelativePanel>
                 <StackPanel Visibility="{Binding ElementName=inputToggle, Path=IsChecked, Converter={StaticResource boolToVisConverter}}">
                     <Grid>

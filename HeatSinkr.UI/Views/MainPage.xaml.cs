@@ -30,7 +30,7 @@ namespace HeatSinkr.UI
             InitializeMaterialComboBox();
             CopyFilesIntoAppData();
             webView.Source = new Uri("ms-appdata:///local/WebAssets/index.html");
-            ApplicationView.PreferredLaunchViewSize = new Windows.Foundation.Size(1250, 800);
+            ApplicationView.PreferredLaunchViewSize = new Windows.Foundation.Size(1050, 800);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
         }
 
@@ -56,7 +56,7 @@ namespace HeatSinkr.UI
         private void InitializeMaterialComboBox()
         {
             // Initialize list with all available materials
-            foreach (var type in System.Enum.GetValues(typeof(MaterialType)))
+            foreach (var type in Enum.GetValues(typeof(MaterialType)))
             {
                 Materials.Add(type.ToString());
             }
@@ -122,10 +122,10 @@ namespace HeatSinkr.UI
         {
             try
             {
-
                 var html = HTMLEditor.Instance;
-                var chartData = ViewModel.ThermalResistanceCurve;
-                html.UpdateHTML(chartData);
+                var TrChartData = ViewModel.ThermalResistanceCurve;
+                var PressureChartData = ViewModel.PressureCurve;
+                html.UpdateHTML(TrChartData, PressureChartData);
                 webView.Refresh();
             }
             catch (Exception ex)
@@ -146,7 +146,6 @@ namespace HeatSinkr.UI
             {
                 toggle.Content = "-";
             }
-            
         }
     }
 }

@@ -46,8 +46,8 @@ namespace HeatSinkr.Library
         /// <returns>List of plottable X/Y coordinates for each heatsink in the collection</returns>
         public List<List<DataPoint>> GetThermalResistanceCurves(double LowCFM, double HighCFM)
         {            
-            if (!CFMIsValid(LowCFM) || !CFMIsValid(HighCFM) || LowCFM >= HighCFM)
-                throw new InvalidOperationException("Invalid CFM value passed in: Low: " + LowCFM + ", High: " + HighCFM);
+            if (!CFMIsValid(HighCFM) || !CFMIsValid(LowCFM))
+                throw new InvalidOperationException("Invalid CFM value passed in to GetThermalResistanceCurves");
             if (Heatsinks.Count <= 0)
                 throw new InvalidOperationException("Can't generate thermal resistance curve for no heatsinks.  Try adding heatsink to the list (AddHeatSink)");
 
@@ -64,7 +64,31 @@ namespace HeatSinkr.Library
             return DataPoints;
         }
 
-        private bool CFMIsValid(double CFMValue) { return CFMValue > 0; }
+        public List<List<DataPoint>> GetPressureDropCurves(double LowCFM, double HighCFM)
+        {
+            if (!CFMIsValid(HighCFM) || !CFMIsValid(LowCFM))
+                throw new InvalidOperationException("Invalid CFM value passed in to GetPressureDropCurves.");
+            if (Heatsinks.Count <= 0)
+                throw new InvalidOperationException("Can't generate pressure drop curve for no heatsinks.  Try adding heatsink to the list (AddHeatSink)");
+
+            DataPoints.Clear();
+
+            foreach (Heatsink hs in Heatsinks)
+            {
+                var OriginalCFM = hs.CFM;
+                var hsCurve = GeneratePressureDropCurve(hs, LowCFM, HighCFM);
+                DataPoints.Add(hsCurve);
+                hs.CFM = OriginalCFM;
+            }
+
+            return DataPoints;
+        }
+
+        private bool CFMIsValid(double CFMValue)
+        {
+            bool isCFMGreaterThanZero = (CFMValue >= 0);
+            return isCFMGreaterThanZero;
+        }
 
         private List<DataPoint> GenerateThermalResistancecurve(Heatsink hs, double LowCFM, double HighCFM)
         {
@@ -79,6 +103,21 @@ namespace HeatSinkr.Library
             }
 
             return TrCurve;
+        }
+
+        private List<DataPoint> GeneratePressureDropCurve(Heatsink hs, double LowCFM, double HighCFM)
+        {
+            var delta = (HighCFM - LowCFM) / (InterpolationPoints - 1);
+            var DPCurve = new List<DataPoint>();
+
+            for (int i = 0; i < InterpolationPoints; i++)
+            {
+                var cfm = LowCFM + delta * i;
+                hs.CFM = cfm;
+                DPCurve.Add(new DataPoint(cfm, Convert.PaToInH2O(hs.PressureDrop)));
+            }
+
+            return DPCurve;
         }
 
         public void AddHeatsink(Heatsink heatsinkToAdd)
@@ -106,5 +145,7 @@ namespace HeatSinkr.Library
                 return _Instance;
             }
         }
+
+       
     }
 }

@@ -13,12 +13,13 @@ namespace HeatSinkr.UI
 
         public static HTMLEditor Instance { get; } = new HTMLEditor();
         
-        public async void UpdateHTML(string chartData)
+        public async void UpdateHTML(string TrChartData, string PressureChartData)
         {
             try
             {
                 await GetJavaScriptFile();
-                JSText[0] = chartData;
+                JSText[0] = TrChartData;
+                JSText[1] = PressureChartData;
                 var newFile = await appData.CreateFileAsync("baseWebView.js", CreationCollisionOption.ReplaceExisting);
                 await FileIO.WriteLinesAsync(newFile, JSText);
             }
