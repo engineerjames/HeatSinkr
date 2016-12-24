@@ -17,7 +17,7 @@ namespace HeatSinkr.Library
             else
                 throw new NotImplementedException("Heatsink type of " + type.ToString() + " has not been implemented!");
         }
-
+        
         private static Heatsink GetDefaultPlateFinHeatsink()
         {
             PlateFinGeometry testGeom = new PlateFinGeometry();
