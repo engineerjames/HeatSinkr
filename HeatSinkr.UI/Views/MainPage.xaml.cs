@@ -69,7 +69,6 @@ namespace HeatSinkr.UI
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           
             var combo = sender as ComboBox;
 
             MaterialType mat;

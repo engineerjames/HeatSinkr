@@ -65,6 +65,50 @@ namespace HeatSinkr.UI.ViewModels
             }
         }
 
+        private double _HeatSourceWidth;
+        public double HeatSourceWidth
+        {
+            get
+            {
+                return Convert.MtoMM(_HeatSourceWidth);
+            }
+            set
+            {
+                value = Convert.MMtoM(value);
+                hs.Source.Width = value;
+                SetField<double>(ref _HeatSourceWidth, value);
+            }
+        }
+
+        private double _HeatSourceLength;
+        public double HeatSourceLength
+        {
+            get
+            {
+                return Convert.MtoMM(_HeatSourceLength);
+            }
+            set
+            {
+                value = Convert.MMtoM(value);
+                hs.Source.Length = value;
+                SetField<double>(ref _HeatSourceLength, value);
+            }
+        }
+
+        private double _HeatSourcePower;
+        public double HeatSourcePower
+        {
+            get
+            {
+                return _HeatSourcePower;
+            }
+            set
+            {
+                hs.Source.Power = value;
+                SetField<double>(ref _HeatSourcePower, value);
+            }
+        }
+
         private int _NumberOfFins;
         public int NumberOfFins
         {
@@ -142,6 +186,14 @@ namespace HeatSinkr.UI.ViewModels
             }
         }
 
+        public double ThermalResistance_Caloric
+        {
+            get
+            {
+                var Tr = System.Math.Round(hs.ThermalResistance_Caloric, ThermalResistanceDecimalPlaces);
+                return Tr;
+            }
+        }
 
         public double ThermalResistance_Total
         {
@@ -249,7 +301,7 @@ namespace HeatSinkr.UI.ViewModels
             }
         }
 
-        
+       
 
         public HeatSinkViewModel()
         {
@@ -265,11 +317,15 @@ namespace HeatSinkr.UI.ViewModels
             _CFM = hs.CFM;
             _InletAirTemperature = hs.InletAir.Temperature;
             _Material = hs.Material;
+            _HeatSourceLength = hs.Source.Length;
+            _HeatSourceWidth = hs.Source.Width;
+            _HeatSourcePower = hs.Source.Power;
 
             // Initialize Model Outputs - things that need to get updated whenever changes are made to the input parameters
             ModelOutputs.Add(nameof(CurrentFlowCondition));
             ModelOutputs.Add(nameof(ThermalResistance_Convection));
             ModelOutputs.Add(nameof(ThermalResistance_Spreading));
+            ModelOutputs.Add(nameof(ThermalResistance_Caloric));
             ModelOutputs.Add(nameof(ThermalResistance_Total));
             ModelOutputs.Add(nameof(PressureDrop));
             ModelOutputs.Add(nameof(FinEfficiency));

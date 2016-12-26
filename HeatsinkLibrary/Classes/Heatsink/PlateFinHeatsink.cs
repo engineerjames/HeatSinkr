@@ -282,11 +282,9 @@ namespace HeatSinkr.Library
         {
             get
             {
-                var DT = (1.8 * Source.Power) / CFM;
-                var Tfinal = InletAir.Temperature + DT;
-                var Tavg = (InletAir.Temperature + Tfinal) / 2;
+               var Trcal = 1.0 / (2.0 * InletAir.SpecificHeat * Convert.CFMToMCubedPerSecond(CFM) * InletAir.Density);
 
-                return (Tavg - InletAir.Temperature) / Source.Power;
+               return Trcal;
             }
         }
 

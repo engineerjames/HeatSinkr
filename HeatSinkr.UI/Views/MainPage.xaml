@@ -46,29 +46,48 @@
         <ScrollViewer Grid.Column="0" Grid.Row="1" Margin="0,0,0,50">
             <StackPanel>
                 <RelativePanel HorizontalAlignment="Center" Background="{ThemeResource AppBarBackgroundThemeBrush}" Width="400" Padding="5,0,20,0">
-                    <TextBlock Text="Input Parameters" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="10" FontWeight="Bold"/>
-                    <ToggleButton x:Name="inputToggle" IsChecked="True" Content="-" HorizontalContentAlignment="Center" Click="Toggle_Checked" Width="30" Height="Auto" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                    <TextBlock Text="Input Flow" Style="{StaticResource SectionHeaderTextBlock}"/>
+                    <ToggleButton x:Name="inputToggle" Click="Toggle_Checked" Style="{StaticResource SectionHeaderToggleButton}"/>
                 </RelativePanel>
                 <StackPanel Visibility="{Binding ElementName=inputToggle, Path=IsChecked, Converter={StaticResource boolToVisConverter}}">
                     <Grid>
                         <TextBlock Text="Volumetric Flowrate [CFM]:" Style="{StaticResource LabelStyle}"/>
                         <TextBox Text="{Binding CFM, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
                     </Grid>
-                    <Grid>
-                        <TextBlock Text="Heatsink Material:" Style="{StaticResource LabelStyle}"/>
-                        <ComboBox Name="MaterialComboBox" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,10,30,10" Width="150" SelectionChanged="ComboBox_SelectionChanged"/>
-                    </Grid>
+                  
                     <Grid>
                         <TextBlock Text="Inlet Air Temperature [°C]" Style="{StaticResource LabelStyle}"/>
                         <TextBox Text="{Binding InletAirTemperature, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
                     </Grid>
                 </StackPanel>
+                <RelativePanel HorizontalAlignment="Center" Background="{ThemeResource AppBarBackgroundThemeBrush}" Width="400" Padding="5,0,20,0">
+                    <TextBlock Text="Heat Source" Style="{StaticResource SectionHeaderTextBlock}"/>
+                    <ToggleButton x:Name="heatSourceToggle" Click="Toggle_Checked" Style="{StaticResource SectionHeaderToggleButton}"/>
+                </RelativePanel>
+                <StackPanel Visibility="{Binding ElementName=heatSourceToggle, Path=IsChecked, Converter={StaticResource boolToVisConverter}}">
+                    <Grid>
+                        <TextBlock Text="Width [mm]:" Style="{StaticResource LabelStyle}"/>
+                        <TextBox Text="{Binding HeatSourceWidth, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Length [mm]:" Style="{StaticResource LabelStyle}"/>
+                        <TextBox Text="{Binding HeatSourceLength, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Power [W]:" Style="{StaticResource LabelStyle}"/>
+                        <TextBox Text="{Binding HeatSourcePower, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
+                    </Grid>
+                </StackPanel>
                 <!-- Geometry Parameters -->
                 <RelativePanel HorizontalAlignment="Center" Background="{ThemeResource AppBarBackgroundThemeBrush}" Width="400" Padding="5,0,20,0">
-                    <TextBlock Text="Geometry Parameters" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10" FontWeight="Bold" />
-                    <ToggleButton x:Name="GeometryToggle" IsChecked="True" Content="-" HorizontalContentAlignment="Center" Click="Toggle_Checked" Width="30" Height="Auto" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                    <TextBlock Text="Geometry" Style="{StaticResource SectionHeaderTextBlock}" />
+                    <ToggleButton x:Name="GeometryToggle" Click="Toggle_Checked" Style="{StaticResource SectionHeaderToggleButton}"/>
                 </RelativePanel>
                 <StackPanel Visibility="{Binding ElementName=GeometryToggle, Path=IsChecked, Converter={StaticResource boolToVisConverter}}">
+                    <Grid>
+                        <TextBlock Text="Heatsink Material:" Style="{StaticResource LabelStyle}"/>
+                        <ComboBox Name="MaterialComboBox" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,10,30,10" Width="150" SelectionChanged="ComboBox_SelectionChanged"/>
+                    </Grid>
                     <Grid>
                         <TextBlock Text="Width [mm]:" Style="{StaticResource LabelStyle}"/>
                         <TextBox Text="{Binding Width, Mode=TwoWay}" Style="{StaticResource InputStyle}"/>
@@ -96,8 +115,8 @@
                 </StackPanel>
                 <!-- outputs -->
                 <RelativePanel HorizontalAlignment="Center" Background="{ThemeResource AppBarBackgroundThemeBrush}" Width="400" Padding="5,0,20,0">
-                    <TextBlock Text="Performance Outputs" Padding="10" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <ToggleButton x:Name="OutputToggle" IsChecked="True" Content="-" HorizontalContentAlignment="Center" Click="Toggle_Checked" Width="30" Height="Auto" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
+                    <TextBlock Text="Outputs" Style="{StaticResource SectionHeaderTextBlock}"/>
+                    <ToggleButton x:Name="OutputToggle" Click="Toggle_Checked" Style="{StaticResource SectionHeaderToggleButton}"/>
                 </RelativePanel>
                 <StackPanel Visibility="{Binding ElementName=OutputToggle, Path=IsChecked, Converter={StaticResource boolToVisConverter}}">
                     <Grid>
@@ -120,6 +139,10 @@
                     <Grid>
                         <TextBlock Text="Convection Resistance [°C/W]:" Style="{StaticResource LabelStyle}"/>
                         <TextBox Text="{Binding ThermalResistance_Convection, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
+                    </Grid>
+                    <Grid>
+                        <TextBlock Text="Caloric Resistance [°C/W]:" Style="{StaticResource LabelStyle}"/>
+                        <TextBox Text="{Binding ThermalResistance_Caloric, Mode=OneWay}" Style="{StaticResource OutputStyle}"/>
                     </Grid>
                     <Grid>
                         <TextBlock Text="Total Resistance [°C/W]:" Style="{StaticResource LabelStyle}"/>
