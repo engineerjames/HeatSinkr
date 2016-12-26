@@ -24,7 +24,7 @@
                 if (ReynoldsNumber < 2300.0)
                     return FlowCondition.Laminar;
                 else if (ReynoldsNumber > 2300.0 && ReynoldsNumber < 4000.0)
-                    return FlowCondition.Transient;
+                    return FlowCondition.Transition;
                 else
                     return FlowCondition.Turbulent;
             }
@@ -123,6 +123,6 @@
 
     }
 
-    public enum FlowCondition { Laminar, Transient, Turbulent };
+    public enum FlowCondition { Laminar, Transition, Turbulent };
 
 }

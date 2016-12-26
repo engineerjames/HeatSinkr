@@ -162,7 +162,7 @@ namespace HeatSinkr.Library
         {
             get
             {
-                if (this.FlowCondition == FlowCondition.Laminar || FlowCondition == FlowCondition.Transient)
+                if (this.FlowCondition == FlowCondition.Laminar || FlowCondition == FlowCondition.Transition)
                 {
                     var dL = HydraulicDiameter / Geometry.FlowLength;
                     var Re = ReynoldsNumber;
@@ -186,7 +186,7 @@ namespace HeatSinkr.Library
         {
             get
             {
-                if (FlowCondition == FlowCondition.Laminar || FlowCondition == FlowCondition.Transient)
+                if (FlowCondition == FlowCondition.Laminar || FlowCondition == FlowCondition.Transition)
                     return (0.05 * ReynoldsNumber * HydraulicDiameter);
                 else
                     return (1.359 * HydraulicDiameter * Math.Pow(ReynoldsNumber, 0.25));

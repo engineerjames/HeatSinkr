@@ -80,11 +80,6 @@ namespace HeatSinkr.UI
             System.Diagnostics.Debug.WriteLine("New HS material: Total = " + ViewModel.ThermalResistance_Total);
         }
 
-        private void AppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
-
         private void CommandBar_Closing(object sender, object e)
         {
             var commandBar = sender as CommandBar;
@@ -146,11 +141,6 @@ namespace HeatSinkr.UI
             {
                 toggle.Content = "-";
             }
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            ViewModel.CFM = 5.001;
-        }
+        }                
     }
 }

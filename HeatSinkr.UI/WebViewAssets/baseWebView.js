@@ -71,7 +71,7 @@ var PressureChart = new Chart(chart2, {
                 },
                 scaleLabel: {
                     display: true,
-                    labelString: 'Thermal Resistance [K/W]'
+                    labelString: 'Pressure Drop ["H2O]'
                 }
             }]
         },

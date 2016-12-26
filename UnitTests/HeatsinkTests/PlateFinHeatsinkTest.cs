@@ -94,7 +94,7 @@ namespace HeatSinkr.Tests
             Assert.AreEqual(FlowCondition.Turbulent, hs.FlowCondition);
 
             hs.CFM = TransientCFM;
-            Assert.AreEqual(FlowCondition.Transient, hs.FlowCondition);
+            Assert.AreEqual(FlowCondition.Transition, hs.FlowCondition);
 
             hs.CFM = LaminarCFM;
             Assert.AreEqual(FlowCondition.Laminar, hs.FlowCondition);
