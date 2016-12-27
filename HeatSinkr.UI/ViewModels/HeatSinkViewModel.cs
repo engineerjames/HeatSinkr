@@ -266,6 +266,14 @@ namespace HeatSinkr.UI.ViewModels
             }
         }
 
+        public double Temperature_Case
+        {
+            get
+            {
+                var Tcase = hs.Temperature_Case;
+                return System.Math.Round(Tcase, 2);
+            }
+        }
 
         public string ThermalResistanceCurve
         {
@@ -329,11 +337,12 @@ namespace HeatSinkr.UI.ViewModels
             ModelOutputs.Add(nameof(ThermalResistance_Total));
             ModelOutputs.Add(nameof(PressureDrop));
             ModelOutputs.Add(nameof(FinEfficiency));
-            ModelOutputs.Add(nameof(ReynoldsNumber));         
+            ModelOutputs.Add(nameof(ReynoldsNumber));
+            ModelOutputs.Add(nameof(Temperature_Case));        
         }
    
 
-        public async Task<string> WriteHeatsinkData(HeatsinkWriters Writer)
+        public async Task<string> WriteHeatsinkDataAsync(HeatsinkWriters Writer)
         {
             return await Task.Run(() =>
              {

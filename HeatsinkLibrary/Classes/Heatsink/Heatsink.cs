@@ -121,6 +121,17 @@
             }
         }
 
+        /// <summary>
+        /// Estimated case temperature [C]
+        /// </summary>
+        public virtual double Temperature_Case
+        {
+            get
+            {
+                return InletAir.Temperature + (Source.Power * ThermalResistance_Total); 
+            }
+        }
+
     }
 
     public enum FlowCondition { Laminar, Transition, Turbulent };

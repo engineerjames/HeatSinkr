@@ -88,7 +88,7 @@ namespace HeatSinkr.UI
         private async void SaveButtonClick(object sender, RoutedEventArgs e)
         {
             StorageFile file = await GetSaveDirectoryAsync();
-            string dataToWrite = await ViewModel.WriteHeatsinkData(HeatsinkWriters.CSV);
+            string dataToWrite = await ViewModel.WriteHeatsinkDataAsync(HeatsinkWriters.CSV);
             await Windows.Storage.FileIO.WriteTextAsync(file, dataToWrite);
         }
 

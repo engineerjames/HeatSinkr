@@ -148,6 +148,10 @@
                         <TextBlock Text="Total Resistance [°C/W]:" Style="{StaticResource LabelStyle}"/>
                         <TextBox Text="{Binding ThermalResistance_Total, Mode=OneWay}" Style="{StaticResource OutputStyle}" TextChanged="Output_Value_Changed"/>
                     </Grid>
+                    <Grid>
+                        <TextBlock Text="Base Temperature [°C]:" Style="{StaticResource LabelStyle}"/>
+                        <TextBox Text="{Binding Temperature_Case, Mode=OneWay}" Style="{StaticResource OutputStyle}" />
+                    </Grid>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
