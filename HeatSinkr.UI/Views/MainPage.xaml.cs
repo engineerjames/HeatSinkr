@@ -30,7 +30,7 @@ namespace HeatSinkr.UI
             InitializeMaterialComboBox();
             CopyFilesIntoAppData();
             webView.Source = new Uri("ms-appdata:///local/WebAssets/index.html");
-            ApplicationView.PreferredLaunchViewSize = new Windows.Foundation.Size(1050, 800);
+            ApplicationView.PreferredLaunchViewSize = new Windows.Foundation.Size(1050, 900);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
         }
 
@@ -116,10 +116,10 @@ namespace HeatSinkr.UI
         {
             try
             {
-                var html = HTMLEditor.Instance;
+                var html = JSEditor.Instance;
                 var TrChartData = ViewModel.ThermalResistanceCurve;
                 var PressureChartData = ViewModel.PressureCurve;
-                html.UpdateHTML(TrChartData, PressureChartData);
+                html.UpdateJSFileAsync(TrChartData, PressureChartData);
                 webView.Refresh();
             }
             catch (Exception ex)
@@ -130,7 +130,7 @@ namespace HeatSinkr.UI
 
         private void Toggle_Checked(object sender, RoutedEventArgs e)
         {
-            var toggle = sender as ToggleButton;
+            var toggle = sender as ToggleButton;                      
 
             if ((string)toggle.Content == "-")
             {
@@ -140,6 +140,6 @@ namespace HeatSinkr.UI
             {
                 toggle.Content = "-";
             }
-        }                
+        }
     }
 }

@@ -1,6 +1,5 @@
-﻿var chartData = [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 3 }];
-var chartData2 = [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 3 }];
-
+﻿var chartData = [{ x: 0.5, y: 7.525 }, { x: 1.143, y: 5.453 }, { x: 1.786, y: 4.605 }, { x: 2.429, y: 4.107 }, { x: 3.071, y: 3.769 }, { x: 3.714, y: 3.521 }, { x: 4.357, y: 3.328 }, { x: 5, y: 3.173 }, { x: 5.643, y: 3.044 }, { x: 6.286, y: 2.936 }, { x: 6.929, y: 2.843 }, { x: 7.571, y: 2.761 }, { x: 8.214, y: 2.69 }, { x: 8.857, y: 2.626 }, { x: 9.5, y: 2.568 }];
+var chartData2 = [{ x: 0.5, y: 7.525 }, { x: 1.143, y: 5.453 }, { x: 1.786, y: 4.605 }, { x: 2.429, y: 4.107 }, { x: 3.071, y: 3.769 }, { x: 3.714, y: 3.521 }, { x: 4.357, y: 3.328 }, { x: 5, y: 3.173 }, { x: 5.643, y: 3.044 }, { x: 6.286, y: 2.936 }, { x: 6.929, y: 2.843 }, { x: 7.571, y: 2.761 }, { x: 8.214, y: 2.69 }, { x: 8.857, y: 2.626 }, { x: 9.5, y: 2.568 }];
 var chart1 = document.getElementById("TrChart");
 var chart2 = document.getElementById("PressureChart")
 
@@ -22,7 +21,7 @@ var TrChart = new Chart(chart1, {
                     labelString: 'Volumetric Flow Rate [CFM]'
                 },
                 ticks: {
-                    min: 0.5,
+                    min: 0.0,
                     stepSize: 0.5
                 }
             }],
@@ -41,6 +40,7 @@ var TrChart = new Chart(chart1, {
         responsive: false
     }
 });
+
 var PressureChart = new Chart(chart2, {
     type: 'line',
     data: {
@@ -59,7 +59,7 @@ var PressureChart = new Chart(chart2, {
                     labelString: 'Volumetric Flow Rate [CFM]'
                 },
                 ticks: {
-                    min: 0.5,
+                    min: 0.0,
                     stepSize: 0.5
                 }
             }],

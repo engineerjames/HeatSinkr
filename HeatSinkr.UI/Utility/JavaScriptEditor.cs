@@ -6,18 +6,21 @@ using Windows.Storage;
 
 namespace HeatSinkr.UI
 {
-    public class HTMLEditor
+    public class JSEditor
     {
         private List<string> JSText;
         private StorageFolder appData = ApplicationData.Current.LocalFolder;
 
-        public static HTMLEditor Instance { get; } = new HTMLEditor();
+        public static JSEditor Instance { get; } = new JSEditor();
         
-        public async void UpdateHTML(string TrChartData, string PressureChartData)
+        public async void UpdateJSFileAsync(string TrChartData, string PressureChartData)
         {
             try
             {
                 await GetJavaScriptFile();
+                
+                // The base javascript file is written such that the first line is the Thermal resistance chart information
+                // and the second line is the pressure chart data.
                 JSText[0] = TrChartData;
                 JSText[1] = PressureChartData;
                 var newFile = await appData.CreateFileAsync("baseWebView.js", CreationCollisionOption.ReplaceExisting);
